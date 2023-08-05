@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=Karla');
+
+.navType {
+    font-family: "Karla";
+    font-size: 18px;
+    font-weight: 700;
+    color: black;
+}
+
+.footTitle {
+    font-family: "Karla";
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+}
+
+footer li {
+    font-family: "Karla";
+    font-size: 16px;
+    font-weight: 400;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+header a {
+    color: black;
+}
+
+footer a {
+    color: white;
+}
+
+header a:visited { 
+    color:black; 
+}
+
+footer a:visited { 
+    color:white; 
+}
+
+header a:hover, a:active { 
+    background-color: "";
+    color:#F4CE14;
+}
+
+footer a:hover, a:active { 
+    background-color: "";
+    color:#F4CE14;
+}
+
+.logo {
+    width: 80%;
+}
+
+.footer_logo {
+    width: 80%;
+}
+
+footer {
+    background-color: #495E57;
+}
