@@ -1,3 +1,4 @@
+/* Basic Grid layout */
 .grid {
     display: grid;
     max-width: 100%;
@@ -7,73 +8,97 @@
     grid-column-gap: 20px;
     grid-template-areas:
       " . . logo logo nav-links nav-links nav-links nav-links nav-links nav-links . . "
-      "content content content content content content content content content content content content"
+      " . . title_desc title_desc title_desc title_desc main_img main_img main_img main_img . ."
       " . . f_logo f_logo f_links1 f_links1 f_links2 f_links2 f_links3 f_links3 . . ";
   }
 
-  .logo-container {
-    grid-area: logo;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-  }
-  
-  .nav-links {
-    grid-area: nav-links;
-    max-width: 100%;
-  }
-
-  .navType {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  ul {
-    padding-inline-start: 0;
-  }
-
-  nav li {
-    display: inline;
-    padding-right: 25px;
-  }
-
-  .f_logo {
-    grid-area: f_logo;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: center;
-  }
-
-  .f_links1 {
-    grid-area: f_links1;
-  }
-
-  .f_links2 {
-    grid-area: f_links2;
-  }
-
-  .f_links3 {
-    grid-area: f_links3;
-  }
-
-  footer {
-    padding-bottom: 5vh;
-  }
-
+/* Grid scaling on smaller devices */
 @media screen and (max-width: 575px) {
-    .grid {
-        max-width: 100%;
-        grid-template-columns: repeat(4, 1fr);
-        align-items: center;
-        grid-template-areas:
-        "logo nav-links nav-links nav-links"
-        "logo nav-links nav-links nav-links"
-        "content content content content"
-        "f_logo f_links1 f_links2 f_links3";
-    }
+  .grid {
+      max-width: 100%;
+      grid-template-columns: repeat(4, 1fr);
+      align-items: center;
+      grid-template-areas:
+      "logo nav-links nav-links nav-links"
+      "logo nav-links nav-links nav-links"
+      "title_desc title_desc main_img main_img"
+      "f_logo f_links1 f_links2 f_links3";
+  }
+}
+
+/* Grid layout config with Flexbox used as container config */
+/* Header and Footer */
+.logo-container {
+  grid-area: logo;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.nav-links {
+  grid-area: nav-links;
+  max-width: 100%;
+}
+
+.navType {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.f_logo {
+  grid-area: f_logo;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+
+.f_links1 {
+  grid-area: f_links1;
+}
+
+.f_links2 {
+  grid-area: f_links2;
+}
+
+.f_links3 {
+  grid-area: f_links3;
+}
+
+/* Hero Section */
+.title_desc {
+  grid-area: title_desc;
+}
+
+#heroSection div {
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+}
+
+.main_img {
+  grid-area: main_img;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center
+}
+
+
+/* Layout styling */
+ul {
+  padding-inline-start: 0;
+}
+
+nav li {
+  display: inline;
+  padding-right: 25px;
+}
+
+
+footer {
+  padding-bottom: 5vh;
 }
 
 li {
-    list-style-type: none;
+  list-style-type: none;
 }

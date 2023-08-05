@@ -1,9 +1,70 @@
 @import url('https://fonts.googleapis.com/css?family=Karla');
+@import url('https://fonts.googleapis.com/css2?family=Markazi+Text');
+
+
+h1 {
+    font-family: "Markazi text";
+    color:#F4CE14;
+    font-weight: 500;
+    font-size: 64px;
+}
+
+h2 {
+    font-family: "Markazi text";
+    font-weight: 400;
+    font-size: 40px;
+}
+
+.title_desc h1, h2 {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.title_desc h2, p {
+    color:white;
+}
+
+.title_desc p {
+    font-family: "Karla";
+    font-size: 18px;
+    font-weight: 500;
+}
 
 .navType {
     font-family: "Karla";
     font-size: 18px;
     font-weight: 700;
+    color: black;
+}
+
+#heroSection {
+    background-color: #495E57;
+}
+
+.home_img {
+    max-width: 65%;
+    border-radius: 16px;
+}
+
+/* Button styling */
+button {
+    min-width: 50%;
+    padding: 1vh;
+    margin-top: 4vh;
+    border-radius: 8px;
+    font-family: "Karla";
+    font-size: 16px;
+    font-weight: 500;
+}
+
+#blackButton {
+    background-color: black;
+    color: white;
+}
+
+#blackButton:hover {
+    border: black 2px solid;
+    background-color: #F4CE14;
     color: black;
 }
 
@@ -41,12 +102,12 @@ footer a:visited {
     color:white; 
 }
 
-header a:hover, a:active { 
+header a:hover { 
     background-color: "";
     color:#F4CE14;
 }
 
-footer a:hover, a:active { 
+footer a:hover { 
     background-color: "";
     color:#F4CE14;
 }
