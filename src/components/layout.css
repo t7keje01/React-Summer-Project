@@ -9,22 +9,10 @@
     grid-template-areas:
       " . . logo logo nav-links nav-links nav-links nav-links nav-links nav-links . . "
       " . . title_desc title_desc title_desc title_desc main_img main_img main_img main_img . ."
+      " . . sp_title sp_title sp_title sp_title sp_title sp_button sp_button sp_button . ."
+      " . . sp_card sp_card sp_card sp_card sp_card sp_card sp_card sp_card . . "
       " . . f_logo f_logo f_links1 f_links1 f_links2 f_links2 f_links3 f_links3 . . ";
   }
-
-/* Grid scaling on smaller devices */
-@media screen and (max-width: 575px) {
-  .grid {
-      max-width: 100%;
-      grid-template-columns: repeat(4, 1fr);
-      align-items: center;
-      grid-template-areas:
-      "logo nav-links nav-links nav-links"
-      "logo nav-links nav-links nav-links"
-      "title_desc title_desc main_img main_img"
-      "f_logo f_links1 f_links2 f_links3";
-  }
-}
 
 /* Grid layout config with Flexbox used as container config */
 /* Header and Footer */
@@ -80,9 +68,41 @@
   display: flex;
   flex-wrap: wrap;
   align-content: center;
-  justify-content: center
+  justify-content: flex-end;
 }
 
+/* Specials */
+.sp_title {
+ grid-area: sp_title;
+}
+
+.sp_button {
+  grid-area: sp_button;
+}
+
+.sp_card {
+  grid-area: sp_card;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 4vh;
+  margin-bottom: 10vh;
+}
+
+.sp_card div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+.sp_card section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.sp_card h4 {
+  margin-top: auto;
+}
 
 /* Layout styling */
 ul {
@@ -101,4 +121,41 @@ footer {
 
 li {
   list-style-type: none;
+}
+
+/* Grid scaling on smaller devices */
+@media screen and (max-width: 575px) {
+  .grid {
+      max-width: 100%;
+      grid-template-columns: repeat(4, 1fr);
+      align-items: center;
+      grid-template-areas:
+      "logo nav-links nav-links nav-links"
+      "logo nav-links nav-links nav-links"
+      "main_img main_img main_img main_img"
+      "title_desc title_desc title_desc title_desc"
+      "sp_title sp_title sp_title sp_title"
+      "sp_button sp_button sp_button sp_button"
+      "sp_card sp_card sp_card sp_card"
+      "f_logo f_links1 f_links2 f_links3";
+  }
+  #heroSection div {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    margin: 4vh 0 4vh 0;
+  }
+  .sp_card {
+    grid-template-columns: 1fr;
+    gap: 5vh;
+  }
+  .sp_title, .sp_button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sp_button {
+    margin-top: 0;
+  }
 }
