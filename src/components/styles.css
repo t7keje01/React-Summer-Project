@@ -27,6 +27,10 @@ h4 {
     font-weight: 600;
 }
 
+header {
+    background-color: white;
+}
+
 .title_desc h1, h2 {
     margin-bottom: 0;
     margin-top: 0;
@@ -70,7 +74,7 @@ h4 {
     border-radius: 16px 16px 0 0;
 }
 
-.sp_card p {
+.sp_card p, #testimonials p {
     color: black;
 }
 
@@ -86,7 +90,7 @@ h4 {
     padding: 0vh 2vh 0vh 2vh;
 }
 
-.sp_title, .sp_button {
+.sp_title, .sp_button, .rvw_title {
     margin-top: 10vh;
     margin-bottom: 5vh;
 }
@@ -95,6 +99,15 @@ h4 {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+}
+
+#testimonials img {
+    width: 100%;
+}
+
+#testimonials section {
+    background-color: #FBDABB;
+    border: 1px solid black;
 }
 
 /* Button styling */

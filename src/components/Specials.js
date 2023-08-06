@@ -3,6 +3,7 @@ import { FaBicycle } from 'react-icons/fa';
 const Specials = () => {
     const specialsFoods = [
         {
+          id: "sf1",
           title: "Greek Salad",
           price: "$12.99",
           description:
@@ -10,6 +11,7 @@ const Specials = () => {
           getImageSrc: () => require("../images/greek salad.jpg"),
         },
         {
+          id: "sf2",
           title: "Bruchetta",
           price: "$5.99",
           description:
@@ -17,7 +19,8 @@ const Specials = () => {
           getImageSrc: () => require("../images/bruchetta.JPG"),
         },
         {
-          title: "Lemon Desert",
+          id: "sf3",
+          title: "Lemon Dessert",
           price: "$5.00",
           description:
             "This comes straight from grandma’s recipe book, every last ingredient has been sourced and is as authentic as can be imagined.",
@@ -34,8 +37,8 @@ const Specials = () => {
                 <button id="blackButton">Online Menu</button>
             </div>
             <div className='sp_card'>
-            {specialsFoods.map((sp) => (
-                <section>
+            {specialsFoods.map((sp, index) => (
+                <section key={index.id}>
                     <img src={sp.getImageSrc()} alt=''/>
                     <div>
                         <h3>{sp.title}</h3>

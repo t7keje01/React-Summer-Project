@@ -11,11 +11,16 @@
       " . . title_desc title_desc title_desc title_desc main_img main_img main_img main_img . ."
       " . . sp_title sp_title sp_title sp_title sp_title sp_button sp_button sp_button . ."
       " . . sp_card sp_card sp_card sp_card sp_card sp_card sp_card sp_card . . "
+      " . . rvw_title rvw_title rvw_title rvw_title rvw_title rvw_title rvw_title rvw_title . . "
+      " . . rvw_card1 rvw_card1 rvw_card2 rvw_card2 rvw_card3 rvw_card3 rvw_card4 rvw_card4 . . "
       " . . f_logo f_logo f_links1 f_links1 f_links2 f_links2 f_links3 f_links3 . . ";
   }
 
 /* Grid layout config with Flexbox used as container config */
 /* Header and Footer */
+header{
+  position: fixed;
+}
 .logo-container {
   grid-area: logo;
   display: flex;
@@ -31,6 +36,7 @@
 .navType {
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .f_logo {
@@ -85,7 +91,6 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 4vh;
-  margin-bottom: 10vh;
 }
 
 .sp_card div {
@@ -104,14 +109,51 @@
   margin-top: auto;
 }
 
+/* Testimonials */
+.rvw_title {
+  grid-area: rvw_title;
+}
+
+#testimonials section {
+  padding: 2vh;
+}
+
+#testimonials h2 {
+  text-align: center;
+}
+
+#testimonials section div:last-of-type {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 2vh;
+  column-gap: 2vh;
+  align-items: center;
+}
+
+.rvw_card1 {
+  grid-area: rvw_card1;
+}
+
+.rvw_card2 {
+  grid-area: rvw_card2;
+}
+
+.rvw_card3 {
+  grid-area: rvw_card3;
+}
+
+.rvw_card4 {
+  grid-area: rvw_card4;
+}
+
+
 /* Layout styling */
 ul {
   padding-inline-start: 0;
 }
 
 nav li {
-  display: inline;
-  padding-right: 25px;
+  padding-left: 25px;
 }
 
 
@@ -137,6 +179,11 @@ li {
       "sp_title sp_title sp_title sp_title"
       "sp_button sp_button sp_button sp_button"
       "sp_card sp_card sp_card sp_card"
+      "rvw_title rvw_title rvw_title rvw_title"
+      "rvw_card1 rvw_card1 rvw_card1 rvw_card1"
+      "rvw_card2 rvw_card2 rvw_card2 rvw_card2"
+      "rvw_card3 rvw_card3 rvw_card3 rvw_card3"
+      "rvw_card4 rvw_card4 rvw_card4 rvw_card4"
       "f_logo f_links1 f_links2 f_links3";
   }
   #heroSection div {
@@ -157,5 +204,9 @@ li {
 
   .sp_button {
     margin-top: 0;
+  }
+
+  #testimonials section {
+    margin-bottom: 4vh;
   }
 }
