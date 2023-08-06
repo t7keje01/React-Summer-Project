@@ -1,6 +1,7 @@
 import CalltoAction from "./CallToAction";
 import Specials from "./Specials";
-import CustomersSay from "./CustomersSay"
+import CustomersSay from "./CustomersSay";
+import Chigaco from "./Chicago";
 
 const HomePage = () => {
     return (
@@ -8,6 +9,7 @@ const HomePage = () => {
             <CalltoAction/>
             <Specials/>
             <CustomersSay/>
+            <Chigaco/>
         </>
     );
 };

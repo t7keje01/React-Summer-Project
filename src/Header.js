@@ -14,7 +14,7 @@ const Header = () => {
     console.log("Current Pathname:", pathname);
 
     switch (pathname) {
-      case "/home":
+      case "/":
         setTextColor(1);
         break;
       case "/about":
@@ -43,14 +43,14 @@ const Header = () => {
       <nav className="grid">
         {/* Logo */}
         <div className="logo-container">
-          <Link to="/home">
+          <Link to="/">
             <img src={logo} alt="Little Lemon logo" className="logo" />
           </Link>
         </div>
         {/* Navigation Links */}
         <div className="nav-links">
           <ul className="navType">
-            <li><Link to="/home" style={{ color: textColor === 1 ? '#F4CE14' : 'black' }}>Home</Link></li>
+            <li><Link to="/" style={{ color: textColor === 1 ? '#F4CE14' : 'black' }}>Home</Link></li>
             <li><Link to="/about" style={{ color: textColor === 2 ? '#F4CE14' : 'black' }}>About</Link></li>
             <li><Link to="/menu" style={{ color: textColor === 3 ? '#F4CE14' : 'black' }}>Menu</Link></li>
             <li><Link to="/reservations" style={{ color: textColor === 4 ? '#F4CE14' : 'black' }}>Reservations</Link></li>

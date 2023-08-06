@@ -27,7 +27,7 @@ h4 {
     font-weight: 600;
 }
 
-header {
+header, nav {
     background-color: white;
 }
 
@@ -63,7 +63,6 @@ header {
 
 .home_img {
     max-width: 65%;
-    min-width: 200px;
     border-radius: 16px;
 }
 
@@ -102,6 +101,7 @@ header {
 }
 
 #testimonials img {
+    border: 1px solid black;
     width: 100%;
 }
 
@@ -109,6 +109,62 @@ header {
     background-color: #FBDABB;
     border: 1px solid black;
 }
+
+#introSection {
+    position: relative;
+}
+
+.intro_background {
+    z-index: -1;
+}
+
+.intro_background::before {
+    content: "";
+    background-image: url('../images/Mario\ and\ Adrian\ A.jpg');
+    background-size: cover;
+    background-position: top;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+}
+
+.intro {
+    position: relative;
+    z-index: 1; /* This ensures the text content is on top of the overlay */
+}
+
+@keyframes changeBackground {
+    0%, 100% {
+        opacity: 0.3;
+        background-image: url('../images/Mario\ and\ Adrian\ A.jpg'); /* Initial background image */
+    }
+    50% {
+        opacity: 0.3;
+        background-image: url('../images/Mario\ and\ Adrian\ b.jpg'); /* Second background image */
+        background-position: bottom;
+    }
+}
+
+/* Apply the animation to the pseudo-element */
+.intro_background::before {
+    animation: changeBackground 25s infinite; /* Adjust duration and timing as needed */
+}
+
+#introSection p {
+    color: black;
+}
+
+#introSection h1 {
+    color: #495E57;
+}
+
+#introSection h1, h2 {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
 
 /* Button styling */
 button {
@@ -178,7 +234,8 @@ footer a:hover {
 }
 
 .logo {
-    width: 80%;
+    max-width: 80%;
+    min-width: 100px;
 }
 
 .footer_logo {

@@ -7,7 +7,7 @@ const footer_logo = require("./images/footer_logo.JPG");
 const Footer = () => {
 
   return (
-    <footer className="grid">
+    <footer className="grid" id="footerSection">
         <div className="f_logo">
             <Link to="/home"><img src={footer_logo} alt="Little Lemon footer logo" className="footer_logo"></img></Link>
         </div>

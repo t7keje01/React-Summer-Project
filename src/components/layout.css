@@ -13,14 +13,22 @@
       " . . sp_card sp_card sp_card sp_card sp_card sp_card sp_card sp_card . . "
       " . . rvw_title rvw_title rvw_title rvw_title rvw_title rvw_title rvw_title rvw_title . . "
       " . . rvw_card1 rvw_card1 rvw_card2 rvw_card2 rvw_card3 rvw_card3 rvw_card4 rvw_card4 . . "
+      " . . intro_content intro_content intro_content intro_content intro_content intro_content intro_content intro_content . . "
       " . . f_logo f_logo f_links1 f_links1 f_links2 f_links2 f_links3 f_links3 . . ";
   }
 
 /* Grid layout config with Flexbox used as container config */
 /* Header and Footer */
-header{
+nav {
   position: fixed;
+  z-index: 2;
 }
+
+header {
+  max-width: 100%;
+  min-height: 58px;
+}
+
 .logo-container {
   grid-area: logo;
   display: flex;
@@ -146,6 +154,19 @@ header{
   grid-area: rvw_card4;
 }
 
+/* Introduction section */
+.intro_content {
+  grid-area: intro_content;
+}
+
+#introSection {
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+}
+
+.intro_content {
+  margin: 20vh 0 20vh 0;
+}
 
 /* Layout styling */
 ul {
@@ -156,9 +177,8 @@ nav li {
   padding-left: 25px;
 }
 
-
 footer {
-  padding-bottom: 5vh;
+  padding: 3vh 0 3vh 0;
 }
 
 li {
@@ -184,8 +204,14 @@ li {
       "rvw_card2 rvw_card2 rvw_card2 rvw_card2"
       "rvw_card3 rvw_card3 rvw_card3 rvw_card3"
       "rvw_card4 rvw_card4 rvw_card4 rvw_card4"
+      "intro_content intro_content intro_content intro_content"
       "f_logo f_links1 f_links2 f_links3";
   }
+
+  header {
+    min-height: 100px;
+  }
+
   #heroSection div {
     display: grid;
     grid-template-columns: 1fr;
