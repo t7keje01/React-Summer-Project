@@ -3,7 +3,7 @@ import "../components/layout.css";
 
 const Chigaco = () => {
     return (
-        <article className="grid" id="introSection">
+        <article className="homeGrid" id="introSection">
             <div className="intro_content">
             <div className="intro_background"></div>
             <div className="intro">

@@ -7,14 +7,14 @@ const footer_logo = require("./images/footer_logo.JPG");
 const Footer = () => {
 
   return (
-    <footer className="grid" id="footerSection">
+    <footer className="homeGrid" id="footerSection">
         <div className="f_logo">
             <Link to="/home"><img src={footer_logo} alt="Little Lemon footer logo" className="footer_logo"></img></Link>
         </div>
         <div className="f_links1">
         <ul>
             <h4 className="footTitle">Doormat Navigation</h4>
-            <li><Link to="/home">Home</Link></li>
+            <li><Link to="/">Home</Link></li>
             <li><Link to="/about">About</Link></li>
             <li><Link to="/menu">Menu</Link></li>
             <li><Link to="/reservations">Reservations</Link></li>

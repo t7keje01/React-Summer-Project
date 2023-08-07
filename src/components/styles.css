@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Karla');
 @import url('https://fonts.googleapis.com/css2?family=Markazi+Text');
 
+/* FONTS & IMAGES:
+- Colors, Fonts, Sizing, Positioning, Animations */
 
+/* Heading basic styling */
 h1 {
     font-family: "Markazi text";
     color:#F4CE14;
@@ -27,10 +30,38 @@ h4 {
     font-weight: 600;
 }
 
+/* Link styling */
+
+a {
+    text-decoration: none;
+}
+
+header a, header a:visited {
+    color: black;
+}
+
+footer a, footer a:visited {
+    color: white;
+}
+
+header a:hover, footer a:hover { 
+    background-color: "";
+    color:#F4CE14;
+}
+
+/* Header styling */
 header, nav {
     background-color: white;
 }
 
+.navType {
+    font-family: "Karla";
+    font-size: 18px;
+    font-weight: 700;
+    color: black;
+}
+
+/* Hero Section styling */
 .title_desc h1, h2 {
     margin-bottom: 0;
     margin-top: 0;
@@ -50,22 +81,16 @@ header, nav {
     font-weight: 500;
 }
 
-.navType {
-    font-family: "Karla";
-    font-size: 18px;
-    font-weight: 700;
-    color: black;
-}
-
 #heroSection {
     background-color: #495E57;
 }
 
 .home_img {
-    max-width: 65%;
+    max-width: 70%;
     border-radius: 16px;
 }
 
+/* Specials */
 .sp_card img{
     width:100%;
     height: 170px;
@@ -89,17 +114,11 @@ header, nav {
     padding: 0vh 2vh 0vh 2vh;
 }
 
-.sp_title, .sp_button, .rvw_title {
-    margin-top: 10vh;
-    margin-bottom: 5vh;
+.sp_card h4 {
+    margin-top: auto;
 }
 
-.sp_button {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-
+/* Testimonials */
 #testimonials img {
     border: 1px solid black;
     width: 100%;
@@ -110,6 +129,11 @@ header, nav {
     border: 1px solid black;
 }
 
+#testimonials h2 {
+    text-align: center;
+}
+
+/* Introductions animation setup */
 #introSection {
     position: relative;
 }
@@ -132,26 +156,26 @@ header, nav {
 
 .intro {
     position: relative;
-    z-index: 1; /* This ensures the text content is on top of the overlay */
+    z-index: 1;
 }
 
 @keyframes changeBackground {
     0%, 100% {
         opacity: 0.3;
-        background-image: url('../images/Mario\ and\ Adrian\ A.jpg'); /* Initial background image */
+        background-image: url('../images/Mario\ and\ Adrian\ A.jpg');
     }
     50% {
         opacity: 0.3;
-        background-image: url('../images/Mario\ and\ Adrian\ b.jpg'); /* Second background image */
+        background-image: url('../images/Mario\ and\ Adrian\ b.jpg');
         background-position: bottom;
     }
 }
 
-/* Apply the animation to the pseudo-element */
 .intro_background::before {
-    animation: changeBackground 25s infinite; /* Adjust duration and timing as needed */
+    animation: changeBackground 25s infinite; 
 }
 
+/* Introductions styling */
 #introSection p {
     color: black;
 }
@@ -164,7 +188,6 @@ header, nav {
     margin-bottom: 0;
     margin-top: 0;
 }
-
 
 /* Button styling */
 button {
@@ -189,6 +212,7 @@ button {
     color: black;
 }
 
+/* Footer styling */
 .footTitle {
     font-family: "Karla";
     font-size: 16px;
@@ -200,37 +224,6 @@ footer li {
     font-family: "Karla";
     font-size: 16px;
     font-weight: 400;
-}
-
-
-a {
-    text-decoration: none;
-}
-
-header a {
-    color: black;
-}
-
-footer a {
-    color: white;
-}
-
-header a:visited { 
-    color:black; 
-}
-
-footer a:visited { 
-    color:white; 
-}
-
-header a:hover { 
-    background-color: "";
-    color:#F4CE14;
-}
-
-footer a:hover { 
-    background-color: "";
-    color:#F4CE14;
 }
 
 .logo {

@@ -1,5 +1,7 @@
-/* Basic Grid layout */
-.grid {
+/* Component-wise Grid Definition */
+
+/* Homepage Grid layout */
+.homeGrid {
     display: grid;
     max-width: 100%;
     padding-right: 3vh;
@@ -8,24 +10,46 @@
     grid-column-gap: 20px;
     grid-template-areas:
       " . . logo logo nav-links nav-links nav-links nav-links nav-links nav-links . . "
-      " . . title_desc title_desc title_desc title_desc main_img main_img main_img main_img . ."
+      " . . title_desc title_desc title_desc title_desc title_img title_img title_img title_img . ."
       " . . sp_title sp_title sp_title sp_title sp_title sp_button sp_button sp_button . ."
       " . . sp_card sp_card sp_card sp_card sp_card sp_card sp_card sp_card . . "
       " . . rvw_title rvw_title rvw_title rvw_title rvw_title rvw_title rvw_title rvw_title . . "
       " . . rvw_card1 rvw_card1 rvw_card2 rvw_card2 rvw_card3 rvw_card3 rvw_card4 rvw_card4 . . "
       " . . intro_content intro_content intro_content intro_content intro_content intro_content intro_content intro_content . . "
+      " . . filler filler filler filler filler filler filler filler . . "
       " . . f_logo f_logo f_links1 f_links1 f_links2 f_links2 f_links3 f_links3 . . ";
   }
 
-/* Grid layout config with Flexbox used as container config */
-/* Header and Footer */
-nav {
-  position: fixed;
-  z-index: 2;
+/* Table Details layout */
+.tableGrid {
+    display: grid;
+    max-width: 100%;
+    padding-right: 3vh;
+    padding-left: 3vh;
+    grid-template-columns: repeat(12, 1fr);
+    grid-column-gap: 20px;
+    grid-template-areas:
+      " . . logo logo nav-links nav-links nav-links nav-links nav-links nav-links . . "
+      " . . title_img title_img title_img title_img title_img title_img title_img title_img . ."
+      " . . title_desc title_desc title_desc title_desc title_desc title_desc title_desc title_desc . ."
+      " . . table_form table_form table_form table_form table_img table_img table_img table_img . . "
+      " . . table_next table_next table_next table_next table_canc table_canc table_canc table_canc . . "
+      " . . f_logo f_logo f_links1 f_links1 f_links2 f_links2 f_links3 f_links3 . . ";
 }
 
+
+/* Parent container definition */
+.content-container {
+  padding-top: 57.6px;
+}
+
+
+/* Grid layout config with Flexbox used as container config */
+/* Header */
 header {
-  max-width: 100%;
+  position: fixed;
+  z-index: 2;
+  width: 100%;
   min-height: 58px;
 }
 
@@ -47,24 +71,17 @@ header {
   justify-content: flex-end;
 }
 
-.f_logo {
-  grid-area: f_logo;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
+/* Lists */
+ul {
+  padding-inline-start: 0;
 }
 
-.f_links1 {
-  grid-area: f_links1;
+nav li {
+  padding-left: 25px;
 }
 
-.f_links2 {
-  grid-area: f_links2;
-}
-
-.f_links3 {
-  grid-area: f_links3;
+li {
+  list-style-type: none;
 }
 
 /* Hero Section */
@@ -77,8 +94,8 @@ header {
   margin-bottom: 10vh;
 }
 
-.main_img {
-  grid-area: main_img;
+.title_img {
+  grid-area: title_img;
   display: flex;
   flex-wrap: wrap;
   align-content: center;
@@ -113,9 +130,17 @@ header {
   height: 100%;
 }
 
-.sp_card h4 {
-  margin-top: auto;
+.sp_title, .sp_button, .rvw_title {
+  margin-top: 10vh;
+  margin-bottom: 5vh;
 }
+
+.sp_button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
 
 /* Testimonials */
 .rvw_title {
@@ -124,10 +149,6 @@ header {
 
 #testimonials section {
   padding: 2vh;
-}
-
-#testimonials h2 {
-  text-align: center;
 }
 
 #testimonials section div:last-of-type {
@@ -168,33 +189,40 @@ header {
   margin: 20vh 0 20vh 0;
 }
 
-/* Layout styling */
-ul {
-  padding-inline-start: 0;
-}
-
-nav li {
-  padding-left: 25px;
-}
-
+/* Footer */
 footer {
   padding: 3vh 0 3vh 0;
 }
 
-li {
-  list-style-type: none;
+.f_logo {
+  grid-area: f_logo;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
 }
 
-/* Grid scaling on smaller devices */
+.f_links1 {
+  grid-area: f_links1;
+}
+
+.f_links2 {
+  grid-area: f_links2;
+}
+
+.f_links3 {
+  grid-area: f_links3;
+}
+
+/* Smaller screens: Grid scaling and other actions to improve visuals */
 @media screen and (max-width: 575px) {
-  .grid {
+  .homeGrid {
       max-width: 100%;
       grid-template-columns: repeat(4, 1fr);
       align-items: center;
       grid-template-areas:
       "logo nav-links nav-links nav-links"
-      "logo nav-links nav-links nav-links"
-      "main_img main_img main_img main_img"
+      "title_img title_img title_img title_img"
       "title_desc title_desc title_desc title_desc"
       "sp_title sp_title sp_title sp_title"
       "sp_button sp_button sp_button sp_button"
@@ -207,11 +235,24 @@ li {
       "intro_content intro_content intro_content intro_content"
       "f_logo f_links1 f_links2 f_links3";
   }
-
-  header {
-    min-height: 100px;
+  .tableGrid {
+    display: grid;
+    max-width: 100%;
+    padding-right: 3vh;
+    padding-left: 3vh;
+    grid-template-columns: repeat(12, 1fr);
+    grid-column-gap: 20px;
+    grid-template-areas:
+      "logo nav-links nav-links nav-links"
+      "title_img title_img title_img title_img"
+      "title_desc title_desc title_desc title_desc"
+      "table_form table_form table_img table_img"
+      "table_next table_next table_canc table_canc"
+      "f_logo f_links1 f_links2 f_links3";
   }
-
+  .content-container {
+    padding-top: 100px;
+  }
   #heroSection div {
     display: grid;
     grid-template-columns: 1fr;

@@ -37,12 +37,12 @@ const CustomersSay = () => {
     ]
 
     return (
-        <article id="testimonials" className='grid'>
+        <article id="testimonials" className='homeGrid'>
             <div className='rvw_title'>
                 <h2>Testimonials</h2>
             </div>
-            {reviews.map((rvw, index) => (
-                <section className={rvw.grid} key={index.rvw}>
+            {reviews.map((rvw) => (
+                <section className={rvw.grid} key={rvw.id}>
                     <>{rvw.rating.map((StarIcon, starIndex) => ( <StarIcon key={starIndex} />))}</>
                     <div>
                         <img src={rvw.getImageSrc()} alt=''/>

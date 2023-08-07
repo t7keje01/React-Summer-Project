@@ -29,7 +29,7 @@ const Specials = () => {
     ]
 
     return (
-        <article className='grid'>
+        <article className='homeGrid'>
             <div className='sp_title'>
                 <h2>This Weeks Specials!</h2>
             </div>
@@ -37,8 +37,8 @@ const Specials = () => {
                 <button id="blackButton">Online Menu</button>
             </div>
             <div className='sp_card'>
-            {specialsFoods.map((sp, index) => (
-                <section key={index.id}>
+            {specialsFoods.map((sp) => (
+                <section key={sp.id}>
                     <img src={sp.getImageSrc()} alt=''/>
                     <div>
                         <h3>{sp.title}</h3>

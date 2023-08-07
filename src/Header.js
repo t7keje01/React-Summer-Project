@@ -10,8 +10,7 @@ const Header = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const { pathname } = location; 
-    console.log("Current Pathname:", pathname);
+    const { pathname } = location;
 
     switch (pathname) {
       case "/":
@@ -40,7 +39,7 @@ const Header = () => {
 
   return (
     <header>
-      <nav className="grid">
+      <nav className="homeGrid">
         {/* Logo */}
         <div className="logo-container">
           <Link to="/">
