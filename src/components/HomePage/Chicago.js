@@ -1,6 +1,3 @@
-import "../components/styles.css";
-import "../components/layout.css";
-
 const Chigaco = () => {
     return (
         <article className="homeGrid" id="introSection">

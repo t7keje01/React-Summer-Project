@@ -8,7 +8,7 @@ const CustomersSay = () => {
             rating: [FaStar, FaStar, FaStar, FaStar, FaStar],
             userName: "Jessica, 27",
             review: "I absolutely love this place! The food is fantastic!",
-            getImageSrc: () => require("../images/Jessica.JPG"),
+            getImageSrc: () => require("../../images/Jessica.JPG"),
         },
         {
             id:"rv2",
@@ -16,7 +16,7 @@ const CustomersSay = () => {
             rating: [FaStar, FaStar, FaStar, FaStar, FaStarHalfAlt],
             userName: "Chris, 38",
             review: "My number 1 restaurant. I suggest trying the Lemon Dessert!",
-            getImageSrc: () => require("../images/Chris.JPG"),
+            getImageSrc: () => require("../../images/Chris.JPG"),
         },
         {
             id:"rv3",
@@ -24,7 +24,7 @@ const CustomersSay = () => {
             rating: [FaStar, FaStar, FaStar, FaStar, FaRegStar],
             userName: "Sarah, 19",
             review: "A very cozy restaurant with excellent food.",
-            getImageSrc: () => require("../images/Sarah.JPG"),
+            getImageSrc: () => require("../../images/Sarah.JPG"),
         },
         {
             id:"rv4",
@@ -32,7 +32,7 @@ const CustomersSay = () => {
             rating: [FaStar, FaStar, FaStar, FaStarHalfAlt, FaRegStar],
             userName: "Michael, 55",
             review: "The food was good, but I wish I could have booked a table beforehand.",
-            getImageSrc: () => require("../images/Michael.JPG"),
+            getImageSrc: () => require("../../images/Michael.JPG"),
         },
     ]
 

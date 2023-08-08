@@ -1,9 +1,6 @@
-import { useState } from "react";
-import "../components/styles.css";
-import "../components/layout.css";
 import { useNavigate } from "react-router-dom";
 
-const main_food = require("../images/restaurantfood.jpg");
+const main_food = require("../../images/restaurantfood.jpg");
 
 const CalltoAction = () => {
     const navigate = useNavigate();
@@ -13,7 +10,7 @@ const CalltoAction = () => {
     };
 
     return (
-        <article className="homeGrid" id="heroSection">
+        <div className="homeGrid" id="heroSection">
             <div className="title_desc">
                 <h1>Little Lemon</h1>
                 <h2>Chigaco</h2>
@@ -23,7 +20,7 @@ const CalltoAction = () => {
             <div className="title_img">
                 <img src={main_food} alt="Restaurant food" className="home_img"/>
             </div>
-        </article>
+        </div>
     );
 };
 

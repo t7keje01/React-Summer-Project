@@ -30,8 +30,9 @@
     grid-column-gap: 20px;
     grid-template-areas:
       " . . logo logo nav-links nav-links nav-links nav-links nav-links nav-links . . "
-      " . . title_img title_img title_img title_img title_img title_img title_img title_img . ."
-      " . . title_desc title_desc title_desc title_desc title_desc title_desc title_desc title_desc . ."
+      " t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img "
+      " . . t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc . ."
+      " . . title_form title_form title_form title_form title_form title_form title_form title_form . . "
       " . . table_form table_form table_form table_form table_img table_img table_img table_img . . "
       " . . table_next table_next table_next table_next table_canc table_canc table_canc table_canc . . "
       " . . f_logo f_logo f_links1 f_links1 f_links2 f_links2 f_links3 f_links3 . . ";
@@ -41,8 +42,16 @@
 /* Parent container definition */
 .content-container {
   padding-top: 57.6px;
+  padding-bottom: 10vh;
 }
 
+.content-container > article {
+  padding: 15vh 0 15vh 0;
+}
+
+article section {
+  margin-top: 10vh;
+}
 
 /* Grid layout config with Flexbox used as container config */
 /* Header */
@@ -84,14 +93,44 @@ li {
   list-style-type: none;
 }
 
-/* Hero Section */
-.title_desc {
-  grid-area: title_desc;
+/* Footer */
+footer {
+  padding: 3vh 0 3vh 0;
 }
 
-#heroSection div {
-  margin-top: 10vh;
-  margin-bottom: 10vh;
+.f_logo {
+  grid-area: f_logo;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+
+.f_links1 {
+  grid-area: f_links1;
+}
+
+.f_links2 {
+  grid-area: f_links2;
+}
+
+.f_links3 {
+  grid-area: f_links3;
+}
+
+
+/*---------------------------------------------------------------------------*/
+
+
+/* HOMEPAGE */
+
+/* Hero Section */
+#heroSection {
+  padding: 10vh 0 10vh 0;
+}
+
+.title_desc {
+  grid-area: title_desc;
 }
 
 .title_img {
@@ -130,17 +169,11 @@ li {
   height: 100%;
 }
 
-.sp_title, .sp_button, .rvw_title {
-  margin-top: 10vh;
-  margin-bottom: 5vh;
-}
-
 .sp_button {
   display: flex;
   align-items: center;
   justify-content: flex-end;
 }
-
 
 /* Testimonials */
 .rvw_title {
@@ -180,39 +213,70 @@ li {
   grid-area: intro_content;
 }
 
-#introSection {
-  margin-top: 10vh;
-  margin-bottom: 10vh;
-}
-
 .intro_content {
-  margin: 20vh 0 20vh 0;
+  margin: 10vh 0 10vh 0;
 }
 
-/* Footer */
-footer {
-  padding: 3vh 0 3vh 0;
+
+/*---------------------------------------------------------------------------*/
+
+
+/* BOOKING PAGE */
+
+/* Title */
+#startBookingTitle {
+  padding: 0;
 }
 
-.f_logo {
-  grid-area: f_logo;
+.t_title_img {
+  grid-area: t_title_img;
   display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+  overflow: hidden;
+  max-height: 60vh;
 }
 
-.f_links1 {
-  grid-area: f_links1;
+.t_title_desc {
+  grid-area: t_title_desc;
+  padding: 10vh 0 10vh 0;
 }
 
-.f_links2 {
-  grid-area: f_links2;
+/* Form */
+
+.title_form {
+  grid-area: title_form;
 }
 
-.f_links3 {
-  grid-area: f_links3;
+.table_form  {
+  grid-area: table_form;
 }
+
+.form_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 10px; 
+}
+
+.form_grid label,
+.form_grid input,
+.form_grid select {
+  max-width: 100%; 
+}
+
+.table_img {
+  grid-area: table_img;
+}
+.tableReservation {
+  display: grid;
+  grid-template-columns: repeat(4 1fr);
+}
+
+
+/*---------------------------------------------------------------------------*/
+
+
+/* SMALL SCREEN */
 
 /* Smaller screens: Grid scaling and other actions to improve visuals */
 @media screen and (max-width: 575px) {
@@ -236,16 +300,14 @@ footer {
       "f_logo f_links1 f_links2 f_links3";
   }
   .tableGrid {
-    display: grid;
     max-width: 100%;
-    padding-right: 3vh;
-    padding-left: 3vh;
-    grid-template-columns: repeat(12, 1fr);
-    grid-column-gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
     grid-template-areas:
       "logo nav-links nav-links nav-links"
-      "title_img title_img title_img title_img"
-      "title_desc title_desc title_desc title_desc"
+      "t_title_img t_title_img t_title_img t_title_img"
+      "t_title_desc t_title_desc t_title_desc t_title_desc"
+      "title_form title_form title_form title_form"
       "table_form table_form table_img table_img"
       "table_next table_next table_canc table_canc"
       "f_logo f_links1 f_links2 f_links3";
