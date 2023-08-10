@@ -33,7 +33,7 @@
       " t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img "
       " . . t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc . ."
       " . . title_form title_form title_form title_form title_form title_form title_form title_form . . "
-      " . . table_form table_form table_form table_form table_img table_img table_img table_img . . "
+      " . . table_form table_form table_form table_form . table_img table_img table_img . . "
       " . . table_next table_next table_next table_next table_canc table_canc table_canc table_canc . . "
       " . . f_logo f_logo f_links1 f_links1 f_links2 f_links2 f_links3 f_links3 . . ";
 }
@@ -266,7 +266,65 @@ footer {
 
 .table_img {
   grid-area: table_img;
+  max-width: 100%;
+  justify-items: center;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr fit-content 1fr;
+  gap: 2vh;
+  padding: 2vh;
+  grid-template-areas: 
+    " dsc dsc dsc "
+    " tb1 tb2 tb3 "
+    " tb1 tb4 tb5 "
+    " kitchen tb6 tb7"
+    " kitchen tb8 tb9";
 }
+
+.dsc {
+  grid-area: dsc;
+}
+
+.kitchen {
+  grid-area: kitchen;
+}
+
+.tb1 {
+  grid-area: tb1;
+}
+
+.tb2 {
+  grid-area: tb2;
+}
+
+.tb3 {
+  grid-area: tb3;
+}
+
+.tb4 {
+  grid-area: tb4;
+}
+
+.tb5 {
+  grid-area: tb5;
+}
+
+.tb6 {
+  grid-area: tb6;
+}
+
+.tb7 {
+  grid-area: tb7;
+}
+
+.tb8 {
+  grid-area: tb8;
+}
+
+.tb9 {
+  grid-area: tb9;
+}
+
 .tableReservation {
   display: grid;
   grid-template-columns: repeat(4 1fr);
