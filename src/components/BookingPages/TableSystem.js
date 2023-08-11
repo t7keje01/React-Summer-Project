@@ -242,7 +242,7 @@ const TableSystem = ({ tableSetIndex, onTableSelect }) => {
             {selectedTableSet.map((tble, index) => (
                 <img
                     src={tble.image}
-                    alt={"Table " + tble.index}
+                    alt={""}
                     className={`image ${selectedImage === index ? "selected" : ""} ${tble.class_name}`}
                     key={tble.id}
                     onClick={tble.available ? () => handleImageClick(index, tble.table) : undefined}
