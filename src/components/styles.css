@@ -28,10 +28,16 @@ h3 {
     font-weight: 800;
 }
 
-h4 {
+h4, label {
     font-family: "Karla";
     font-size: 16px;
     font-weight: 600;
+}
+
+input, select {
+    font-family: "Karla";
+    font-size: 16px;
+    font-weight: 400;
 }
 
 /* Link styling */
@@ -54,15 +60,22 @@ header a:hover, footer a:hover {
 }
 
 /* Button styling */
-button {
-    max-width: 50%;
-    min-width: 200px;
-    padding: 1vh;
+button, input[type="submit"], .table_canc {
+    max-width: 80%;
+    min-width: 50%;
+    box-sizing: border-box;
+    padding: 2vh;
     border-radius: 8px;
     font-family: "Karla";
     font-size: 16px;
     font-weight: 500;
     text-align: center;
+    border: black 2px solid;
+    margin: 2vh;
+}
+
+input[type="submit"]:disabled {
+    background-color: #EDEFEE;
 }
 
 #blackButton {
@@ -70,7 +83,12 @@ button {
     color: white;
 }
 
-#blackButton:hover {
+#greyButton {
+    background-color: #EDEFEE;
+    color: black;
+}
+
+#blackButton:hover, #greyButton:hover {
     border: black 2px solid;
     background-color: #F4CE14;
     color: black;
@@ -257,11 +275,11 @@ footer {
 }
 
 /* Form */
-.table_img {
+#table_reservation_image {
     border: 1px solid black;
 }
 
-.table_img > img {
+#table_reservation_image > img {
     max-width: 100%;
     max-height: 100%;
 }
@@ -289,4 +307,23 @@ footer {
 
 .selected {
     border: 2px solid black;
+}
+
+input[type="checkbox"] {
+    height: 18px;
+    width: 18px;
+    margin: 0;
+}
+
+input[type="text"] {
+    height: 75%;
+}
+
+#res-time {
+    margin-top: 1px;
+}
+
+#res-date {
+    width: 100%;
+    box-sizing: border-box;
 }

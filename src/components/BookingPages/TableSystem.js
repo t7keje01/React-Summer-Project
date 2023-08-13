@@ -16,6 +16,7 @@ const tableSet1 = [
         class_name: "tb1",
         table: "Table 1",
         image: available8HorImage,
+        size: 8,
         available: true,
     },
     {
@@ -23,6 +24,7 @@ const tableSet1 = [
         class_name: "tb2",
         table: "Table 2",
         image: unavailable8VerImage,
+        size: 8,
         available: false,
     },
     {
@@ -30,6 +32,7 @@ const tableSet1 = [
         class_name: "tb3",
         table: "Table 3",
         image: unavailable4Image,
+        size: 4,
         available: false,
     },
     {
@@ -37,6 +40,7 @@ const tableSet1 = [
         class_name: "tb4",
         table: "Table 4",
         image: available6Image,
+        size: 6,
         available: true,
     },
     {
@@ -44,6 +48,7 @@ const tableSet1 = [
         class_name: "tb5",
         table: "Table 5",
         image: unavailable6Image,
+        size: 6,
         available: false,
     },
     {
@@ -51,6 +56,7 @@ const tableSet1 = [
         class_name: "tb6",
         table: "Table 6",
         image: unavailable6Image,
+        size: 6,
         available: false,
     },
     {
@@ -58,6 +64,7 @@ const tableSet1 = [
         class_name: "tb7",
         table: "Table 7",
         image: unavailable4Image,
+        size:4,
         available: false,
     },
     {
@@ -65,6 +72,7 @@ const tableSet1 = [
         class_name: "tb8",
         table: "Table 8",
         image: unavailable4Image,
+        size: 4,
         available: false,
     },
     {
@@ -72,6 +80,7 @@ const tableSet1 = [
         class_name: "tb9",
         table: "Table 9",
         image: available4Image,
+        size: 4,
         available: true,
     }
 ]
@@ -82,6 +91,7 @@ const tableSet2 = [
         class_name: "tb1",
         table: "Table 1",
         image: unavailable8HorImage,
+        size: 8,
         available: false,
     },
     {
@@ -89,6 +99,7 @@ const tableSet2 = [
         class_name: "tb2",
         table: "Table 2",
         image: available8VerImage,
+        size: 8,
         available: true,
     },
     {
@@ -96,6 +107,7 @@ const tableSet2 = [
         class_name: "tb3",
         table: "Table 3",
         image: unavailable4Image,
+        size: 4,
         available: false,
     },
     {
@@ -103,6 +115,7 @@ const tableSet2 = [
         class_name: "tb4",
         table: "Table 4",
         image: unavailable6Image,
+        size: 6,
         available: false,
     },
     {
@@ -110,6 +123,7 @@ const tableSet2 = [
         class_name: "tb5",
         table: "Table 5",
         image: unavailable6Image,
+        size: 6,
         available: false,
     },
     {
@@ -117,6 +131,7 @@ const tableSet2 = [
         class_name: "tb6",
         table: "Table 6",
         image: unavailable6Image,
+        size: 6,
         available: false,
     },
     {
@@ -124,6 +139,7 @@ const tableSet2 = [
         class_name: "tb7",
         table: "Table 7",
         image: available4Image,
+        size: 4,
         available: true,
     },
     {
@@ -131,6 +147,7 @@ const tableSet2 = [
         class_name: "tb8",
         table: "Table 8",
         image: available4Image,
+        size: 4,
         available: true,
     },
     {
@@ -138,6 +155,7 @@ const tableSet2 = [
         class_name: "tb9",
         table: "Table 9",
         image: available4Image,
+        size: 4,
         available: true,
     }
 ]
@@ -148,6 +166,7 @@ const tableSet3 = [
         class_name: "tb1",
         table: "Table 1",
         image: available8HorImage,
+        size:8,
         available: true,
     },
     {
@@ -155,6 +174,7 @@ const tableSet3 = [
         class_name: "tb2",
         table: "Table 2",
         image: available8VerImage,
+        size: 8,
         available: true,
     },
     {
@@ -162,6 +182,7 @@ const tableSet3 = [
         class_name: "tb3",
         table: "Table 3",
         image: unavailable4Image,
+        size:4,
         available: false,
     },
     {
@@ -169,6 +190,7 @@ const tableSet3 = [
         class_name: "tb4",
         table: "Table 4",
         image: available6Image,
+        size: 6,
         available: true,
     },
     {
@@ -176,6 +198,7 @@ const tableSet3 = [
         class_name: "tb5",
         table: "Table 5",
         image: unavailable6Image,
+        size: 6,
         available: false,
     },
     {
@@ -183,6 +206,7 @@ const tableSet3 = [
         class_name: "tb6",
         table: "Table 6",
         image: available6Image,
+        size: 6,
         available: true,
     },
     {
@@ -190,6 +214,7 @@ const tableSet3 = [
         class_name: "tb7",
         table: "Table 7",
         image: available4Image,
+        size: 4,
         available: true,
     },
     {
@@ -197,6 +222,7 @@ const tableSet3 = [
         class_name: "tb8",
         table: "Table 8",
         image: available4Image,
+        size: 4,
         available: true,
     },
     {
@@ -204,11 +230,12 @@ const tableSet3 = [
         class_name: "tb9",
         table: "Table 9",
         image: available4Image,
+        size: 4,
         available: true,
     }
 ]
 
-const TableSystem = ({ tableSetIndex, onTableSelect }) => {
+const TableSystem = ({ tableSetIndex, onTableSelect, selectedGuests }) => {
     const tableSets = [tableSet1, tableSet2, tableSet3];
     const selectedTableSet = tableSets[tableSetIndex - 1];
 
@@ -231,7 +258,7 @@ const TableSystem = ({ tableSetIndex, onTableSelect }) => {
     }, [tableSetIndex]);
 
     return (
-        <div className="table_img">
+        <div id="table_reservation_image">
             <div className="dsc">
                 <div id="greenBox"></div>
                 <div>Available</div>
@@ -243,9 +270,9 @@ const TableSystem = ({ tableSetIndex, onTableSelect }) => {
                 <img
                     src={tble.image}
                     alt={""}
-                    className={`image ${selectedImage === index ? "selected" : ""} ${tble.class_name}`}
+                    className={`image ${selectedImage === index ? "selected" : ""} ${tble.class_name} ${tble.size < selectedGuests ? "disabled" : ""}`}
                     key={tble.id}
-                    onClick={tble.available ? () => handleImageClick(index, tble.table) : undefined}
+                    onClick={tble.size < selectedGuests ? undefined : () => handleImageClick(index, tble.table)}
                 />
             ))}
         </div>

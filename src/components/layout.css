@@ -34,15 +34,17 @@
       " . . t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc . ."
       " . . title_form title_form title_form title_form title_form title_form title_form title_form . . "
       " . . table_form table_form table_form table_form . table_img table_img table_img . . "
-      " . . table_next table_next table_next table_next table_canc table_canc table_canc table_canc . . "
+      " . . table_next table_next table_next . . table_canc table_canc table_canc . ."
       " . . f_logo f_logo f_links1 f_links1 f_links2 f_links2 f_links3 f_links3 . . ";
 }
 
 
 /* Parent container definition */
 .content-container {
+  max-width: 100%;
   padding-top: 57.6px;
   padding-bottom: 10vh;
+  overflow: hidden;
 }
 
 .content-container > article {
@@ -58,7 +60,7 @@ article section {
 header {
   position: fixed;
   z-index: 2;
-  width: 100%;
+  max-width: 100%;
   min-height: 58px;
 }
 
@@ -78,15 +80,13 @@ header {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
+  gap: 1vh;
+  column-gap: 20px;
 }
 
 /* Lists */
 ul {
   padding-inline-start: 0;
-}
-
-nav li {
-  padding-left: 25px;
 }
 
 li {
@@ -243,29 +243,48 @@ footer {
 }
 
 /* Form */
-
+#divTable {
+  width: 100%;
+}
 .title_form {
   grid-area: title_form;
 }
 
-.table_form  {
+.table_form {
   grid-area: table_form;
+  margin-bottom: 5vh;
+  max-width: 100%;
+}
+
+.table_img {
+  max-width: 100%;
 }
 
 .form_grid {
   display: grid;
   grid-template-columns: 1fr 1fr; 
-  gap: 10px; 
+  grid-template-rows: repeat(6, 60px);
+  gap: 2vh; 
+  align-items: center;
 }
 
 .form_grid label,
 .form_grid input,
-.form_grid select {
+.form_grid select,
+.react-datepicker__input-container {
   max-width: 100%; 
+  max-height: 80%;
 }
 
 .table_img {
   grid-area: table_img;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-end;
+  margin-bottom: 5vh;
+}
+
+#table_reservation_image {
   max-width: 100%;
   justify-items: center;
   align-items: center;
@@ -330,6 +349,31 @@ footer {
   grid-template-columns: repeat(4 1fr);
 }
 
+.place_holder {
+  max-width: 100%;
+  height: 0px;
+}
+
+.table_next {
+  grid-area: table_next;
+  width: 300px !important;
+}
+
+.table_canc {
+  grid-area: table_canc;
+  width: 300px !important;
+}
+
+.icon_title {
+  display: flex;
+  align-items: center;
+  gap: 3vh;
+}
+
+.dateContainer {
+  width: 100%;
+  height: 4vh;
+}
 
 /*---------------------------------------------------------------------------*/
 
@@ -358,26 +402,50 @@ footer {
       "f_logo f_links1 f_links2 f_links3";
   }
   .tableGrid {
-    max-width: 100%;
+    display: grid;
     grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+    padding: 5vh;
     align-items: center;
+    justify-items: center;
     grid-template-areas:
       "logo nav-links nav-links nav-links"
       "t_title_img t_title_img t_title_img t_title_img"
       "t_title_desc t_title_desc t_title_desc t_title_desc"
       "title_form title_form title_form title_form"
-      "table_form table_form table_img table_img"
-      "table_next table_next table_canc table_canc"
+      "table_form table_form table_form table_form"
+      "table_img table_img table_img table_img"
+      "table_next table_next table_next table_next"
+      "table_canc table_canc table_canc table_canc"
       "f_logo f_links1 f_links2 f_links3";
   }
+
   .content-container {
     padding-top: 100px;
+  }
+  .content-container article {
+    padding: 0;
+  }
+  #tableGridContainer h2, section {
+    padding: 5vh 5vh 0 5vh;
+  }
+  .t_title_desc {
+    padding: 5vh;
+  }
+  #heroSection {
+    padding: 5vh 0 5vh 0;
+  }
+  #heroSection h1 {
+    padding-top: 5vh;
   }
   #heroSection div {
     display: grid;
     grid-template-columns: 1fr;
     justify-items: center;
-    margin: 4vh 0 4vh 0;
+    margin: 0 4vh 0 4vh;
+  }
+  .sp_title{
+    padding-bottom: 4vh;
   }
   .sp_card {
     grid-template-columns: 1fr;
@@ -395,5 +463,59 @@ footer {
 
   #testimonials section {
     margin-bottom: 4vh;
+  }
+
+  article section {
+    margin-top: 5vh;
+  }
+
+  .form_grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(10, 4vh);
+    align-items: center;
+    justify-items: stretch;
+    width: 100%;
+    gap: 2vh; 
+  }
+
+  .form_grid div, select {
+    width: 300px;
+  }
+
+  .title_form {
+    margin-bottom: 5vh
+  }
+
+  svg {
+    width: 30px;
+  }
+  .icon_title {
+    display: grid;
+    grid-template-columns: 15% 50vw;
+    gap: 0;
+  }
+
+  .table_form {
+    margin-top: 0;
+    height: 100%;
+  }
+
+  select, .react-datepicker__input-container {
+    height: 4vh;
+    padding: 0;
+    margin-bottom: 2vh;
+  }
+
+  .react-datepicker__portal {
+    min-width: 100%;
+  }
+
+  .react-datepicker__input-container {
+    box-sizing: border-box;
+  }
+
+  .table_img {
+    justify-content: flex-end;
   }
 }
