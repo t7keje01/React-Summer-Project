@@ -40,8 +40,8 @@ input, select {
     font-weight: 400;
 }
 
-/* Link styling */
 
+/* Link styling */
 a {
     text-decoration: none;
 }
@@ -59,23 +59,32 @@ header a:hover, footer a:hover {
     color:#F4CE14;
 }
 
+
 /* Button styling */
-button, input[type="submit"], .table_canc {
-    max-width: 80%;
-    min-width: 50%;
+button, .table_canc {
+    display: grid;
+    text-align: center;
+    align-content: center;
+    justify-items: center;
+    width: 250px;
+    height: 40px;
     box-sizing: border-box;
-    padding: 2vh;
     border-radius: 8px;
     font-family: "Karla";
     font-size: 16px;
     font-weight: 500;
-    text-align: center;
     border: black 2px solid;
-    margin: 2vh;
 }
 
-input[type="submit"]:disabled {
-    background-color: #EDEFEE;
+.table_next {
+    width: 250px;
+    height: 40px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    font-family: "Karla";
+    font-size: 16px;
+    font-weight: 500;
+    border: black 2px solid;
 }
 
 #blackButton {
@@ -94,6 +103,7 @@ input[type="submit"]:disabled {
     color: black;
 }
 
+
 /* Header styling */
 header, nav {
     background-color: white;
@@ -106,12 +116,14 @@ header, nav {
     color: black;
 }
 
+
 /* Footer styling */
-.footTitle {
+#footTitle {
     font-family: "Karla";
     font-size: 16px;
     font-weight: 600;
     color: white;
+    margin: 3vh 0 0 0;
 }
 
 footer li {
@@ -163,8 +175,9 @@ footer {
     border-radius: 16px;
 }
 
+
 /* Specials */
-.sp_card img{
+.sp_card img {
     width:100%;
     height: 170px;
     object-fit:cover;
@@ -191,6 +204,7 @@ footer {
     margin-top: auto;
 }
 
+
 /* Testimonials */
 #testimonials img {
     border: 1px solid black;
@@ -205,6 +219,7 @@ footer {
 #testimonials h2 {
     text-align: center;
 }
+
 
 /* Introductions animation setup */
 #introSection {
@@ -248,6 +263,7 @@ footer {
     animation: changeBackground 25s infinite; 
 }
 
+
 /* Introductions styling */
 #introSection p {
     color: black;
@@ -274,9 +290,11 @@ footer {
     text-decoration: underline;
 }
 
+
 /* Form */
 #table_reservation_image {
     border: 1px solid black;
+    border-radius: 8px;
 }
 
 #table_reservation_image > img {
@@ -313,10 +331,6 @@ input[type="checkbox"] {
     height: 18px;
     width: 18px;
     margin: 0;
-}
-
-input[type="text"] {
-    height: 75%;
 }
 
 #res-time {

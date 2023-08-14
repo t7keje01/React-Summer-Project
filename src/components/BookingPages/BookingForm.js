@@ -99,7 +99,7 @@ const BookingForm = () => {
     const [selectedChairs, setSelectedChairs] = useState('');
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [filteredTimeSlots, setFilteredTimeSlots]  =useState([]);
-    const [selectedTime, setSelectedTime] = useState(null);
+    const [selectedTime, setSelectedTime] = useState("");
     const [selectedOccasion, setSelectedOccasion] = useState('');
     const [selectedTableSituation, setSelectedTableSituation] = useState('');
     const [chosenTable, setChosenTable] = useState("");

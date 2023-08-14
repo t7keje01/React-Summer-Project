@@ -17,6 +17,7 @@
       " . . rvw_card1 rvw_card1 rvw_card2 rvw_card2 rvw_card3 rvw_card3 rvw_card4 rvw_card4 . . "
       " . . intro_content intro_content intro_content intro_content intro_content intro_content intro_content intro_content . . "
       " . . filler filler filler filler filler filler filler filler . . "
+      " . . f_logo f_logo f_links1_h f_links1_h f_links2_h f_links2_h f_links3_h f_links3_h . . "
       " . . f_logo f_logo f_links1 f_links1 f_links2 f_links2 f_links3 f_links3 . . ";
   }
 
@@ -33,13 +34,14 @@
       " t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img "
       " . . t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc . ."
       " . . title_form title_form title_form title_form title_form title_form title_form title_form . . "
-      " . . table_form table_form table_form table_form . table_img table_img table_img . . "
-      " . . table_next table_next table_next . . table_canc table_canc table_canc . ."
-      " . . f_logo f_logo f_links1 f_links1 f_links2 f_links2 f_links3 f_links3 . . ";
+      " . . table_form table_form table_form table_form table_img table_img table_img table_img . . "
+      " . . table_next table_next table_next table_next table_canc table_canc table_canc table_canc . ."
+      " . . f_logo f_logo f_links1_h f_links1_h f_links2_h f_links2_h f_links3_h f_links3_h . . "
+      " . . f_logo f_logo f_links1 f_links1 f_links2 f_links2 f_links3 f_links3 . . "
 }
 
 
-/* Parent container definition */
+/* Parent container & overall definition */
 .content-container {
   max-width: 100%;
   padding-top: 57.6px;
@@ -48,12 +50,13 @@
 }
 
 .content-container > article {
-  padding: 15vh 0 15vh 0;
+  padding: 10vh 0 10vh 0;
 }
 
 article section {
   margin-top: 10vh;
 }
+
 
 /* Grid layout config with Flexbox used as container config */
 /* Header */
@@ -84,6 +87,7 @@ header {
   column-gap: 20px;
 }
 
+
 /* Lists */
 ul {
   padding-inline-start: 0;
@@ -92,6 +96,7 @@ ul {
 li {
   list-style-type: none;
 }
+
 
 /* Footer */
 footer {
@@ -104,6 +109,18 @@ footer {
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
+}
+
+.f_links1_h {
+  grid-area: f_links1_h;
+}
+
+.f_links2_h {
+  grid-area: f_links2_h;
+}
+
+.f_links3_h {
+  grid-area: f_links3_h;
 }
 
 .f_links1 {
@@ -141,6 +158,7 @@ footer {
   justify-content: flex-end;
 }
 
+
 /* Specials */
 .sp_title {
  grid-area: sp_title;
@@ -166,7 +184,7 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+  max-height: 100%;
 }
 
 .sp_button {
@@ -174,6 +192,7 @@ footer {
   align-items: center;
   justify-content: flex-end;
 }
+
 
 /* Testimonials */
 .rvw_title {
@@ -207,6 +226,7 @@ footer {
 .rvw_card4 {
   grid-area: rvw_card4;
 }
+
 
 /* Introduction section */
 .intro_content {
@@ -242,10 +262,12 @@ footer {
   padding: 10vh 0 10vh 0;
 }
 
+
 /* Form */
 #divTable {
   width: 100%;
 }
+
 .title_form {
   grid-area: title_form;
 }
@@ -263,17 +285,16 @@ footer {
 .form_grid {
   display: grid;
   grid-template-columns: 1fr 1fr; 
-  grid-template-rows: repeat(6, 60px);
+  grid-template-rows: repeat(6, 1fr);
   gap: 2vh; 
   align-items: center;
 }
 
 .form_grid label,
 .form_grid input,
-.form_grid select,
-.react-datepicker__input-container {
+.form_grid select {
   max-width: 100%; 
-  max-height: 80%;
+  max-height: 100%;
 }
 
 .table_img {
@@ -289,7 +310,7 @@ footer {
   justify-items: center;
   align-items: center;
   display: grid;
-  grid-template-columns: 1fr fit-content 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 2vh;
   padding: 2vh;
   grid-template-areas: 
@@ -356,23 +377,16 @@ footer {
 
 .table_next {
   grid-area: table_next;
-  width: 300px !important;
 }
 
 .table_canc {
   grid-area: table_canc;
-  width: 300px !important;
 }
 
 .icon_title {
   display: flex;
   align-items: center;
   gap: 3vh;
-}
-
-.dateContainer {
-  width: 100%;
-  height: 4vh;
 }
 
 /*---------------------------------------------------------------------------*/
@@ -383,6 +397,7 @@ footer {
 /* Smaller screens: Grid scaling and other actions to improve visuals */
 @media screen and (max-width: 575px) {
   .homeGrid {
+    display: grid;
       max-width: 100%;
       grid-template-columns: repeat(4, 1fr);
       align-items: center;
@@ -399,12 +414,17 @@ footer {
       "rvw_card3 rvw_card3 rvw_card3 rvw_card3"
       "rvw_card4 rvw_card4 rvw_card4 rvw_card4"
       "intro_content intro_content intro_content intro_content"
-      "f_logo f_links1 f_links2 f_links3";
+      "f_logo f_links1_h f_links1_h f_links1_h"
+      "f_logo f_links1 f_links1 f_links1"
+      "f_logo f_links2_h f_links2_h f_links2_h"
+      "f_logo f_links2 f_links2 f_links2"      
+      "f_logo f_links3_h f_links3_h f_links3_h"
+      "f_logo f_links3 f_links3 f_links3";
   }
   .tableGrid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    width: 100%;
+    max-width: 100%;
     padding: 5vh;
     align-items: center;
     justify-items: center;
@@ -417,18 +437,29 @@ footer {
       "table_img table_img table_img table_img"
       "table_next table_next table_next table_next"
       "table_canc table_canc table_canc table_canc"
-      "f_logo f_links1 f_links2 f_links3";
+      "f_logo f_links1_h f_links1_h f_links1_h"
+      "f_logo f_links1 f_links1 f_links1"
+      "f_logo f_links2_h f_links2_h f_links2_h"
+      "f_logo f_links2 f_links2 f_links2"      
+      "f_logo f_links3_h f_links3_h f_links3_h"
+      "f_logo f_links3 f_links3 f_links3";
   }
 
   .content-container {
     padding-top: 100px;
   }
   .content-container article {
-    padding: 0;
+    padding: 5vh;
   }
-  #tableGridContainer h2, section {
-    padding: 5vh 5vh 0 5vh;
+
+  .f_links1, .f_links2, .f_links3 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 1vh;
+    column-gap: 20px;
   }
+
   .t_title_desc {
     padding: 5vh;
   }
@@ -472,15 +503,11 @@ footer {
   .form_grid {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(10, 4vh);
+    grid-template-rows: repeat(10, auto);
     align-items: center;
     justify-items: stretch;
-    width: 100%;
+    max-width: 100%;
     gap: 2vh; 
-  }
-
-  .form_grid div, select {
-    width: 300px;
   }
 
   .title_form {
@@ -497,12 +524,10 @@ footer {
   }
 
   .table_form {
-    margin-top: 0;
     height: 100%;
   }
 
   select, .react-datepicker__input-container {
-    height: 4vh;
     padding: 0;
     margin-bottom: 2vh;
   }
@@ -517,5 +542,9 @@ footer {
 
   .table_img {
     justify-content: flex-end;
+  }
+
+  .table_canc {
+    margin-top: 4vh;
   }
 }
