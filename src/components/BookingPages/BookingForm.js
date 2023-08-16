@@ -1,11 +1,20 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { FaUsers, FaClock, FaCalendarAlt, FaChair, FaBirthdayCake } from 'react-icons/fa';
 import TableSystem from "./TableSystem";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const BookingForm = () => {
+
+const BookingForm = (props) => {
+
+    const {
+        availableTimes,
+        filteredTimeSlots,
+        setFilteredTimeSlots, 
+        updateTimes,
+        initializeTimes
+    } = props;
 
     const maxDiners = 8;
     const maxChairs = 4;
@@ -16,89 +25,9 @@ const BookingForm = () => {
         new Date('2023-08-23')
     ]
 
-    const initialTimes = useMemo(() => [
-        {
-            date: new Date('2023-08-18').toLocaleDateString(),
-            timeSlots: [
-                { 
-                    id: "t1",
-                    time: "02.00 PM",
-                    maxGuests: 8,
-                    tableSituation: 1
-                },
-                { 
-                    id: "t2",
-                    time: "06.00 PM",
-                    maxGuests: 8,
-                    tableSituation: 3
-                },
-                { 
-                    id: "t3",
-                    time: "07.15 PM",
-                    maxGuests: 2,
-                    tableSituation: 2
-                }
-            ]
-        },
-        {
-            date: new Date('2023-08-22').toLocaleDateString(),
-            timeSlots: [
-                { 
-                    id: "t1",
-                    time: "04.30 PM",
-                    maxGuests: 2,
-                    tableSituation: 1
-                },
-                { 
-                    id: "t2",
-                    time: "06.45 PM",
-                    maxGuests: 2,
-                    tableSituation: 3
-                },
-                { 
-                    id: "t3",
-                    time: "07:30 PM",
-                    maxGuests: 8,
-                    tableSituation: 3
-                },
-                { 
-                    id: "t4",
-                    time: "08:00 PM",
-                    maxGuests: 6,
-                    tableSituation: 1
-                }
-            ]
-        },
-        {
-            date: new Date('2023-08-23').toLocaleDateString(),
-            timeSlots: [
-                { 
-                    id: "t1",
-                    time: "01.30 PM",
-                    maxGuests: 8,
-                    tableSituation: 2
-                },
-                { 
-                    id: "t2",
-                    time: "02.15 PM",
-                    maxGuests: 6,
-                    tableSituation: 3
-                },
-                { 
-                    id: "t3",
-                    time: "07:30 PM",
-                    maxGuests: 4,
-                    tableSituation: 3
-                }
-            ]
-        }
-    ], []);
-    
-
     const [selectedGuests, setSelectedGuests] = useState(0);
     const [selectedChairs, setSelectedChairs] = useState('');
     const [selectedDate, setSelectedDate] = useState(new Date());
-    const [filteredTimeSlots, setFilteredTimeSlots]  =useState([]);
     const [selectedTime, setSelectedTime] = useState("");
     const [selectedOccasion, setSelectedOccasion] = useState('');
     const [selectedTableSituation, setSelectedTableSituation] = useState('');
@@ -110,6 +39,13 @@ const BookingForm = () => {
         isTableChecked: false,
       });
 
+    const selectedGuestsPrev = usePrevious(selectedGuests) ?? 0;
+    const selectedDatePrev = usePrevious(selectedDate) ?? new Date();
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const selectedDateWithoutTime = new Date(selectedDate);
+    selectedDateWithoutTime.setHours(0, 0, 0, 0);
 
     const resetTables = () => {
         setCheckboxState(prevState => ({
@@ -119,36 +55,65 @@ const BookingForm = () => {
         setChosenTable("");
       };
 
-    const handleChanges = (event) => {
+    const updateFilteredTimes = () => {
+        
+        const filteredTimes = availableTimes.filter(item => 
+            item.date === selectedDate.toLocaleDateString() && item.maxGuests >= selectedGuests);
+
+        setFilteredTimeSlots(filteredTimes);
+    }
+
+    const handleChanges = async (event) => {
         const { id, value } = event.target;
     
         switch (id) {
         case "guests":
+
             setSelectedGuests(parseInt(value));
+
+            if (selectedGuestsPrev.lenght !== 0) {
+                initializeTimes();
+                setSelectedTime('');
+            }
             resetTables();
-            setSelectedTime('');
             break;
+
         case "chairs":
+
             setSelectedChairs(parseInt(value));
+
             break;
         case "res-date":
+
             setSelectedDate(value);
-            resetTables();
-            setSelectedTime('');
-            break;
-        case "res-time":
-            setSelectedTime(event.target.value);
-            const selectedTimeSlot = filteredTimeSlots.find((timeSlot) => timeSlot.time === value);
-            if (selectedTimeSlot) {
-              setSelectedTableSituation(selectedTimeSlot.tableSituation);
+            if (selectedDatePrev !== today.getTime()) {
+                initializeTimes();
+                setSelectedTime('');
             }
-            console.log('selected aika', selectedTime)
+            resetTables();
+
             break;
         case "occasion":
+
             setSelectedOccasion(value);
+
             break;
         default:
             break;
+        }
+    };
+
+    const handleTimeChanges = (event) => {
+        setSelectedTime(event.target.value);
+        console.log("Is this being called?")
+        console.log("AvailableTimes in Time", availableTimes)
+
+        const selectedTimeSlot = availableTimes.find(item => item.time === event.target.value);
+        if (selectedTimeSlot) {
+            setSelectedTableSituation(selectedTimeSlot.tableSituation);
+            console.log("SelectedTableSituation", selectedTimeSlot.tableSituation);
+        } else {
+            setSelectedTableSituation(null); // Set a default value if no time slot is found
         }
     };
 
@@ -169,13 +134,6 @@ const BookingForm = () => {
     };
 
     const canBeSubmitted = () => {
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-
-        const selectedDateWithoutTime = new Date(selectedDate);
-
-        selectedDateWithoutTime.setHours(0, 0, 0, 0);
-
         const isValid =
             selectedGuests !== 0 &&
             selectedDateWithoutTime.getTime() !== today.getTime() &&
@@ -184,29 +142,50 @@ const BookingForm = () => {
         setCanSubmit(isValid);
     };
 
-    useEffect(() => {
-        canBeSubmitted();
-    })
+    function usePrevious(value) {
+        const ref = useRef();
+        useEffect(() => {
+          ref.current = value;
+        }, [value]);
+        return ref.current;
+      }
 
     useEffect(() => {
+        canBeSubmitted();
+    }, [selectedTime])
+
+    /*
+    useEffect(() => {
+        console.log("AvailableTimes", availableTimes)
+        console.log("filtered", filteredTimeSlots)
         console.log("Selected Guests (updated):", selectedGuests);
         console.log("Selected Chairs (updated):", selectedChairs);
         console.log("Selected Date (updated):", selectedDate);
         console.log("Selected Time (updated):", selectedTime);
         console.log("Selected Occasion (updated):", selectedOccasion);
         console.log("Selected Table (updated):", chosenTable);
-    }, [selectedGuests, selectedChairs, selectedDate, selectedTime, selectedOccasion, chosenTable]);
+    }, [selectedGuests, selectedChairs, selectedDate, selectedTime, selectedOccasion, chosenTable, availableTimes, filteredTimeSlots]); */
 
     useEffect(() => {
-        const targetTimeSlots = initialTimes.find(item => item.date === selectedDate.toLocaleDateString());
-      
-        setFilteredTimeSlots(targetTimeSlots
-          ? targetTimeSlots.timeSlots.filter((timeSlot) => timeSlot.maxGuests >= selectedGuests)
-          : []);
-      
-      }, [selectedDate, initialTimes, selectedGuests]);
+        console.log("AvailableTimes in useEffect", availableTimes);
+        console.log("filtered in useEffect", filteredTimeSlots);
+    
+        if (selectedGuests.length !== 0 && selectedDateWithoutTime.getTime() !== today.getTime()) {
+            if (selectedGuests !== selectedGuestsPrev || selectedDate !== selectedDatePrev) {
+                updateFilteredTimes();
+            }
+        }
 
+    }, [selectedGuests, selectedDate]);    
 
+    useEffect(() => {
+            
+        if (filteredTimeSlots.length > 0) {
+            console.log('Calling updateTimes from useEffect');
+            updateTimes();
+        }
+    }, [filteredTimeSlots])
+    
     return (
         <article className="tableGrid" id="tableGridContainer">
 
@@ -215,9 +194,9 @@ const BookingForm = () => {
                     <form className="form_grid">
                         <label htmlFor="guests" className="icon_title"><FaUsers size={28}/> Number of diners</label>
                         <select id="guests" onChange={handleChanges}>
-                            <option></option>
+                            <option key="g0"></option>
                             {[...Array(maxDiners)].map((_, index) => (
-                                <option key={index + 1}>{index + 1}</option>
+                                <option key={"g" + index + 1}>{index + 1}</option>
                             ))}
                         </select>
 
@@ -227,19 +206,21 @@ const BookingForm = () => {
                             name="isChairChecked"
                             checked={checkboxState.isChairChecked}
                             onChange={handleCheckboxChange}
+                            aria-checked={checkboxState.isChairChecked}
+                            aria-label="This is an optional checkbox"
                             />
 
                         {checkboxState.isChairChecked && <>
                             <label htmlFor="chairs" className="icon_title"><FaChair size={28}/> Number of chairs:</label>
                             <select id="chairs" onChange={handleChanges}>
-                                <option></option>
+                                <option key="c0"></option>
                                 {[...Array(maxChairs)].map((_, index) => (
-                                    <option key={index + 1}>{index + 1}</option>
+                                    <option key={"c" + index + 1}>{index + 1}</option>
                                 ))}
                             </select>
                             </>}
 
-                        <label htmlFor="res-date" className="icon_title"><FaCalendarAlt size={28}/> Choose date:</label>
+                        <label htmlFor="res-date" className="icon_title" aria-label="Shows a calender with available dates highlighted."><FaCalendarAlt size={28}/> Choose date:</label>
                         <DatePicker 
                             className="dateContainer"
                             id="res-date"
@@ -253,13 +234,14 @@ const BookingForm = () => {
                         />
 
                         <label htmlFor="res-time" className="icon_title"><FaClock size={28}/> Choose time:</label>
-                        <select id="res-time" value={selectedTime} onChange={handleChanges}>
-                        <option></option>
-                        {filteredTimeSlots.map((timeSlot) => (
-                            <option key={timeSlot.id} value={timeSlot.time}>
-                            {timeSlot.time}
-                            </option>
-                        ))}
+                        <select id="res-time" value={selectedTime} onChange={handleTimeChanges} 
+                            aria-label="Lists the available times based on the chosen amount of diners and date.">
+                            <option key="t0"></option>
+                            {availableTimes.map((timeSlot, index) => (
+                                <option key={"t" + index + 1} value={timeSlot.time}>
+                                {timeSlot.time}
+                                </option>
+                            ))}
                         </select>
 
                         <label>There will be a special occasion:</label>
@@ -268,16 +250,19 @@ const BookingForm = () => {
                             name="isOccasionChecked"
                             checked={checkboxState.isOccasionChecked}
                             onChange={handleCheckboxChange}
+                            aria-checked={checkboxState.isOccasionChecked}
+                            aria-label="This is an optional checkbox"
                             />
 
                         {checkboxState.isOccasionChecked && <>
-                            <label htmlFor="occasion" className="icon_title"><FaBirthdayCake size={28}/> Occasion</label>
+                            <label htmlFor="occasion" className="icon_title" aria-label="List of possible occasions with the option to choose 'others' if none of them fit.">
+                                <FaBirthdayCake size={28}/> Occasion</label>
                                 <select id="occasion" onChange={handleChanges}>
-                                    <option></option>
-                                    <option>Birthday</option>
-                                    <option>Anniversary</option>
-                                    <option>Engagement</option>
-                                    <option>Other</option>
+                                    <option key="o1"></option>
+                                    <option key="o2">Birthday</option>
+                                    <option key="o3">Anniversary</option>
+                                    <option key="o4">Engagement</option>
+                                    <option key="o5">Other</option>
                                 </select></>}
 
                         <label>I want to choose my table:</label>
@@ -288,11 +273,14 @@ const BookingForm = () => {
                             checked={checkboxState.isTableChecked}
                             onChange={handleCheckboxChange}
                             disabled={!canSubmit}
+                            aria-label="An optional checkbox that allows to manually select a table when the amount of diners, date and time have already been chosen."
+                            aria-checked={checkboxState.isTableChecked}
+                            aria-disabled={!canSubmit}
                             />
                         {checkboxState.isTableChecked ? (
                             <>
                                 <label>You've chosen:</label>
-                                <div>{chosenTable}</div>
+                                <div aria-label="Shows the chosen table with the table and number.">{chosenTable}</div>
                             </>
                         ) : null}
                     </form>

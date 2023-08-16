@@ -258,7 +258,7 @@ const TableSystem = ({ tableSetIndex, onTableSelect, selectedGuests }) => {
     }, [tableSetIndex]);
 
     return (
-        <div id="table_reservation_image">
+        <div id="table_reservation_image" aria-label="Image of available tables">
             <div className="dsc">
                 <div id="greenBox"></div>
                 <div>Available</div>

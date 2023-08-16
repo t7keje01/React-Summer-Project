@@ -42,7 +42,7 @@ const CustomersSay = () => {
                 <h2>Testimonials</h2>
             </div>
             {reviews.map((rvw) => (
-                <section className={rvw.grid} key={rvw.id}>
+                <section className={rvw.grid} key={rvw.id} aria-label="Show a review from a user that has visited the restaurant.">
                     <>{rvw.rating.map((StarIcon, starIndex) => ( <StarIcon key={starIndex} />))}</>
                     <div>
                         <img src={rvw.getImageSrc()} alt=''/>

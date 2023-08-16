@@ -35,7 +35,7 @@
       " . . t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc . ."
       " . . title_form title_form title_form title_form title_form title_form title_form title_form . . "
       " . . table_form table_form table_form table_form table_img table_img table_img table_img . . "
-      " . . table_next table_next table_next table_next table_canc table_canc table_canc table_canc . ."
+      " . . table_next table_next table_next . . table_canc table_canc table_canc . ."
       " . . f_logo f_logo f_links1_h f_links1_h f_links2_h f_links2_h f_links3_h f_links3_h . . "
       " . . f_logo f_logo f_links1 f_links1 f_links2 f_links2 f_links3 f_links3 . . "
 }
@@ -60,10 +60,10 @@ article section {
 
 /* Grid layout config with Flexbox used as container config */
 /* Header */
-header {
+header, nav  {
   position: fixed;
   z-index: 2;
-  max-width: 100%;
+  width: 100%;
   min-height: 58px;
 }
 
@@ -302,7 +302,7 @@ footer {
   display: flex;
   flex-direction: column;
   align-content: flex-end;
-  margin-bottom: 5vh;
+  margin: 0 0 5vh 5vh;
 }
 
 #table_reservation_image {

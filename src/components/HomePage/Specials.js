@@ -34,11 +34,11 @@ const Specials = () => {
                 <h2>This Weeks Specials!</h2>
             </div>
             <div className='sp_button'>
-                <button id="blackButton">Online Menu</button>
+                <button id="blackButton" aria-label="Will direct to the online menu.">Online Menu</button>
             </div>
             <div className='sp_card'>
             {specialsFoods.map((sp) => (
-                <section key={sp.id}>
+                <section key={sp.id} aria-label="Displays a special food that is available.">
                     <img src={sp.getImageSrc()} alt=''/>
                     <div>
                         <h3>{sp.title}</h3>

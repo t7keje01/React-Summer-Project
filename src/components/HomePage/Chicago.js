@@ -1,6 +1,6 @@
 const Chigaco = () => {
     return (
-        <article className="homeGrid" id="introSection">
+        <article className="homeGrid" id="introSection" aria-label="An introduction to the restaurant and its founders.">
             <div className="intro_content">
             <div className="intro_background"></div>
             <div className="intro">
