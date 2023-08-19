@@ -2,16 +2,16 @@ import './App.css';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
-import './components/layout.css'
+import './components/layout.css';
 
 function App() {
   return (
     <>
-    <Header/>
-    <div className='content-container'>
-      <Main/>
-    </div>
-    <Footer/>
+        <Header/>
+        <div id='content-container' data-testid='content-container'>
+          <Main/>
+        </div>
+        <Footer/>
     </>
   );
 }

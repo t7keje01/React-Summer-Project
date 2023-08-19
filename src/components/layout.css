@@ -42,14 +42,14 @@
 
 
 /* Parent container & overall definition */
-.content-container {
+#content-container {
   max-width: 100%;
   padding-top: 57.6px;
   padding-bottom: 10vh;
   overflow: hidden;
 }
 
-.content-container > article {
+#content-container > article {
   padding: 10vh 0 10vh 0;
 }
 
@@ -445,10 +445,10 @@ footer {
       "f_logo f_links3 f_links3 f_links3";
   }
 
-  .content-container {
+  #content-container {
     padding-top: 100px;
   }
-  .content-container article {
+  #content-container article {
     padding: 5vh;
   }
 
