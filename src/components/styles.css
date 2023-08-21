@@ -87,6 +87,11 @@ button, .table_canc {
     border: black 2px solid;
 }
 
+.table_next:disabled {
+    opacity: 20%;
+
+}
+
 #blackButton {
     background-color: black;
     color: white;
@@ -97,7 +102,7 @@ button, .table_canc {
     color: black;
 }
 
-#blackButton:hover, #greyButton:hover {
+#blackButton::not(:disabled):hover, #greyButton:not(:disabled):hover {
     border: black 2px solid;
     background-color: #F4CE14;
     color: black;

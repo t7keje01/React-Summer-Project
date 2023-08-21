@@ -1,6 +1,7 @@
 import { useEffect, useReducer, useState } from "react";
 import BookingForm from "./BookingForm";
 import BegingBookingTitle from "./BeginBookingTitle";
+import ConfirmBookingTitle from "./ConfirmBookingTitle";
 
 const today = '2023-08-25';
 
@@ -101,6 +102,8 @@ const reducer = (state, action) => {
 
 const BookingPage = () => {
 
+    const [formSubmitted, setFormSubmitted] = useState(true);
+
     const fetchData = async (selectedDate, selectedGuests) => {
         const response =  await fetch("https://api.jsonbin.io/v3/b/64e2990e9d312622a39436ad");
         const json = await response.json();
@@ -130,14 +133,59 @@ const BookingPage = () => {
         dispatch({ type: "INITIALIZE_TIMES", payload: initializedData });
     };
 
+    const submitForm = async (guests, chairs, date, time, occasion, table) => {
+        const formattedDate = new Date(date.getFullYear(), date.getMonth(), date.getDate()).toLocaleDateString();
+
+        const url = "https://api.jsonbin.io/v3/b/64e2b4158e4aa6225ed30a86"; 
+        const apiKey = "$2b$10$Ljhgzqti8Dc8Lhsz.q9YtOyirnzzzjki4lRP8wnqJs.FdyV/GgZCW"; 
+
+        const data = {
+            "numberOfDiners": guests,
+            "numberOfChairs": chairs,
+            "reservationDate": formattedDate,
+            "reservationTime": time,
+            "specialOccasion": occasion,
+            "selectedTable": table
+        };
+
+        const headers = {
+        "Content-Type": "application/json",
+        "X-Master-Key": apiKey
+        };
+
+        fetch(url, {
+            method: "PUT",
+            headers: headers,
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            setFormSubmitted(false);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+
+    };
+
     return (
         <>
-            <BegingBookingTitle/>
-            <BookingForm 
-                availableTimes={availableTimes}
-                updateTimes={updateTimes}
-                initializeTimes={initializeTimes}
-            />
+            {formSubmitted ? (
+                <>
+                    <BegingBookingTitle/>
+                    <BookingForm 
+                        availableTimes={availableTimes}
+                        updateTimes={updateTimes}
+                        initializeTimes={initializeTimes}
+                        submitForm={submitForm}
+                    />
+                </>
+            ) : (
+                <>
+                    <ConfirmBookingTitle/>
+                </>
+            )}
         </>
     );
 };

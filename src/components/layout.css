@@ -254,7 +254,7 @@ footer {
   align-items: flex-end;
   position: relative;
   overflow: hidden;
-  max-height: 60vh;
+  max-height: 50vh;
 }
 
 .t_title_desc {

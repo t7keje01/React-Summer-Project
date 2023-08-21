@@ -12,7 +12,8 @@ const BookingForm = (props) => {
     const {
         availableTimes,
         updateTimes,
-        initializeTimes
+        initializeTimes,
+        submitForm
     } = props;
 
 
@@ -116,6 +117,10 @@ const BookingForm = (props) => {
     const handleTableSelect = (selectedTable) => {
         setChosenTable(selectedTable);
     };
+
+    const handleSubmit = () => {
+        submitForm(selectedGuests, selectedChairs, selectedDate, selectedTime, selectedOccasion, chosenTable);
+    }
 
 
     /* Functions */
@@ -292,7 +297,14 @@ const BookingForm = (props) => {
                         <div className="place_holder"/>
                     </section>
                 )}
-            <input type="submit" value={`Reserve table for ${selectedTime}`} id="blackButton" className="table_next" disabled={!canSubmit}></input>
+            <input 
+                type="submit" 
+                value={`Reserve table for ${selectedTime}`} 
+                id="blackButton" 
+                className="table_next" 
+                disabled={!canSubmit} 
+                onClick={handleSubmit}
+            ></input>
             <Link to="/" id="greyButton" className="table_canc">Cancel Reservation</Link>
         </article>
     );
