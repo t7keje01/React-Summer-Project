@@ -11,8 +11,6 @@ const BookingForm = (props) => {
     /* Props */
     const {
         availableTimes,
-        filteredTimeSlots,
-        setFilteredTimeSlots, 
         updateTimes,
         initializeTimes
     } = props;
@@ -23,8 +21,8 @@ const BookingForm = (props) => {
     const maxChairs = 4;
 
     const availableDates = [
-        new Date('2023-08-22'),
-        new Date('2023-08-23'),
+        new Date('2023-08-29'),
+        new Date('2023-08-30'),
         new Date('2023-08-31')
     ]
 
@@ -130,13 +128,6 @@ const BookingForm = (props) => {
         setChosenTable("");
       };
 
-    const updateFilteredTimes = () => {
-        const filteredTimes = availableTimes.filter(item => 
-            item.date === selectedDate.toLocaleDateString() && item.maxGuests >= selectedGuests);
-
-        setFilteredTimeSlots(filteredTimes);
-    }
-
     const canBeSubmitted = () => {
         const isValid =
             selectedGuests !== 0 &&
@@ -178,22 +169,14 @@ const BookingForm = (props) => {
 
 
     /* Update the filtered times when there has been a state change. */
-    useEffect(() => {    
+    useEffect(() => {  
         if (selectedGuests.length !== 0 && selectedDateWithoutTime.getTime() !== today.getTime()) {
             if (selectedGuests !== selectedGuestsPrev || selectedDate !== selectedDatePrev) {
-                updateFilteredTimes();
+                updateTimes(selectedDate, selectedGuests);
             }
         }
 
     }, [selectedGuests, selectedDate]);    
-
-    /* Check that there are values in the filteredTimeSlots */
-    useEffect(() => {
-            
-        if (filteredTimeSlots.length > 0) {
-            updateTimes();
-        }
-    }, [filteredTimeSlots])
     
     return (
         <article className="tableGrid" id="tableGridContainer">

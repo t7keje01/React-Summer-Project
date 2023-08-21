@@ -19,14 +19,14 @@ const guests = "2";
 const newGuests = "5";
 const mockArray = [ 
     {
-        date: new Date('2023-08-22').toLocaleDateString(),
+        date: new Date('2023-08-29').toLocaleDateString(),
         id: "t4",
         time: "04.30 PM",
         maxGuests: 2,
         tableSituation: 1
     },
     { 
-        date: new Date('2023-08-22').toLocaleDateString(),
+        date: new Date('2023-08-29').toLocaleDateString(),
         id: "t5",
         time: "06.45 PM",
         maxGuests: 5,
@@ -75,7 +75,7 @@ test('If initializing function is being called', async () => {
     initializeTimes.mockRestore();
     });
 
-    const targetDate = new Date('2023-08-22');
+    const targetDate = new Date('2023-08-29');
     const today = new Date();
     const formatDate = (date) => {
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
