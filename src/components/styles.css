@@ -28,16 +28,28 @@ h3 {
     font-weight: 800;
 }
 
-h4, label {
+h4, label, #show_table, .check_title {
     font-family: "Karla";
     font-size: 16px;
     font-weight: 600;
 }
 
-input, select {
+p {
+    padding-top: 2vh;
+    line-height: 1.5;
+}
+
+input, p, select, div, option, textarea {
     font-family: "Karla";
     font-size: 16px;
     font-weight: 400;
+}
+
+input, select, textarea {
+    border-radius: 6px;
+    resize: none;
+    border: 1px black solid;
+    padding: 0.5vh 0.5vh 0.5vh 1vh;
 }
 
 
@@ -61,22 +73,11 @@ header a:hover, footer a:hover {
 
 
 /* Button styling */
-button, .table_canc {
+button, .table_canc, .table_next {
     display: grid;
     text-align: center;
     align-content: center;
     justify-items: center;
-    width: 250px;
-    height: 40px;
-    box-sizing: border-box;
-    border-radius: 8px;
-    font-family: "Karla";
-    font-size: 16px;
-    font-weight: 500;
-    border: black 2px solid;
-}
-
-.table_next {
     width: 250px;
     height: 40px;
     box-sizing: border-box;
@@ -102,7 +103,7 @@ button, .table_canc {
     color: black;
 }
 
-#blackButton::not(:disabled):hover, #greyButton:not(:disabled):hover {
+#blackButton:not(:disabled):hover, #greyButton:not(:disabled):hover {
     border: black 2px solid;
     background-color: #F4CE14;
     color: black;
@@ -139,7 +140,7 @@ footer li {
 
 .logo {
     max-width: 80%;
-    min-width: 100px;
+    min-width: 80%;
 }
 
 .footer_logo {
@@ -286,7 +287,7 @@ footer {
 .reserve_table_img {
     max-width: 100%;
 }
-#startBookingTitle {
+#startBookingTitle, #finishBooking {
     background-color: #495E57;
 }
 
@@ -302,9 +303,18 @@ footer {
     border-radius: 8px;
 }
 
-#table_reservation_image > img {
+#table_reservation_image > img:not(.kitchen, #tb_1) {
+    max-width: 80%;
+    max-height: auto;
+}
+
+.kitchen {
     max-width: 100%;
-    max-height: 100%;
+}
+
+#tb_1 {
+    max-height: 50%;
+    max-width: auto;
 }
 
 .dsc {
@@ -345,4 +355,14 @@ input[type="checkbox"] {
 #res-date {
     width: 100%;
     box-sizing: border-box;
+}
+
+#tbs_1, #tbs_2, #tbs_3, #tbs_4, #tbs_5, #tbs_6, #tbs_7, #tbs_8, #tbs_9 {
+    filter: grayscale(100%);
+    opacity: 0.5;
+}
+
+.book_img {
+    max-width: 100%;
+    max-height: 100%;
 }

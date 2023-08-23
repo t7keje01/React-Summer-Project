@@ -268,11 +268,15 @@ const TableSystem = ({ tableSetIndex, onTableSelect, selectedGuests }) => {
             <img src={kitchenImage} alt="Kitchen" className="kitchen"></img>
             {selectedTableSet.map((tble, index) => (
                 <img
+                    id={tble.id}
                     src={tble.image}
                     alt={""}
-                    className={`image ${selectedImage === index ? "selected" : ""} ${tble.class_name} ${tble.size < selectedGuests ? "disabled" : ""}`}
-                    key={tble.id}
-                    onClick={tble.size < selectedGuests ? undefined : () => handleImageClick(index, tble.table)}
+                    className={`image 
+                        ${selectedImage === index ? "selected" : ""} 
+                        ${tble.class_name} 
+                        ${tble.size < selectedGuests ? "disabled" : ""}`}
+                        key={tble.id}
+                        onClick={tble.size < selectedGuests || !tble.available ? undefined : () => handleImageClick(index, tble.table)}
                 />
             ))}
         </div>

@@ -4,78 +4,87 @@
 .homeGrid {
     display: grid;
     max-width: 100%;
-    padding-right: 3vh;
-    padding-left: 3vh;
     grid-template-columns: repeat(12, 1fr);
     grid-column-gap: 20px;
     grid-template-areas:
-      " . . logo logo nav-links nav-links nav-links nav-links nav-links nav-links . . "
-      " . . title_desc title_desc title_desc title_desc title_img title_img title_img title_img . ."
-      " . . sp_title sp_title sp_title sp_title sp_title sp_button sp_button sp_button . ."
-      " . . sp_card sp_card sp_card sp_card sp_card sp_card sp_card sp_card . . "
-      " . . rvw_title rvw_title rvw_title rvw_title rvw_title rvw_title rvw_title rvw_title . . "
-      " . . rvw_card1 rvw_card1 rvw_card2 rvw_card2 rvw_card3 rvw_card3 rvw_card4 rvw_card4 . . "
-      " . . intro_content intro_content intro_content intro_content intro_content intro_content intro_content intro_content . . "
-      " . . filler filler filler filler filler filler filler filler . . "
-      " . . f_logo f_logo f_links1_h f_links1_h f_links2_h f_links2_h f_links3_h f_links3_h . . "
-      " . . f_logo f_logo f_links1 f_links1 f_links2 f_links2 f_links3 f_links3 . . ";
+      " . . nav nav nav nav nav nav nav nav  . . "                                             /* HEADER with LOGO and NAVIGATION BAR */
+      " . . title_desc title_desc title_desc title_desc title_img title_img title_img title_img . ."                                  /* USED by CallToAction.js */
+      " . . sp_title sp_title sp_title sp_title sp_title sp_button sp_button sp_button . ."                                           /* USED by Specials.js */
+      " . . sp_card sp_card sp_card sp_card sp_card sp_card sp_card sp_card . . "                                                     /* ...CONTINUES */
+      " . . rvw_title rvw_title rvw_title rvw_title rvw_title rvw_title rvw_title rvw_title . . "                                     /* CustomersSay.js */
+      " . . rvw_card1 rvw_card1 rvw_card2 rvw_card2 rvw_card3 rvw_card3 rvw_card4 rvw_card4 . . "                                     /* ...CONTINUES */
+      " . . intro_content intro_content intro_content intro_content intro_content intro_content intro_content intro_content . . "     /* USED by Chicago.js */
+      " . . filler filler filler filler filler filler filler filler . . "                                                             /* ...CONTINUES */
+      " . . f_logo f_logo f_links1_h f_links1_h f_links2_h f_links2_h f_links3_h f_links3_h . . "                                     /* FOOTER with LOGO and NAVIGATION LINKS */
+      " . . f_logo f_logo f_links1 f_links1 f_links2 f_links2 f_links3 f_links3 . . ";                                                /* ...CONTINUES */
   }
 
 /* Table Details layout */
 .tableGrid {
     display: grid;
     max-width: 100%;
-    padding-right: 3vh;
-    padding-left: 3vh;
     grid-template-columns: repeat(12, 1fr);
     grid-column-gap: 20px;
     grid-template-areas:
-      " . . logo logo nav-links nav-links nav-links nav-links nav-links nav-links . . "
-      " t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img "
-      " . . t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc . ."
-      " . . title_form title_form title_form title_form title_form title_form title_form title_form . . "
-      " . . table_form table_form table_form table_form table_img table_img table_img table_img . . "
-      " . . table_next table_next table_next . . table_canc table_canc table_canc . ."
-      " . . f_logo f_logo f_links1_h f_links1_h f_links2_h f_links2_h f_links3_h f_links3_h . . "
-      " . . f_logo f_logo f_links1 f_links1 f_links2 f_links2 f_links3 f_links3 . . "
+      " t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img " /* USED by TWO DIFFERENT COMPONENT: BeginBookingTitle.js and ConfirmBookingTitle.js */
+      " . . t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc . ."                                  /* ...CONTINUES */
+      " . . title_form title_form title_form title_form title_form title_form title_form title_form . . "                                                 /* USED by THREE DIFFERENT COMPONENTS: BookingForn.js, CheckBooking.js */
+      " . . table_form table_form table_form table_form table_img table_img table_img table_img . . "                                                     /* and AddContactsForm.js */
+      " . . cont_form cont_form cont_form cont_form cont_form cont_form . . . . "                                                                         /* ...CONTINUES */
+      " . . table_next table_next table_next table_next table_canc table_canc table_canc table_canc . ."                                                                    /* ...CONTINUES */
 }
 
 
 /* Parent container & overall definition */
+#app-container {
+  display: grid;
+  grid-template-areas: 
+  "header header header"
+  "content content content"
+  "footer footer footer";
+  min-height: 100%;
+}
+
 #content-container {
-  max-width: 100%;
-  padding-top: 57.6px;
+  grid-area: content;
   padding-bottom: 10vh;
   overflow: hidden;
 }
 
 #content-container > article {
-  padding: 10vh 0 10vh 0;
+  padding: 10vh 0 5vh 0;
 }
 
 article section {
-  margin-top: 10vh;
+  margin-top: 8vh;
 }
 
 
 /* Grid layout config with Flexbox used as container config */
 /* Header */
-header, nav  {
-  position: fixed;
+header {
+  grid-area: header;
+  position: sticky;
   z-index: 2;
   width: 100%;
-  min-height: 58px;
+}
+
+nav {
+  grid-area: nav;
+}
+
+.nav_grid {
+  display: grid;
+  grid-template-columns: 30% 70%;
 }
 
 .logo-container {
-  grid-area: logo;
   display: flex;
   flex-wrap: wrap;
   align-content: center;
 }
 
 .nav-links {
-  grid-area: nav-links;
   max-width: 100%;
 }
 
@@ -100,6 +109,7 @@ li {
 
 /* Footer */
 footer {
+  grid-area: footer;
   padding: 3vh 0 3vh 0;
 }
 
@@ -244,7 +254,7 @@ footer {
 /* BOOKING PAGE */
 
 /* Title */
-#startBookingTitle {
+#startBookingTitle, #finishBooking {
   padding: 0;
 }
 
@@ -300,9 +310,10 @@ footer {
 .table_img {
   grid-area: table_img;
   display: flex;
+  max-width: 100%;
   flex-direction: column;
   align-content: flex-end;
-  margin: 0 0 5vh 5vh;
+  margin: 8vh 0 5vh 0;
 }
 
 #table_reservation_image {
@@ -310,8 +321,8 @@ footer {
   justify-items: center;
   align-items: center;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2vh;
+  grid-template-columns: repeat(3, 33.33%);
+  gap: 0.5vh;
   padding: 2vh;
   grid-template-areas: 
     " dsc dsc dsc "
@@ -372,7 +383,6 @@ footer {
 
 .place_holder {
   max-width: 100%;
-  height: 0px;
 }
 
 .table_next {
@@ -389,6 +399,51 @@ footer {
   gap: 3vh;
 }
 
+.check_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows: repeat(5, 1fr);
+  gap: 4vh; 
+  align-items: center;
+}
+
+.cont_names {
+  display: grid;
+  grid-template-columns: 40% 1fr;
+  column-gap: 2vh;
+  max-width: 100%;
+}
+
+.contact_layout {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  width: 100%;
+  row-gap: 2vh;
+}
+
+.contact_layout input, .contact_layout label {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.cont_form {
+  grid-area: cont_form;
+  max-width: 100%;
+}
+
+.contact_grid {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-auto-rows: auto;
+  width: 100%;
+  row-gap: 2vh;
+  padding-bottom: 4vh;
+}
+
+#finishBooking {
+  padding-bottom: 5vh;
+}
+
 /*---------------------------------------------------------------------------*/
 
 
@@ -402,7 +457,7 @@ footer {
       grid-template-columns: repeat(4, 1fr);
       align-items: center;
       grid-template-areas:
-      "logo nav-links nav-links nav-links"
+      "nav nav nav nav"
       "title_img title_img title_img title_img"
       "title_desc title_desc title_desc title_desc"
       "sp_title sp_title sp_title sp_title"
@@ -429,26 +484,30 @@ footer {
     align-items: center;
     justify-items: center;
     grid-template-areas:
-      "logo nav-links nav-links nav-links"
       "t_title_img t_title_img t_title_img t_title_img"
       "t_title_desc t_title_desc t_title_desc t_title_desc"
       "title_form title_form title_form title_form"
       "table_form table_form table_form table_form"
       "table_img table_img table_img table_img"
+      "cont_form cont_form cont_form cont_form" 
       "table_next table_next table_next table_next"
-      "table_canc table_canc table_canc table_canc"
-      "f_logo f_links1_h f_links1_h f_links1_h"
-      "f_logo f_links1 f_links1 f_links1"
-      "f_logo f_links2_h f_links2_h f_links2_h"
-      "f_logo f_links2 f_links2 f_links2"      
-      "f_logo f_links3_h f_links3_h f_links3_h"
-      "f_logo f_links3 f_links3 f_links3";
+      "table_canc table_canc table_canc table_canc";
   }
 
-  #content-container {
-    padding-top: 100px;
+  nav {
+    min-width: 0;
+    padding: 0 5vh 0 5vh;
   }
-  #content-container article {
+
+  h1 {
+    text-align: center;
+  }
+
+  footer {
+    padding: 2vh 5vh 2vh 5vh;
+  }
+
+  #content-container > article {
     padding: 5vh;
   }
 
@@ -500,6 +559,10 @@ footer {
     margin-top: 5vh;
   }
 
+  .table_img {
+    margin: 0 0 4vh 0;
+}
+
   .form_grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -523,15 +586,6 @@ footer {
     gap: 0;
   }
 
-  .table_form {
-    height: 100%;
-  }
-
-  select, .react-datepicker__input-container {
-    padding: 0;
-    margin-bottom: 2vh;
-  }
-
   .react-datepicker__portal {
     min-width: 100%;
   }
@@ -546,5 +600,20 @@ footer {
 
   .table_canc {
     margin-top: 4vh;
+  }
+
+  .check_grid {
+    padding: 0;
+  }
+
+  .contact_grid {
+    grid-template-rows: repeat(6, auto);
+    min-width: 80vw;
+  }
+
+  .cont_names {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 2vh;
   }
 }

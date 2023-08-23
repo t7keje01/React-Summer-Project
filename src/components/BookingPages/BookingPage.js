@@ -2,6 +2,9 @@ import { useEffect, useReducer, useState } from "react";
 import BookingForm from "./BookingForm";
 import BegingBookingTitle from "./BeginBookingTitle";
 import ConfirmBookingTitle from "./ConfirmBookingTitle";
+import CheckBooking from "./CheckBooking";
+import AddContactsForm from "./AddContacsForm";
+import ConfirmedBooking from "./ConfirmedBooking"
 
 const today = '2023-08-25';
 
@@ -102,8 +105,28 @@ const reducer = (state, action) => {
 
 const BookingPage = () => {
 
-    const [formSubmitted, setFormSubmitted] = useState(true);
+    const jsonStructure = {
+        guests: null,
+        chairs: null,
+        date: null,
+        time: null,
+        occasion: null,
+        table: null,
+        tableset: null,
+        firstName: null,
+        lastName: null,
+        phone: null,
+        email: null,
+        comment: null
+    }
 
+    const [reservationData, setReservationData] = useState(jsonStructure);
+    const [step, setStep] = useState(1);
+    const [editRequested, setEditRequested] = useState(false);
+    const [initialTimes, setInitialTimes] = useState([]);
+    const [availableTimes, dispatch] = useReducer(reducer, initialTimes);
+
+    /* Fetch the available times from an external source */
     const fetchData = async (selectedDate, selectedGuests) => {
         const response =  await fetch("https://api.jsonbin.io/v3/b/64e2990e9d312622a39436ad");
         const json = await response.json();
@@ -120,9 +143,7 @@ const BookingPage = () => {
 
     }, []);
 
-    const [initialTimes, setInitialTimes] = useState([]);
-    const [availableTimes, dispatch] = useReducer(reducer, initialTimes);
-
+    /* Functions regarding the reducer */
     const updateTimes = async (selectedDate, selectedGuests) => {
         const updatedData = await fetchData(selectedDate, selectedGuests);
         dispatch({ type: "UPDATE_TIMES", payload: updatedData });
@@ -133,19 +154,51 @@ const BookingPage = () => {
         dispatch({ type: "INITIALIZE_TIMES", payload: initializedData });
     };
 
-    const submitForm = async (guests, chairs, date, time, occasion, table) => {
-        const formattedDate = new Date(date.getFullYear(), date.getMonth(), date.getDate()).toLocaleDateString();
+    /* Submit form functionalities */
+    const addContactDetails = ({ firstName, lastName, phone, email, comment }) => {
+        setReservationData((prevData) => ({
+            ...prevData,
+            firstName,
+            lastName,
+            phone,
+            email,
+            comment,
+        }));
+    };
+
+    useEffect(() => {  
+        console.log("Check current status of reservationData", reservationData)
+        if (reservationData.time !== null || reservationData.firstName !== null) { 
+            submitForm();
+        }
+
+    }, [reservationData.time, reservationData.firstName]);  
+
+    useEffect(() => {  
+        window.scrollTo(0, 0)
+    }, [setStep]);  
+
+    const submitForm = async () => {
+        console.log(reservationData);
+        const arrayDate = reservationData.date;
+        const formattedDate = new Date(arrayDate.getFullYear(), arrayDate.getMonth(), arrayDate.getDate()).toLocaleDateString();
 
         const url = "https://api.jsonbin.io/v3/b/64e2b4158e4aa6225ed30a86"; 
         const apiKey = "$2b$10$Ljhgzqti8Dc8Lhsz.q9YtOyirnzzzjki4lRP8wnqJs.FdyV/GgZCW"; 
 
-        const data = {
-            "numberOfDiners": guests,
-            "numberOfChairs": chairs,
+        const sendData = {
+            "numberOfDiners": reservationData.guests,
+            "numberOfChairs": reservationData.chairs,
             "reservationDate": formattedDate,
-            "reservationTime": time,
-            "specialOccasion": occasion,
-            "selectedTable": table
+            "reservationTime": reservationData.time,
+            "specialOccasion": reservationData.occasion,
+            "selectedTable": reservationData.table,
+            "selectedTableSet": reservationData.tableset,
+            "firstName": reservationData.firstName,
+            "lastName": reservationData.lastName,
+            "phoneNumber": reservationData.phone,
+            "emailAddress": reservationData.email,
+            "reservationComment": reservationData.comment
         };
 
         const headers = {
@@ -156,12 +209,12 @@ const BookingPage = () => {
         fetch(url, {
             method: "PUT",
             headers: headers,
-            body: JSON.stringify(data)
+            body: JSON.stringify(sendData)
         })
         .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            setFormSubmitted(false);
+        .then(sendData => {
+            console.log(sendData);
+            setStep(step + 1);
         })
         .catch(error => {
             console.error(error);
@@ -171,21 +224,36 @@ const BookingPage = () => {
 
     return (
         <>
-            {formSubmitted ? (
+            {step === 1 ? (
                 <>
                     <BegingBookingTitle/>
                     <BookingForm 
                         availableTimes={availableTimes}
                         updateTimes={updateTimes}
                         initializeTimes={initializeTimes}
-                        submitForm={submitForm}
+                        setReservationData={setReservationData}
+                        reservationData={reservationData}
+                        editRequested={editRequested}
+                        setEditRequested={setEditRequested}
                     />
                 </>
-            ) : (
+            ) : step === 2 ? (
                 <>
                     <ConfirmBookingTitle/>
+                    <CheckBooking
+                        reservationData={reservationData}
+                        setStep={setStep}
+                        setEditRequested={setEditRequested}
+                    />
+                    <AddContactsForm
+                        addContactDetails={addContactDetails}
+                        submitForm={submitForm}/>
                 </>
-            )}
+            ) : step === 3 ? (
+                <>
+                    <ConfirmedBooking/>
+                </>
+            ) : null }
         </>
     );
 };

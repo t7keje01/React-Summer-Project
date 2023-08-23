@@ -6,13 +6,13 @@ import './components/layout.css';
 
 function App() {
   return (
-    <>
+    <div id='app-container'>
         <Header/>
         <div id='content-container' data-testid='content-container'>
           <Main/>
         </div>
         <Footer/>
-    </>
+    </div>
   );
 }
 

@@ -13,20 +13,23 @@ const BookingForm = (props) => {
         availableTimes,
         updateTimes,
         initializeTimes,
-        submitForm
+        setReservationData,
+        reservationData,
+        formSubmitted,
+        editRequested,
+        setEditRequested
     } = props;
 
 
     /* Basic values */
     const maxDiners = 8;
-    const maxChairs = 4;
+    const [maxChairs, setMaxChairs] = useState(3);
 
     const availableDates = [
         new Date('2023-08-29'),
         new Date('2023-08-30'),
         new Date('2023-08-31')
     ]
-
 
     /* UseStates */
     const [selectedGuests, setSelectedGuests] = useState(0);
@@ -37,6 +40,7 @@ const BookingForm = (props) => {
     const [selectedTableSituation, setSelectedTableSituation] = useState('');
     const [chosenTable, setChosenTable] = useState("");
     const [canSubmit, setCanSubmit] = useState(false);
+    const [disableElement, setDisableElement] = useState(true);
     const [checkboxState, setCheckboxState] = useState({
         isChairChecked: false,
         isOccasionChecked: false,
@@ -52,7 +56,6 @@ const BookingForm = (props) => {
     today.setHours(0, 0, 0, 0);
     const selectedDateWithoutTime = new Date(selectedDate);
     selectedDateWithoutTime.setHours(0, 0, 0, 0);
-
 
     /* Handlers */
     const handleChanges = async (event, id, value) => {
@@ -119,7 +122,15 @@ const BookingForm = (props) => {
     };
 
     const handleSubmit = () => {
-        submitForm(selectedGuests, selectedChairs, selectedDate, selectedTime, selectedOccasion, chosenTable);
+        setReservationData({    
+            guests: selectedGuests,
+            chairs: selectedChairs,
+            date: selectedDate,
+            time: selectedTime,
+            occasion: selectedOccasion,
+            table: chosenTable,
+            tableset: selectedTableSituation
+        });
     }
 
 
@@ -155,6 +166,30 @@ const BookingForm = (props) => {
 
     /* UseEffects */
 
+    /*
+    useEffect(() => {
+        if (formSubmitted && editRequested) {
+            setSelectedGuests(reservationData.guests);
+            if (reservationData.chairs !== "") {
+                handleCheckboxChange({
+                    target: { name: "isChairChecked", checked: true },
+                });
+                setSelectedChairs(reservationData.chairs);
+            }
+            setSelectedDate(reservationData.date);
+            setSelectedTime(reservationData.time);
+            if (reservationData.occasion !== "") {
+                handleCheckboxChange({
+                    target: { name: "isOccasionChecked", checked: true },
+                });
+                setSelectedOccasion(reservationData.occasion);
+            }
+
+            setStateUpdated(true);
+            setEditRequested(false);
+        }
+    }, [editRequested]) */
+
     /* Button disabling validation */
     useEffect(() => {
         canBeSubmitted();
@@ -173,8 +208,22 @@ const BookingForm = (props) => {
     }, [selectedGuests, selectedChairs, selectedDate, selectedTime, selectedOccasion, chosenTable, availableTimes, filteredTimeSlots]); */
 
 
-    /* Update the filtered times when there has been a state change. */
+    /* Manage the chairs so an unreasonable amount can't be reserved. Also update the filtered times when there has been a state change. */
     useEffect(() => {  
+        if (selectedGuests < maxChairs && selectedGuests !== 0) {
+            setMaxChairs(selectedGuests - 1);
+        }
+
+        if(selectedGuests === 1) {
+            setDisableElement(false);
+            handleCheckboxChange({
+                target: { name: "isChairChecked", checked: false },
+            });
+        }
+        else {
+            setDisableElement(true);
+        }
+
         if (selectedGuests.length !== 0 && selectedDateWithoutTime.getTime() !== today.getTime()) {
             if (selectedGuests !== selectedGuestsPrev || selectedDate !== selectedDatePrev) {
                 updateTimes(selectedDate, selectedGuests);
@@ -188,8 +237,8 @@ const BookingForm = (props) => {
 
                 <h2 className="title_form">Reservation Details:</h2>
                 <section className="table_form">
-                    <form className="form_grid">
-                        <label htmlFor="guests" className="icon_title" ><FaUsers size={28}/> Number of diners</label>
+                    <form className="form_grid" aria-label="Reservation information">
+                        <label htmlFor="guests" className="icon_title" ><FaUsers size={28}/> Number of Diners:</label>
                             <select id="guests" onChange={(event) => handleChanges(event, "guests", parseInt(event.target.value))} data-testid="select-guests">
                                 <option key="g0"></option>
                                 {[...Array(maxDiners)].map((_, index) => (
@@ -197,18 +246,21 @@ const BookingForm = (props) => {
                                 ))}
                             </select>
 
-                        <label>There will be a need for a children’s high chair:</label>
+                        <label htmlFor="chair_checkbox">There will be a need for a children’s high chair:</label>
                         <input
+                            id="chair_checkbox"
                             type="checkbox"
                             name="isChairChecked"
+                            disabled={!disableElement}
                             checked={checkboxState.isChairChecked}
                             onChange={handleCheckboxChange}
                             aria-checked={checkboxState.isChairChecked}
                             aria-label="This is an optional checkbox"
+                            aria-disabled={!disableElement}
                             />
 
                         {checkboxState.isChairChecked && <>
-                            <label htmlFor="chairs" className="icon_title"><FaChair size={28}/> Number of chairs:</label>
+                            <label htmlFor="chairs" className="icon_title"><FaChair size={28}/> Number of Chairs:</label>
                             <select id="chairs" onChange={(event) => handleChanges(event, "chairs", parseInt(event.target.value))}>
                                 <option key="c0"></option>
                                 {[...Array(maxChairs)].map((_, index) => (
@@ -218,7 +270,7 @@ const BookingForm = (props) => {
                             </>}
 
                         <label htmlFor="res-date" className="icon_title" aria-label="Shows a calender with available dates highlighted.">
-                            <FaCalendarAlt size={28}/> Choose date:</label>
+                            <FaCalendarAlt size={28}/> Choose Date:</label>
                         <DatePicker 
                             className="dateContainer"
                             id="res-date"
@@ -231,7 +283,7 @@ const BookingForm = (props) => {
                             withPortal
                         />
 
-                        <label htmlFor="res-time" className="icon_title"><FaClock size={28}/> Choose time:</label>
+                        <label htmlFor="res-time" className="icon_title"><FaClock size={28}/> Choose Time:</label>
                         <select id="res-time" value={selectedTime} onChange={handleTimeChanges} 
                             aria-label="Lists the available times based on the chosen amount of diners and date.">
                             <option key="t0"></option>
@@ -242,8 +294,9 @@ const BookingForm = (props) => {
                             ))}
                         </select>
 
-                        <label>There will be a special occasion:</label>
+                        <label htmlFor="occasion_checkbox">There will be a special occasion:</label>
                         <input
+                            id="occasion_checkbox"
                             type="checkbox"
                             name="isOccasionChecked"
                             checked={checkboxState.isOccasionChecked}
@@ -263,7 +316,7 @@ const BookingForm = (props) => {
                                     <option key="o5">Other</option>
                                 </select></>}
 
-                        <label>I want to choose my table:</label>
+                        <label htmlFor="tableCheckbox">I want to choose my table:</label>
                         <input
                             id="tableCheckbox"
                             type="checkbox"
@@ -278,8 +331,8 @@ const BookingForm = (props) => {
 
                         {checkboxState.isTableChecked ? (
                             <>
-                                <label>You've chosen:</label>
-                                <div aria-label="Shows the chosen table with the table and number.">{chosenTable}</div>
+                                <div id="show_table" role="heading" aria-level="2" aria-label="Chosen Table">You've chosen:</div>
+                                <div id="table" aria-label="Shows the chosen table with the table and number.">{chosenTable}</div>
                             </>
                         ) : null}
                     </form>

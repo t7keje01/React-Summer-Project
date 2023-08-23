@@ -38,9 +38,8 @@ const Header = () => {
 
 
   return (
-    <header>
-      <nav className="homeGrid">
-        {/* Logo */}
+    <header className="homeGrid">
+      <nav className="nav_grid">
         <div className="logo-container">
           <Link to="/">
             <img src={logo} alt="Little Lemon logo" className="logo" />
