@@ -6,7 +6,7 @@ const AddContactsForm = (props) => {
 
     /* Props */
     const {
-        addContactDetails,
+        submitForm
     } = props;
 
     const [contactInputs, setContactInputs] = useState({});
@@ -18,13 +18,12 @@ const AddContactsForm = (props) => {
     }
 
     const handleSubmit = () => {
-        addContactDetails({
-            firstName: contactInputs.first_name,
-            lastName: contactInputs.last_name,
-            phone: contactInputs.phone_number,
-            email: contactInputs.email,
-            comment: contactInputs.comment,
-        });
+        localStorage.setItem("firstName", contactInputs.first_name);
+        localStorage.setItem("lastName", contactInputs.last_name);
+        localStorage.setItem("phone", contactInputs.phone_number);
+        localStorage.setItem("email", contactInputs.email);
+        localStorage.setItem("comment", contactInputs.comment);
+        submitForm();
     }
     
     return (

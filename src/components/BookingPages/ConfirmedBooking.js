@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
 
-const ConfirmedBooking = ({setStep}) => {
+const ConfirmedBooking = (props) => {
+
+    const {
+        setStepWithAction
+    } = props;
 
     const handleStepReset = () => {
-        setStep(1);
+        setStepWithAction(1);
     }
 
     const success_reserve = require("../../images/welcome_sign.png");

@@ -42,13 +42,12 @@
   "header header header"
   "content content content"
   "footer footer footer";
-  min-height: 100%;
+  height: 100%;
 }
 
 #content-container {
   grid-area: content;
   padding-bottom: 10vh;
-  overflow: hidden;
 }
 
 #content-container > article {
@@ -65,7 +64,9 @@ article section {
 header {
   grid-area: header;
   position: sticky;
+  align-self: start;
   z-index: 2;
+  top:0;
   width: 100%;
 }
 

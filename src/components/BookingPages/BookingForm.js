@@ -13,11 +13,7 @@ const BookingForm = (props) => {
         availableTimes,
         updateTimes,
         initializeTimes,
-        setReservationData,
-        reservationData,
-        formSubmitted,
-        editRequested,
-        setEditRequested
+        submitForm
     } = props;
 
 
@@ -122,15 +118,14 @@ const BookingForm = (props) => {
     };
 
     const handleSubmit = () => {
-        setReservationData({    
-            guests: selectedGuests,
-            chairs: selectedChairs,
-            date: selectedDate,
-            time: selectedTime,
-            occasion: selectedOccasion,
-            table: chosenTable,
-            tableset: selectedTableSituation
-        });
+        const savedDate = selectedDate.toLocaleDateString();
+        localStorage.setItem("guests", selectedGuests);
+        localStorage.setItem("chairs", selectedChairs);
+        localStorage.setItem("date", savedDate);
+        localStorage.setItem("time", selectedTime);
+        localStorage.setItem("occasion", selectedOccasion);
+        localStorage.setItem("table", chosenTable);
+        submitForm();
     }
 
 
@@ -210,7 +205,7 @@ const BookingForm = (props) => {
 
     /* Manage the chairs so an unreasonable amount can't be reserved. Also update the filtered times when there has been a state change. */
     useEffect(() => {  
-        if (selectedGuests < maxChairs && selectedGuests !== 0) {
+        if (selectedGuests <= maxChairs && selectedGuests !== 0) {
             setMaxChairs(selectedGuests - 1);
         }
 

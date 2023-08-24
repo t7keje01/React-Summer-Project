@@ -14,13 +14,12 @@ const CheckBooking = (props) => {
 
     /* Props */
     const {
-        reservationData,
-        setStep,
+        setStepWithAction,
         setEditRequested
     } = props;
 
     const handleEdit = () => {
-        setStep(1);
+        setStepWithAction(1);
         setEditRequested(true);
     }
     
@@ -31,34 +30,34 @@ const CheckBooking = (props) => {
                 <section className="table_form">
                     <article className="check_grid">
                         <div className="check_title">Number of Diners:</div>
-                        <div>{reservationData.guests}</div>
+                        <div>{localStorage.getItem("guests")}</div>
 
-                        {reservationData.chairs !== "" && <>
+                        {localStorage.getItem("chairs") !== "" && <>
                         <div className="check_title">Number of Children’s Chairs:</div>
-                        <div>{reservationData.chairs}</div>
+                        <div>{localStorage.getItem("chairs")}</div>
                         </>}
 
                         <div className="check_title">Chosen Date:</div>
-                        <div>{reservationData.date.toLocaleDateString()}</div>
+                        <div>{localStorage.getItem("date")}</div>
 
                         <div className="check_title">Chosen Time:</div>
-                        <div>{reservationData.time}</div>
+                        <div>{localStorage.getItem("time")}</div>
 
-                        {reservationData.occasion !== "" && <>
+                        {localStorage.getItem("occasion") !== "" && <>
                         <div className="check_title">Chosen Occasion:</div>
-                        <div>{reservationData.occasion}</div>
+                        <div>{localStorage.getItem("occasion")}</div>
                         </>}
 
-                        {reservationData.table !== "" && <>
+                        {localStorage.getItem("table") !== "" && <>
                         <div className="check_title">Chosen Table:</div>
-                        <div>{reservationData.table}</div>
+                        <div>{localStorage.getItem("table")}</div>
                         </>}
 
                     </article>
                 </section>
-                {reservationData.table !== "" ? (
+                {localStorage.getItem("table") !== "" ? (
                     <section className="table_img">
-                        <VisualizeChosenTable chosenTable={reservationData.table}/> 
+                        <VisualizeChosenTable chosenTable={localStorage.getItem("table")}/> 
                     </section> ) : (
                     <section className="table_img">
                         <div className="place_holder">
