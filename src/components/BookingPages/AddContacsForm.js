@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-
+import { formBlurChecker } from "./formBlurChecker";
 
 const AddContactsForm = (props) => {
 
@@ -26,6 +26,11 @@ const AddContactsForm = (props) => {
         submitForm();
     }
     
+    /* Validation */
+    useEffect(() => {
+        formBlurChecker();
+    }, [contactInputs]);
+
     return (
         <article className="tableGrid" id="tableGridContainer">
 
@@ -38,10 +43,12 @@ const AddContactsForm = (props) => {
                                 <input 
                                     type="text" 
                                     id="first_name" 
+                                    className="form_validation"
                                     name="first_name" 
                                     value={contactInputs.first_name || ""} 
                                     onChange={handleChange} 
-                                    aria-label="Input for the first name">
+                                    aria-label="Input for the first name"
+                                    required>
                                 </input>
                             </div>
 
@@ -50,10 +57,12 @@ const AddContactsForm = (props) => {
                                 <input 
                                     type="text" 
                                     id="last_name" 
+                                    className="form_validation"
                                     name="last_name" 
                                     value={contactInputs.last_name || ""} 
                                     onChange={handleChange} 
-                                    aria-label="Input for the last name">
+                                    aria-label="Input for the last name"
+                                    required>
                                 </input>
                             </div>
                         </div>
@@ -63,10 +72,14 @@ const AddContactsForm = (props) => {
                             <input 
                                 type="tel" 
                                 id="phone_number" 
+                                className="form_validation"
                                 name="phone_number" 
                                 value={contactInputs.phone_number || ""} 
                                 onChange={handleChange} 
-                                aria-label="Input for the phone number">
+                                aria-label="Input for the phone number"
+                                required
+                                minLength={4}
+                                maxLength={16}>
                             </input>
                         </div>
 
@@ -75,10 +88,13 @@ const AddContactsForm = (props) => {
                             <input 
                                 type="email" 
                                 id="email" 
+                                className="form_validation"
                                 name="email" 
                                 value={contactInputs.email || ""} 
                                 onChange={handleChange} 
-                                aria-label="Input for the email address">
+                                aria-label="Input for the email address"
+                                required
+                                minLength={4}>
                             </input>
                         </div>
 
@@ -91,7 +107,8 @@ const AddContactsForm = (props) => {
                                 name="comment" 
                                 value={contactInputs.comment || ""} 
                                 onChange={handleChange} 
-                                aria-label="Input for an optional comment. Should be filled if an occasion was chosen">
+                                aria-label="Input for an optional comment. Should be filled if an occasion was chosen"
+                                maxLength={250}>
                             </textarea>
                         </div>
                     </form>

@@ -4,6 +4,7 @@ import { FaUsers, FaClock, FaCalendarAlt, FaChair, FaBirthdayCake } from 'react-
 import TableSystem from "./TableSystem";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { formBlurChecker } from "./formBlurChecker";
 
 
 const BookingForm = (props) => {
@@ -192,17 +193,17 @@ const BookingForm = (props) => {
         canBeSubmitted();
     }, [selectedTime])
 
-    /* Can be used to track states.
+    /*
     useEffect(() => {
+        console.log("today",selectedDateWithoutTime)
         console.log("AvailableTimes", availableTimes)
-        console.log("filtered", filteredTimeSlots)
         console.log("Selected Guests (updated):", selectedGuests);
         console.log("Selected Chairs (updated):", selectedChairs);
         console.log("Selected Date (updated):", selectedDate);
         console.log("Selected Time (updated):", selectedTime);
         console.log("Selected Occasion (updated):", selectedOccasion);
         console.log("Selected Table (updated):", chosenTable);
-    }, [selectedGuests, selectedChairs, selectedDate, selectedTime, selectedOccasion, chosenTable, availableTimes, filteredTimeSlots]); */
+    }, [selectedGuests, selectedChairs, selectedDate, selectedTime, selectedOccasion, chosenTable, availableTimes]); */
 
 
     /* Manage the chairs so an unreasonable amount can't be reserved. Also update the filtered times when there has been a state change. */
@@ -227,7 +228,12 @@ const BookingForm = (props) => {
             }
         }
 
-    }, [selectedGuests, selectedDate]);    
+    }, [selectedGuests, selectedDate]); 
+    
+    /* Validation */
+    useEffect(() => {
+        formBlurChecker();
+    }, [selectedDate, selectedGuests, selectedTime]);
     
     return (
         <article className="tableGrid" id="tableGridContainer">
@@ -236,7 +242,7 @@ const BookingForm = (props) => {
                 <section className="table_form">
                     <form className="form_grid" aria-label="Reservation information">
                         <label htmlFor="guests" className="icon_title" ><FaUsers size={28}/> Number of Diners:</label>
-                            <select id="guests" onChange={(event) => handleChanges(event, "guests", parseInt(event.target.value))} data-testid="select-guests">
+                            <select id="guests" className="form_validation" onChange={(event) => handleChanges(event, "guests", parseInt(event.target.value))} data-testid="select-guests" required>
                                 <option key="g0"></option>
                                 {[...Array(maxDiners)].map((_, index) => (
                                     <option key={"g" + (index + 1)} value={index + 1} role="guestOption">{index + 1}</option>
@@ -269,26 +275,33 @@ const BookingForm = (props) => {
                         <label htmlFor="res-date" className="icon_title" aria-label="Shows a calender with available dates highlighted.">
                             <FaCalendarAlt size={28}/> Choose Date:</label>
                         <DatePicker 
-                            className="dateContainer"
+                            className="form_validation" 
                             id="res-date"
                             selected={selectedDate}
                             minDate={new Date()}
                             onChange={(date) => handleChanges(null, "res-date", date)}
                             includeDates={availableDates}
                             highlightDates={availableDates}
-                            placeholderText=""
                             withPortal
+                            required
                         />
 
                         <label htmlFor="res-time" className="icon_title"><FaClock size={28}/> Choose Time:</label>
-                        <select id="res-time" value={selectedTime} onChange={handleTimeChanges} 
-                            aria-label="Lists the available times based on the chosen amount of diners and date." data-testid="select-time">
+                        <select id="res-time" className="form_validation" value={selectedTime} onChange={handleTimeChanges} 
+                            aria-label="Lists the available times based on the chosen amount of diners and date." data-testid="select-time" required>
                             <option key="t0"></option>
-                            {availableTimes.map((timeSlot, index) => (
+                            {selectedGuests === 0 ? (
+                                <option value="missingGuests">Choose Guests!</option>
+                            ) :
+                            availableTimes.length === 0 ? (
+                                <option value="noAvailableTimes">No Available Times!</option>
+                            ) : (
+                                availableTimes.map((timeSlot, index) => (
                                 <option key={"t" + index + 1} value={timeSlot.time}>
-                                {timeSlot.time}
+                                    {timeSlot.time}
                                 </option>
-                            ))}
+                                ))
+                            )}
                         </select>
 
                         <label htmlFor="occasion_checkbox">There will be a special occasion:</label>
