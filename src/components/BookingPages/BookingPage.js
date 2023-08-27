@@ -47,8 +47,6 @@ const BookingPage = () => {
     };
 
     const initializeTimes = async (today) => {
-        console.log("Is this called");
-        console.log(availableTimes);
         const initializedData  = await fetchData(today, 0);
         dispatch({ type: "INITIALIZE_TIMES", payload: initializedData });
     };

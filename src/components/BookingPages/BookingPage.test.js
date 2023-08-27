@@ -1,11 +1,25 @@
-import { render, screen, waitFor, fireEvent } from "@testing-library/react";
+import { render, screen, waitFor, fireEvent, cleanup } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import * as fetchDataModule from './fetchData';
 import BookingPage from "./BookingPage";
 import { BrowserRouter } from 'react-router-dom';
 
+const mockGetItem = jest.fn();
+const mockSetItem = jest.fn();
+const mockRemoveItem = jest.fn();
+
+beforeAll(() => {
+    Object.defineProperty(window, "localStorage", {
+        value: {
+            getItem: () => mockGetItem(),
+            setItem: () => mockSetItem(),
+            removeItem: () => mockRemoveItem()
+        },
+    });
+});
 afterEach(() => {
-jest.clearAllMocks();
+    jest.clearAllMocks();
+    cleanup();
 });
 
 describe("Booking Page", () => {
@@ -111,5 +125,65 @@ describe("Booking Page", () => {
             expect(lastCallGuests).toEqual(parseInt(guests));
         });
 
+    });
+
+    test('If local storaging works with given values', async () => {
+        jest.spyOn(fetchDataModule, 'fetchData').mockImplementation(async (date, guests) => {
+            return [
+                {
+                    "checkDate": "2023-08-25",
+                    "targetDate": "2023-08-30",
+                    "id": "t8",
+                    "time": "01.30PM",
+                    "maxGuests": 8,
+                    "tableSituation": 2
+                }
+            ]
+        });
+
+        render(
+            <BrowserRouter>
+                <BookingPage fetchData={fetchDataModule.fetchData}
+                />
+            </BrowserRouter>);
+    
+        const selectGuests = screen.getByTestId('select-guests');
+        
+        await userEvent.selectOptions(selectGuests, guests); 
+
+        await waitFor (() => {
+            expect(selectGuests).toHaveTextContent("2");
+        });
+    
+        const datepickerInput = screen.getByDisplayValue(formatDate(actualToday).toString());
+  
+        fireEvent.change(datepickerInput, { target: { value: targetDate } });
+
+        let selectTime;
+
+        await waitFor (() => {
+            selectTime = screen.getByTestId('select-time');
+            expect(selectTime).toBeInTheDocument();
+        })
+
+        const options = screen.getAllByRole('option', { within: selectTime });
+
+        const time = options[2].textContent;
+
+        console.log("Testi",time);
+
+        await userEvent.selectOptions(selectTime, time);
+
+        const button = screen.getByTestId('submit');
+
+        fireEvent.click(button);
+
+        await waitFor (() => {
+            expect(mockSetItem).toHaveBeenCalled();
+        });
+
+        await waitFor (() => {
+            expect(mockGetItem).toHaveBeenCalled();
+        });
     });
 });

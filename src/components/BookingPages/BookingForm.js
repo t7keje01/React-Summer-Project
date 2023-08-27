@@ -118,6 +118,7 @@ const BookingForm = (props) => {
     };
 
     const handleSubmit = () => {
+        console.log("HELPPPPPPPPPPPPP")
         const savedDate = selectedDate.toLocaleDateString();
         localStorage.setItem("guests", selectedGuests);
         localStorage.setItem("chairs", selectedChairs);
@@ -143,8 +144,9 @@ const BookingForm = (props) => {
         const isValid =
             selectedGuests !== 0 &&
             selectedDateWithoutTime.getTime() !== today.getTime() &&
-            selectedTime.includes('M');
+            selectedTime.length > 0;
         
+        console.log("Is this working:", selectedGuests, selectedDateWithoutTime, selectedTime)
         setCanSubmit(isValid);
     };
 
@@ -280,7 +282,7 @@ const BookingForm = (props) => {
 
                         <label htmlFor="res-time" className="icon_title"><FaClock size={28}/> Choose Time:</label>
                         <select id="res-time" value={selectedTime} onChange={handleTimeChanges} 
-                            aria-label="Lists the available times based on the chosen amount of diners and date.">
+                            aria-label="Lists the available times based on the chosen amount of diners and date." data-testid="select-time">
                             <option key="t0"></option>
                             {availableTimes.map((timeSlot, index) => (
                                 <option key={"t" + index + 1} value={timeSlot.time}>
@@ -352,6 +354,7 @@ const BookingForm = (props) => {
                 className="table_next" 
                 disabled={!canSubmit} 
                 onClick={handleSubmit}
+                data-testid="submit"
             ></input>
             <Link to="/" id="greyButton" className="table_canc">Cancel Reservation</Link>
         </article>
