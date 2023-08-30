@@ -7,7 +7,7 @@
     grid-template-columns: repeat(12, 1fr);
     grid-column-gap: 20px;
     grid-template-areas:
-      " . . nav nav nav nav nav nav nav nav  . . "                                             /* HEADER with LOGO and NAVIGATION BAR */
+      " . . nav nav nav nav nav nav nav nav  . . "                                                                                    /* HEADER with LOGO and NAVIGATION BAR */
       " . . title_desc title_desc title_desc title_desc title_img title_img title_img title_img . ."                                  /* USED by CallToAction.js */
       " . . sp_title sp_title sp_title sp_title sp_title sp_button sp_button sp_button . ."                                           /* USED by Specials.js */
       " . . sp_card sp_card sp_card sp_card sp_card sp_card sp_card sp_card . . "                                                     /* ...CONTINUES */
@@ -31,7 +31,8 @@
       " . . title_form title_form title_form title_form title_form title_form title_form title_form . . "                                                 /* USED by THREE DIFFERENT COMPONENTS: BookingForn.js, CheckBooking.js */
       " . . table_form table_form table_form table_form table_img table_img table_img table_img . . "                                                     /* and AddContactsForm.js */
       " . . cont_form cont_form cont_form cont_form cont_form cont_form . . . . "                                                                         /* ...CONTINUES */
-      " . . table_next table_next table_next table_next table_canc table_canc table_canc table_canc . ."                                                                    /* ...CONTINUES */
+      " . . table_next table_next table_next table_next table_canc table_canc table_canc table_canc . ."
+      " . . cont_next cont_next cont_next cont_canc cont_canc cont_canc . . . . " 
 }
 
 
@@ -445,6 +446,16 @@ footer {
   padding-bottom: 5vh;
 }
 
+.cont_next {
+  grid-area: cont_next;
+}
+
+.cont_canc {
+  grid-area: cont_canc;
+}
+
+
+
 /*---------------------------------------------------------------------------*/
 
 
@@ -492,7 +503,9 @@ footer {
       "table_img table_img table_img table_img"
       "cont_form cont_form cont_form cont_form" 
       "table_next table_next table_next table_next"
-      "table_canc table_canc table_canc table_canc";
+      "table_canc table_canc table_canc table_canc"
+      "cont_next cont_next cont_next cont_next"
+      "cont_canc cont_canc cont_canc cont_canc";
   }
 
   nav {
@@ -599,7 +612,7 @@ footer {
     justify-content: flex-end;
   }
 
-  .table_canc {
+  .table_canc, .cont_canc {
     margin-top: 4vh;
   }
 

@@ -23,9 +23,9 @@ const BookingForm = (props) => {
     const [maxChairs, setMaxChairs] = useState(3);
 
     const availableDates = [
-        new Date('2023-08-29'),
-        new Date('2023-08-30'),
-        new Date('2023-08-31')
+        new Date('2023-09-06'),
+        new Date('2023-09-07'),
+        new Date('2023-09-08')
     ]
 
     /* UseStates */
@@ -119,7 +119,6 @@ const BookingForm = (props) => {
     };
 
     const handleSubmit = () => {
-        console.log("HELPPPPPPPPPPPPP")
         const savedDate = selectedDate.toLocaleDateString();
         localStorage.setItem("guests", selectedGuests);
         localStorage.setItem("chairs", selectedChairs);
@@ -147,7 +146,6 @@ const BookingForm = (props) => {
             selectedDateWithoutTime.getTime() !== today.getTime() &&
             selectedTime.length > 0;
         
-        console.log("Is this working:", selectedGuests, selectedDateWithoutTime, selectedTime)
         setCanSubmit(isValid);
     };
 
@@ -326,9 +324,9 @@ const BookingForm = (props) => {
                                     <option key="o5">Other</option>
                                 </select></>}
 
-                        <label htmlFor="tableCheckbox">I want to choose my table:</label>
+                        <label htmlFor="table_checkbox">I want to choose my table:</label>
                         <input
-                            id="tableCheckbox"
+                            id="table_checkbox"
                             type="checkbox"
                             name="isTableChecked"
                             checked={checkboxState.isTableChecked}
