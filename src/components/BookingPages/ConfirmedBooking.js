@@ -10,14 +10,14 @@ const ConfirmedBooking = (props) => {
         setStepWithAction(1);
     }
 
-    const success_reserve = require("../../images/welcome_sign.png");
+    const successfulReservation = require("../../images/welcome_sign.png");
 
     return (
         <div className="tableGrid" id="finishBooking">
-            <div className="t_title_img">
-                <img src={success_reserve} alt="Reserved table" className="reserve_table_img"/>
+            <div className="largeTitleImg">
+                <img src={successfulReservation} alt="Reserved table" className="reservedTableImg"/>
             </div>
-            <div className="t_title_desc">
+            <div className="altTitleDesc" aria-label="Reservation info">
                 <h1>Table has been reserved!</h1>
                 <p>You have successfully reserved a table at our reservation. 
                     You will be receiving a confirmation email within an hour to the email you’ve provided. Please be sure to check the Junk Mailbox just in case!</p>
@@ -25,8 +25,8 @@ const ConfirmedBooking = (props) => {
                 <p>We will be sure to contact you back if there is a need to confirm something regarding the comment section!</p>
                 <p>Thank you for your reservation and we welcome you warmly to our restaurant!</p>
             </div>
-            <Link to="/reservations" id="blackButton" className="table_next" onClick={handleStepReset}>Make Another Reservation</Link>
-            <Link to="/" id="greyButton" className="table_canc" onClick={handleStepReset}>Return to Homepage</Link>
+            <Link to="/reservations" id="blackButton" className="tableNextBtn" onClick={handleStepReset}>Make Another Reservation</Link>
+            <Link to="/" id="greyButton" className="tableCancelBtn" onClick={handleStepReset}>Return to Homepage</Link>
         </div>
     );
 };

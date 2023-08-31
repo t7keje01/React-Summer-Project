@@ -7,16 +7,16 @@
     grid-template-columns: repeat(12, 1fr);
     grid-column-gap: 20px;
     grid-template-areas:
-      " . . nav nav nav nav nav nav nav nav  . . "                                                                                    /* HEADER with LOGO and NAVIGATION BAR */
-      " . . title_desc title_desc title_desc title_desc title_img title_img title_img title_img . ."                                  /* USED by CallToAction.js */
-      " . . sp_title sp_title sp_title sp_title sp_title sp_button sp_button sp_button . ."                                           /* USED by Specials.js */
-      " . . sp_card sp_card sp_card sp_card sp_card sp_card sp_card sp_card . . "                                                     /* ...CONTINUES */
-      " . . rvw_title rvw_title rvw_title rvw_title rvw_title rvw_title rvw_title rvw_title . . "                                     /* CustomersSay.js */
-      " . . rvw_card1 rvw_card1 rvw_card2 rvw_card2 rvw_card3 rvw_card3 rvw_card4 rvw_card4 . . "                                     /* ...CONTINUES */
-      " . . intro_content intro_content intro_content intro_content intro_content intro_content intro_content intro_content . . "     /* USED by Chicago.js */
-      " . . filler filler filler filler filler filler filler filler . . "                                                             /* ...CONTINUES */
-      " . . f_logo f_logo f_links1_h f_links1_h f_links2_h f_links2_h f_links3_h f_links3_h . . "                                     /* FOOTER with LOGO and NAVIGATION LINKS */
-      " . . f_logo f_logo f_links1 f_links1 f_links2 f_links2 f_links3 f_links3 . . ";                                                /* ...CONTINUES */
+      " . . nav nav nav nav nav nav nav nav  . . "                                                                            /* HEADER with LOGO and NAVIGATION BAR */
+      " . . titleDesc titleDesc titleDesc titleDesc titleImg titleImg titleImg titleImg . ."                                  /* USED by CallToAction.js */
+      " . . specialTitle specialTitle specialTitle specialTitle specialTitle specialButton specialButton specialButton . ."   /* USED by Specials.js */
+      " . . specialCard specialCard specialCard specialCard specialCard specialCard specialCard specialCard . . "             /* ...CONTINUES */
+      " . . reviewTitle reviewTitle reviewTitle reviewTitle reviewTitle reviewTitle reviewTitle reviewTitle . . "             /* CustomersSay.js */
+      " . . reviewCard1 reviewCard1 reviewCard2 reviewCard2 reviewCard3 reviewCard3 reviewCard4 reviewCard4 . . "             /* ...CONTINUES */
+      " . . introContent introContent introContent introContent introContent introContent introContent introContent . . "     /* USED by Chicago.js */
+      " . . filler filler filler filler filler filler filler filler . . "                                                     /* ...CONTINUES */
+      " . . footerLogo footerLogo footerHeader1 footerHeader1 footerHeader2 footerHeader2 footerHeader3 footerHeader3 . . "   /* FOOTER with LOGO and NAVIGATION LINKS */
+      " . . footerLogo footerLogo footerLink1 footerLink1 footerLink2 footerLink2 footerLink3 footerLink3 . . ";              /* ...CONTINUES */
   }
 
 /* Table Details layout */
@@ -26,18 +26,18 @@
     grid-template-columns: repeat(12, 1fr);
     grid-column-gap: 20px;
     grid-template-areas:
-      " t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img t_title_img " /* USED by TWO DIFFERENT COMPONENT: BeginBookingTitle.js and ConfirmBookingTitle.js */
-      " . . t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc t_title_desc . ."                                  /* ...CONTINUES */
-      " . . title_form title_form title_form title_form title_form title_form title_form title_form . . "                                                 /* USED by THREE DIFFERENT COMPONENTS: BookingForn.js, CheckBooking.js */
-      " . . table_form table_form table_form table_form table_img table_img table_img table_img . . "                                                     /* and AddContactsForm.js */
-      " . . cont_form cont_form cont_form cont_form cont_form cont_form . . . . "                                                                         /* ...CONTINUES */
-      " . . table_next table_next table_next table_next table_canc table_canc table_canc table_canc . ."
-      " . . cont_next cont_next cont_next cont_canc cont_canc cont_canc . . . . " 
+      " largeTitleImg largeTitleImg largeTitleImg largeTitleImg largeTitleImg largeTitleImg largeTitleImg largeTitleImg largeTitleImg largeTitleImg largeTitleImg largeTitleImg " 
+      " . . altTitleDesc altTitleDesc altTitleDesc altTitleDesc altTitleDesc altTitleDesc altTitleDesc altTitleDesc . ."
+      " . . titleForm titleForm titleForm titleForm titleForm titleForm titleForm titleForm . . "
+      " . . tableForm tableForm tableForm tableForm tableImg tableImg tableImg tableImg . . "
+      " . . contactsForm contactsForm contactsForm contactsForm contactsForm contactsForm . . . . "
+      " . . tableNextBtn tableNextBtn tableNextBtn tableNextBtn tableCancelBtn tableCancelBtn tableCancelBtn tableCancelBtn . ."
+      " . . contactsNextBtn contactsNextBtn contactsNextBtn contactsCancelBtn contactsCancelBtn contactsCancelBtn . . . . " 
 }
 
 
 /* Parent container & overall definition */
-#app-container {
+#appContainer {
   display: grid;
   grid-template-areas: 
   "header header header"
@@ -46,12 +46,12 @@
   height: 100%;
 }
 
-#content-container {
+#contentContainer {
   grid-area: content;
   padding-bottom: 10vh;
 }
 
-#content-container > article {
+#contentContainer > article {
   padding: 10vh 0 5vh 0;
 }
 
@@ -75,18 +75,18 @@ nav {
   grid-area: nav;
 }
 
-.nav_grid {
+.navGrid {
   display: grid;
   grid-template-columns: 30% 70%;
 }
 
-.logo-container {
+.logoContainer {
   display: flex;
   flex-wrap: wrap;
   align-content: center;
 }
 
-.nav-links {
+.navLinks {
   max-width: 100%;
 }
 
@@ -115,36 +115,36 @@ footer {
   padding: 3vh 0 3vh 0;
 }
 
-.f_logo {
-  grid-area: f_logo;
+.footerLogo {
+  grid-area: footerLogo;
   display: flex;
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
 }
 
-.f_links1_h {
-  grid-area: f_links1_h;
+.footerHeader1 {
+  grid-area: footerHeader1;
 }
 
-.f_links2_h {
-  grid-area: f_links2_h;
+.footerHeader2 {
+  grid-area: footerHeader2;
 }
 
-.f_links3_h {
-  grid-area: f_links3_h;
+.footerHeader3 {
+  grid-area: footerHeader3;
 }
 
-.f_links1 {
-  grid-area: f_links1;
+.footerLink1 {
+  grid-area: footerLink1;
 }
 
-.f_links2 {
-  grid-area: f_links2;
+.footerLink2 {
+  grid-area: footerLink2;
 }
 
-.f_links3 {
-  grid-area: f_links3;
+.footerLink3 {
+  grid-area: footerLink3;
 }
 
 
@@ -158,12 +158,12 @@ footer {
   padding: 10vh 0 10vh 0;
 }
 
-.title_desc {
-  grid-area: title_desc;
+.titleDesc {
+  grid-area: titleDesc;
 }
 
-.title_img {
-  grid-area: title_img;
+.titleImg {
+  grid-area: titleImg;
   display: flex;
   flex-wrap: wrap;
   align-content: center;
@@ -172,34 +172,34 @@ footer {
 
 
 /* Specials */
-.sp_title {
- grid-area: sp_title;
+.specialTitle {
+ grid-area: specialTitle;
 }
 
-.sp_button {
-  grid-area: sp_button;
+.specialButton {
+  grid-area: specialButton;
 }
 
-.sp_card {
-  grid-area: sp_card;
+.specialCard {
+  grid-area: specialCard;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 4vh;
 }
 
-.sp_card div {
+.specialCard div {
   display: grid;
   grid-template-columns: 1fr auto;
 }
 
-.sp_card section {
+.specialCard section {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   max-height: 100%;
 }
 
-.sp_button {
+.specialButton {
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -207,8 +207,8 @@ footer {
 
 
 /* Testimonials */
-.rvw_title {
-  grid-area: rvw_title;
+.reviewTitle {
+  grid-area: reviewTitle;
 }
 
 #testimonials section {
@@ -223,29 +223,29 @@ footer {
   align-items: center;
 }
 
-.rvw_card1 {
-  grid-area: rvw_card1;
+.reviewCard1 {
+  grid-area: reviewCard1;
 }
 
-.rvw_card2 {
-  grid-area: rvw_card2;
+.reviewCard2 {
+  grid-area: reviewCard2;
 }
 
-.rvw_card3 {
-  grid-area: rvw_card3;
+.reviewCard3 {
+  grid-area: reviewCard3;
 }
 
-.rvw_card4 {
-  grid-area: rvw_card4;
+.reviewCard4 {
+  grid-area: reviewCard4;
 }
 
 
 /* Introduction section */
-.intro_content {
-  grid-area: intro_content;
+.introContent {
+  grid-area: introContent;
 }
 
-.intro_content {
+.introContent {
   margin: 10vh 0 10vh 0;
 }
 
@@ -260,8 +260,8 @@ footer {
   padding: 0;
 }
 
-.t_title_img {
-  grid-area: t_title_img;
+.largeTitleImg {
+  grid-area: largeTitleImg;
   display: flex;
   align-items: flex-end;
   position: relative;
@@ -269,8 +269,8 @@ footer {
   max-height: 50vh;
 }
 
-.t_title_desc {
-  grid-area: t_title_desc;
+.altTitleDesc {
+  grid-area: altTitleDesc;
   padding: 10vh 0 10vh 0;
 }
 
@@ -280,21 +280,21 @@ footer {
   width: 100%;
 }
 
-.title_form {
-  grid-area: title_form;
+.titleForm {
+  grid-area: titleForm;
 }
 
-.table_form {
-  grid-area: table_form;
+.tableForm {
+  grid-area: tableForm;
   margin-bottom: 5vh;
   max-width: 100%;
 }
 
-.table_img {
+.tableImg {
   max-width: 100%;
 }
 
-.form_grid {
+.formGrid {
   display: grid;
   grid-template-columns: 1fr 1fr; 
   grid-template-rows: repeat(6, 1fr);
@@ -302,15 +302,15 @@ footer {
   align-items: center;
 }
 
-.form_grid label,
-.form_grid input,
-.form_grid select {
+.formGrid label,
+.formGrid input,
+.formGrid select {
   max-width: 100%; 
   max-height: 100%;
 }
 
-.table_img {
-  grid-area: table_img;
+.tableImg {
+  grid-area: tableImg;
   display: flex;
   max-width: 100%;
   flex-direction: column;
@@ -318,7 +318,7 @@ footer {
   margin: 8vh 0 5vh 0;
 }
 
-#table_reservation_image {
+#tableReservationImg {
   max-width: 100%;
   justify-items: center;
   align-items: center;
@@ -383,25 +383,25 @@ footer {
   grid-template-columns: repeat(4 1fr);
 }
 
-.place_holder {
+.placeHolder {
   max-width: 100%;
 }
 
-.table_next {
-  grid-area: table_next;
+.tableNextBtn {
+  grid-area: tableNextBtn;
 }
 
-.table_canc {
-  grid-area: table_canc;
+.tableCancelBtn {
+  grid-area: tableCancelBtn;
 }
 
-.icon_title {
+.iconTitle {
   display: flex;
   align-items: center;
   gap: 3vh;
 }
 
-.check_grid {
+.checkGrid {
   display: grid;
   grid-template-columns: 1fr 1fr; 
   grid-template-rows: repeat(5, 1fr);
@@ -409,31 +409,31 @@ footer {
   align-items: center;
 }
 
-.cont_names {
+.contactNames {
   display: grid;
   grid-template-columns: 40% 1fr;
   column-gap: 2vh;
   max-width: 100%;
 }
 
-.contact_layout {
+.contactLayout {
   display: grid;
   grid-template-rows: 1fr auto;
   width: 100%;
   row-gap: 2vh;
 }
 
-.contact_layout input, .contact_layout label {
+.contactLayout input, .contactLayout label {
   box-sizing: border-box;
   width: 100%;
 }
 
-.cont_form {
-  grid-area: cont_form;
+.contactsForm {
+  grid-area: contactsForm;
   max-width: 100%;
 }
 
-.contact_grid {
+.contactGrid {
   display: grid;
   grid-template-rows: repeat(3, 1fr);
   grid-auto-rows: auto;
@@ -446,12 +446,12 @@ footer {
   padding-bottom: 5vh;
 }
 
-.cont_next {
-  grid-area: cont_next;
+.contactsNextBtn {
+  grid-area: contactsNextBtn;
 }
 
-.cont_canc {
-  grid-area: cont_canc;
+.contactsCancelBtn {
+  grid-area: contactsCancelBtn;
 }
 
 
@@ -470,23 +470,23 @@ footer {
       align-items: center;
       grid-template-areas:
       "nav nav nav nav"
-      "title_img title_img title_img title_img"
-      "title_desc title_desc title_desc title_desc"
-      "sp_title sp_title sp_title sp_title"
-      "sp_button sp_button sp_button sp_button"
-      "sp_card sp_card sp_card sp_card"
-      "rvw_title rvw_title rvw_title rvw_title"
-      "rvw_card1 rvw_card1 rvw_card1 rvw_card1"
-      "rvw_card2 rvw_card2 rvw_card2 rvw_card2"
-      "rvw_card3 rvw_card3 rvw_card3 rvw_card3"
-      "rvw_card4 rvw_card4 rvw_card4 rvw_card4"
-      "intro_content intro_content intro_content intro_content"
-      "f_logo f_links1_h f_links1_h f_links1_h"
-      "f_logo f_links1 f_links1 f_links1"
-      "f_logo f_links2_h f_links2_h f_links2_h"
-      "f_logo f_links2 f_links2 f_links2"      
-      "f_logo f_links3_h f_links3_h f_links3_h"
-      "f_logo f_links3 f_links3 f_links3";
+      "titleImg titleImg titleImg titleImg"
+      "titleDesc titleDesc titleDesc titleDesc"
+      "specialTitle specialTitle specialTitle specialTitle"
+      "specialButton specialButton specialButton specialButton"
+      "specialCard specialCard specialCard specialCard"
+      "reviewTitle reviewTitle reviewTitle reviewTitle"
+      "reviewCard1 reviewCard1 reviewCard1 reviewCard1"
+      "reviewCard2 reviewCard2 reviewCard2 reviewCard2"
+      "reviewCard3 reviewCard3 reviewCard3 reviewCard3"
+      "reviewCard4 reviewCard4 reviewCard4 reviewCard4"
+      "introContent introContent introContent introContent"
+      "footerLogo footerHeader1 footerHeader1 footerHeader1"
+      "footerLogo footerLink1 footerLink1 footerLink1"
+      "footerLogo footerHeader2 footerHeader2 footerHeader2"
+      "footerLogo footerLink2 footerLink2 footerLink2"      
+      "footerLogo footerHeader3 footerHeader3 footerHeader3"
+      "footerLogo footerLink3 footerLink3 footerLink3";
   }
   .tableGrid {
     display: grid;
@@ -496,16 +496,16 @@ footer {
     align-items: center;
     justify-items: center;
     grid-template-areas:
-      "t_title_img t_title_img t_title_img t_title_img"
-      "t_title_desc t_title_desc t_title_desc t_title_desc"
-      "title_form title_form title_form title_form"
-      "table_form table_form table_form table_form"
-      "table_img table_img table_img table_img"
-      "cont_form cont_form cont_form cont_form" 
-      "table_next table_next table_next table_next"
-      "table_canc table_canc table_canc table_canc"
-      "cont_next cont_next cont_next cont_next"
-      "cont_canc cont_canc cont_canc cont_canc";
+      "largeTitleImg largeTitleImg largeTitleImg largeTitleImg"
+      "altTitleDesc altTitleDesc altTitleDesc altTitleDesc"
+      "titleForm titleForm titleForm titleForm"
+      "tableForm tableForm tableForm tableForm"
+      "tableImg tableImg tableImg tableImg"
+      "contactsForm contactsForm contactsForm contactsForm" 
+      "tableNextBtn tableNextBtn tableNextBtn tableNextBtn"
+      "tableCancelBtn tableCancelBtn tableCancelBtn tableCancelBtn"
+      "contactsNextBtn contactsNextBtn contactsNextBtn contactsNextBtn"
+      "contactsCancelBtn contactsCancelBtn contactsCancelBtn contactsCancelBtn";
   }
 
   nav {
@@ -521,11 +521,11 @@ footer {
     padding: 2vh 5vh 2vh 5vh;
   }
 
-  #content-container > article {
+  #contentContainer > article {
     padding: 5vh;
   }
 
-  .f_links1, .f_links2, .f_links3 {
+  .footerLink1, .footerLink2, .footerLink3 {
     display: flex;
     flex-wrap: wrap;
     justify-content: start;
@@ -533,35 +533,41 @@ footer {
     column-gap: 20px;
   }
 
-  .t_title_desc {
+  .altTitleDesc {
     padding: 5vh;
   }
+
   #heroSection {
     padding: 5vh 0 5vh 0;
   }
+
   #heroSection h1 {
     padding-top: 5vh;
   }
+
   #heroSection div {
     display: grid;
     grid-template-columns: 1fr;
     justify-items: center;
     margin: 0 4vh 0 4vh;
   }
-  .sp_title{
+
+  .specialTitle{
     padding-bottom: 4vh;
   }
-  .sp_card {
+
+  .specialCard {
     grid-template-columns: 1fr;
     gap: 5vh;
   }
-  .sp_title, .sp_button {
+  
+  .specialTitle, .specialButton {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .sp_button {
+  .specialButton {
     margin-top: 0;
   }
 
@@ -573,11 +579,11 @@ footer {
     margin-top: 5vh;
   }
 
-  .table_img {
+  .tableImg {
     margin: 0 0 4vh 0;
 }
 
-  .form_grid {
+  .formGrid {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(10, auto);
@@ -587,14 +593,14 @@ footer {
     gap: 2vh; 
   }
 
-  .title_form {
+  .titleForm {
     margin-bottom: 5vh
   }
 
   svg {
     width: 30px;
   }
-  .icon_title {
+  .iconTitle {
     display: grid;
     grid-template-columns: 15% 50vw;
     gap: 0;
@@ -608,24 +614,24 @@ footer {
     box-sizing: border-box;
   }
 
-  .table_img {
+  .tableImg {
     justify-content: flex-end;
   }
 
-  .table_canc, .cont_canc {
+  .tableCancelBtn, .contactsCancelBtn {
     margin-top: 4vh;
   }
 
-  .check_grid {
+  .checkGrid {
     padding: 0;
   }
 
-  .contact_grid {
+  .contactGrid {
     grid-template-rows: repeat(6, auto);
     min-width: 80vw;
   }
 
-  .cont_names {
+  .contactNames {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
     row-gap: 2vh;

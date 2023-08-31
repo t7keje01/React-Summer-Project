@@ -1,13 +1,13 @@
 
 const ConfirmBookingTitle = () => {
-    const confirm_reserve = require("../../images/served_dinner_table.jpg");
+    const confirmReservation = require("../../images/served_dinner_table.jpg");
 
     return (
         <div className="tableGrid" id="startBookingTitle">
-            <div className="t_title_img">
-                <img src={confirm_reserve} alt="Reserved table" className="reserve_table_img"/>
+            <div className="largeTitleImg">
+                <img src={confirmReservation} alt="Reserved table" className="reservedTableImg"/>
             </div>
-            <div className="t_title_desc">
+            <div className="altTitleDesc" aria-label="Reservation info">
                 <h1>Confirm your reservation!</h1>
                 <p>Please inform us for possible allergies or special diets on the comment section.</p>
                 <p>If you’ve chosen the Occasion section, please provide us with further information on the comment section.

@@ -72,7 +72,7 @@ const BookingForm = (props) => {
             setSelectedChairs(value);
 
             break;
-        case "res-date":
+        case "reservationDate":
             setSelectedDate(value);
 
             if (selectedDatePrev !== today.getTime() && selectedDatePrev !== undefined) {
@@ -236,32 +236,32 @@ const BookingForm = (props) => {
     return (
         <article className="tableGrid" id="tableGridContainer">
 
-                <h2 className="title_form">Reservation Details:</h2>
-                <section className="table_form">
-                    <form className="form_grid" aria-label="Reservation information">
-                        <label htmlFor="guests" className="icon_title" ><FaUsers size={28}/> Number of Diners:</label>
-                            <select id="guests" className="form_validation" onChange={(event) => handleChanges(event, "guests", parseInt(event.target.value))} data-testid="select-guests" required>
-                                <option key="g0"></option>
+                <h2 className="titleForm">Reservation Details:</h2>
+                <section className="tableForm">
+                    <form className="formGrid" aria-label="Reservation information">
+                        <label htmlFor="guests" className="iconTitle" ><FaUsers size={28} alt="Person"/> Number of Diners:</label>
+                            <select id="guests" className="formValidation" onChange={(event) => handleChanges(event, "guests", parseInt(event.target.value))} data-testid="selectGuests" required>
+                                <option key="g0">Select number</option>
                                 {[...Array(maxDiners)].map((_, index) => (
                                     <option key={"g" + (index + 1)} value={index + 1} role="guestOption">{index + 1}</option>
                                 ))}
                             </select>
 
-                        <label htmlFor="chair_checkbox">There will be a need for a children’s high chair:</label>
+                        <label htmlFor="chairCheckbox">There will be a need for a children’s high chair:</label>
                         <input
-                            id="chair_checkbox"
+                            id="chairCheckbox"
                             type="checkbox"
                             name="isChairChecked"
                             disabled={!disableElement}
                             checked={checkboxState.isChairChecked}
                             onChange={handleCheckboxChange}
                             aria-checked={checkboxState.isChairChecked}
-                            aria-label="This is an optional checkbox"
+                            aria-label="Optional checkbox"
                             aria-disabled={!disableElement}
                             />
 
                         {checkboxState.isChairChecked && <>
-                            <label htmlFor="chairs" className="icon_title"><FaChair size={28}/> Number of Chairs:</label>
+                            <label htmlFor="chairs" className="iconTitle"><FaChair size={28} alt="Chair"/> Number of Chairs:</label>
                             <select id="chairs" onChange={(event) => handleChanges(event, "chairs", parseInt(event.target.value))}>
                                 <option key="c0"></option>
                                 {[...Array(maxChairs)].map((_, index) => (
@@ -270,52 +270,54 @@ const BookingForm = (props) => {
                             </select>
                             </>}
 
-                        <label htmlFor="res-date" className="icon_title" aria-label="Shows a calender with available dates highlighted.">
-                            <FaCalendarAlt size={28}/> Choose Date:</label>
+                        <label htmlFor="reservationDate" className="iconTitle" aria-label="Calender with available dates highlighted.">
+                            <FaCalendarAlt size={28} alt="Calendar"/> Choose Date:</label>
                         <DatePicker 
-                            className="form_validation" 
-                            id="res-date"
+                            className="formValidation" 
+                            id="reservationDate"
                             selected={selectedDate}
                             minDate={new Date()}
-                            onChange={(date) => handleChanges(null, "res-date", date)}
+                            onChange={(date) => handleChanges(null, "reservationDate", date)}
                             includeDates={availableDates}
                             highlightDates={availableDates}
                             withPortal
                             required
                         />
 
-                        <label htmlFor="res-time" className="icon_title"><FaClock size={28}/> Choose Time:</label>
-                        <select id="res-time" className="form_validation" value={selectedTime} onChange={handleTimeChanges} 
-                            aria-label="Lists the available times based on the chosen amount of diners and date." data-testid="select-time" required>
-                            <option key="t0"></option>
+                        <label htmlFor="reservationTime" className="iconTitle"><FaClock size={28} alt="Clock"/> Choose Time:</label>
+                        <select id="reservationTime" className="formValidation" value={selectedTime} onChange={handleTimeChanges} 
+                            aria-label="Lists the available times based on the chosen amount of diners and date." data-testid="selectTime" required>
                             {selectedGuests === 0 ? (
-                                <option value="missingGuests">Choose Guests!</option>
+                                <option value="" disabled>Guests not chosen yet</option>
                             ) :
-                            availableTimes.length === 0 ? (
-                                <option value="noAvailableTimes">No Available Times!</option>
+                            availableTimes.length === 0 || availableTimes.length > 8 ? (
+                                <option value="" disabled>No Available Times</option>
                             ) : (
-                                availableTimes.map((timeSlot, index) => (
-                                <option key={"t" + index + 1} value={timeSlot.time}>
-                                    {timeSlot.time}
-                                </option>
-                                ))
+                                <>
+                                    <option value="">Select a time</option>
+                                    {availableTimes.map((timeSlot, index) => (
+                                    <option key={"t" + index} value={timeSlot.time}>
+                                        {timeSlot.time}
+                                    </option>
+                                    ))}
+                                </>
                             )}
                         </select>
 
-                        <label htmlFor="occasion_checkbox">There will be a special occasion:</label>
+                        <label htmlFor="occasionCheckbox">There will be a special occasion:</label>
                         <input
-                            id="occasion_checkbox"
+                            id="occasionCheckbox"
                             type="checkbox"
                             name="isOccasionChecked"
                             checked={checkboxState.isOccasionChecked}
                             onChange={handleCheckboxChange}
                             aria-checked={checkboxState.isOccasionChecked}
-                            aria-label="This is an optional checkbox"
+                            aria-label="Optional checkbox"
                             />
 
                         {checkboxState.isOccasionChecked && <>
-                            <label htmlFor="occasion" className="icon_title" aria-label="List of possible occasions with the option to choose 'others' if none of them fit.">
-                                <FaBirthdayCake size={28}/> Occasion</label>
+                            <label htmlFor="occasion" className="iconTitle">
+                                <FaBirthdayCake size={28} alt="Cake"/> Occasion</label>
                                 <select id="occasion" onChange={(event) => handleChanges(event, "occasion", event.target.value)}>
                                     <option key="o1"></option>
                                     <option key="o2">Birthday</option>
@@ -324,29 +326,29 @@ const BookingForm = (props) => {
                                     <option key="o5">Other</option>
                                 </select></>}
 
-                        <label htmlFor="table_checkbox">I want to choose my table:</label>
+                        <label htmlFor="tableCheckbox">I want to choose my table:</label>
                         <input
-                            id="table_checkbox"
+                            id="tableCheckbox"
                             type="checkbox"
                             name="isTableChecked"
                             checked={checkboxState.isTableChecked}
                             onChange={handleCheckboxChange}
                             disabled={!canSubmit}
-                            aria-label="An optional checkbox that allows to manually select a table when the amount of diners, date and time have already been chosen."
+                            aria-label="Optional checkbox for manual table selection"
                             aria-checked={checkboxState.isTableChecked}
                             aria-disabled={!canSubmit}
                             />
 
                         {checkboxState.isTableChecked ? (
                             <>
-                                <div id="show_table" role="heading" aria-level="2" aria-label="Chosen Table">You've chosen:</div>
-                                <div id="table" aria-label="Shows the chosen table with the table and number.">{chosenTable}</div>
+                                <div id="showTable" role="heading" aria-level="2" aria-label="Chosen Table">You've chosen:</div>
+                                <div id="table" aria-label="Show chosen table">{chosenTable}</div>
                             </>
                         ) : null}
                     </form>
                 </section>
                 {checkboxState.isTableChecked ? (
-                    <section className="table_img">
+                    <section className="tableImg">
                         <TableSystem 
                             selectedGuests={selectedGuests}
                             tableSetIndex={selectedTableSituation} 
@@ -354,20 +356,20 @@ const BookingForm = (props) => {
                         />
                     </section>
                 ) : (
-                    <section className="table_img">
-                        <div className="place_holder"/>
+                    <section className="tableImg">
+                        <div className="placeHolder"/>
                     </section>
                 )}
             <input 
                 type="submit" 
                 value={`Reserve table for ${selectedTime}`} 
                 id="blackButton" 
-                className="table_next" 
+                className="tableNextBtn" 
                 disabled={!canSubmit} 
                 onClick={handleSubmit}
                 data-testid="submit"
             ></input>
-            <Link to="/" id="greyButton" className="table_canc">Cancel Reservation</Link>
+            <Link to="/" id="greyButton" className="tableCancelBtn">Cancel Reservation</Link>
         </article>
     );
 };

@@ -8,7 +8,7 @@ export const formBlurChecker = () => {
         }
     };
 
-    const formElements = document.querySelectorAll('.form_validation');
+    const formElements = document.querySelectorAll('.formValidation');
 
     formElements.forEach((formElement) => {
         formElement.addEventListener('blur', handleBlur);

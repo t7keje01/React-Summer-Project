@@ -28,7 +28,7 @@ h3 {
     font-weight: 800;
 }
 
-h4, label, #show_table, .check_title {
+h4, label, #showTable, .checkTitle {
     font-family: "Karla";
     font-size: 16px;
     font-weight: 600;
@@ -52,11 +52,15 @@ input, select, textarea {
     padding: 0.5vh 0.5vh 0.5vh 1vh;
 }
 
-.form_validation.invalid {
+input:focus, select:focus, textarea:focus {
+    box-shadow: 0 0 20px 10px #F4CE14;
+}
+
+.formValidation.invalid {
   border: 3px solid red;
 }
 
-.error_message {
+.errorMessages {
     font-family: "Karla";
     font-size: 14px;
     font-weight: 400;
@@ -77,13 +81,16 @@ footer a, footer a:visited {
 }
 
 header a:hover, footer a:hover { 
-    background-color: "";
     color:#F4CE14;
+}
+
+.activeLink {
+    color:#F4CE14 !important;
 }
 
 
 /* Button styling */
-button, .table_canc, .table_next, .cont_next, .cont_canc {
+button, .tableCancelBtn, .tableNextBtn, .contactsNextBtn, .contactsCancelBtn {
     display: grid;
     text-align: center;
     align-content: center;
@@ -98,9 +105,8 @@ button, .table_canc, .table_next, .cont_next, .cont_canc {
     border: black 2px solid;
 }
 
-.table_next:disabled, .cont_next:disabled {
+.tableNextBtn:disabled, .contactsNextBtn:disabled {
     opacity: 20%;
-
 }
 
 #blackButton {
@@ -153,7 +159,7 @@ footer li {
     min-width: 80%;
 }
 
-.footer_logo {
+.footerLogo {
     width: 80%;
 }
 
@@ -168,15 +174,15 @@ footer {
 /* HOMEPAGE STYLING */
 
 /* Hero Section styling */
-.title_desc h2, p {
+.titleDesc h2, p {
     color:white;
 }
 
-.title_desc button {
+.titleDesc button {
     margin-top: 5vh;
 }
 
-.title_desc p {
+.titleDesc p {
     font-family: "Karla";
     font-size: 18px;
     font-weight: 500;
@@ -186,37 +192,37 @@ footer {
     background-color: #495E57;
 }
 
-.home_img {
+.homeImg {
     max-width: 70%;
     border-radius: 16px;
 }
 
 
 /* Specials */
-.sp_card img {
+.specialCard img {
     width:100%;
     height: 170px;
     object-fit:cover;
     border-radius: 16px 16px 0 0;
 }
 
-.sp_card p, #testimonials p {
+.specialCard p, #testimonials p {
     color: black;
 }
 
-.sp_card section {
+.specialCard section {
     background-color: #EDEFEE;
     border-radius: 16px 16px 0 0;
     border: 1px solid black;
 }
 
-.sp_card h3,
-.sp_card p,
-.sp_card h4 {
+.specialCard h3,
+.specialCard p,
+.specialCard h4 {
     padding: 0vh 2vh 0vh 2vh;
 }
 
-.sp_card h4 {
+.specialCard h4 {
     margin-top: auto;
 }
 
@@ -242,11 +248,11 @@ footer {
     position: relative;
 }
 
-.intro_background {
+.introBackground {
     z-index: -1;
 }
 
-.intro_background::before {
+.introBackground::before {
     content: "";
     background-image: url('../images/Mario\ and\ Adrian\ A.jpg');
     background-size: cover;
@@ -275,7 +281,7 @@ footer {
     }
 }
 
-.intro_background::before {
+.introBackground::before {
     animation: changeBackground 25s infinite; 
 }
 
@@ -294,26 +300,26 @@ footer {
 /* BOOKINGPAGE STYLING */
 
 /* Title */
-.reserve_table_img {
+.reservedTableImg {
     max-width: 100%;
 }
 #startBookingTitle, #finishBooking {
     background-color: #495E57;
 }
 
-.contact_link {
+.contactLink {
     color: #F4CE14;
     text-decoration: underline;
 }
 
 
 /* Form */
-#table_reservation_image {
+#tableReservationImg {
     border: 1px solid black;
     border-radius: 8px;
 }
 
-#table_reservation_image > img:not(.kitchen, #tb_1) {
+#tableReservationImg > img:not(.kitchen, #tb_1) {
     max-width: 80%;
     max-height: auto;
 }
@@ -339,7 +345,7 @@ footer {
     width: 10px;
     border: 1px solid black;
     background-color: #CFFFDA;
-  }
+}
   
 #redBox {
     height: 10px;
@@ -358,11 +364,11 @@ input[type="checkbox"] {
     margin: 0;
 }
 
-#res-time {
+#reservationTime {
     margin-top: 1px;
 }
 
-#res-date {
+#reservationDate {
     width: 100%;
     box-sizing: border-box;
 }
@@ -372,7 +378,7 @@ input[type="checkbox"] {
     opacity: 0.5;
 }
 
-.book_img {
+.bookImg {
     max-width: 100%;
     max-height: 100%;
 }

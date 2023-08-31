@@ -87,7 +87,7 @@ describe("BookingPages", () => {
                 />
             </BrowserRouter>);
 
-        const selectGuests = screen.getByTestId('select-guests');
+        const selectGuests = screen.getByTestId('selectGuests');
 
         await userEvent.selectOptions(selectGuests, guests); 
 
@@ -116,7 +116,7 @@ describe("BookingPages", () => {
                 />
             </BrowserRouter>);
     
-        const selectGuests = screen.getByTestId('select-guests');
+        const selectGuests = screen.getByTestId('selectGuests');
     
         await userEvent.selectOptions(selectGuests, guests); 
     
@@ -161,7 +161,7 @@ describe("BookingPages", () => {
                 />
             </BrowserRouter>);
     
-        const selectGuests = screen.getByTestId('select-guests');
+        const selectGuests = screen.getByTestId('selectGuests');
         
         await userEvent.selectOptions(selectGuests, guests); 
 
@@ -176,7 +176,7 @@ describe("BookingPages", () => {
         let selectTime;
 
         await waitFor (() => {
-            selectTime = screen.getByTestId('select-time');
+            selectTime = screen.getByTestId('selectTime');
             expect(selectTime).toBeInTheDocument();
         })
 
@@ -208,7 +208,7 @@ describe("BookingPages", () => {
 
         const chairCBInput = screen.getByLabelText("There will be a need for a children’s high chair:");
         expect(chairCBInput).toHaveAttribute('type', 'checkbox');
-        expect(chairCBInput).toHaveAttribute('id', 'chair_checkbox');
+        expect(chairCBInput).toHaveAttribute('id', 'chairCheckbox');
         expect(chairCBInput).toHaveAttribute('name', 'isChairChecked');
         userEvent.click(chairCBInput);
         await waitFor (() => {
@@ -217,7 +217,7 @@ describe("BookingPages", () => {
 
         const occasionCBInput = screen.getByLabelText("There will be a special occasion:");
         expect(occasionCBInput).toHaveAttribute('type', 'checkbox');
-        expect(occasionCBInput).toHaveAttribute('id', 'occasion_checkbox');
+        expect(occasionCBInput).toHaveAttribute('id', 'occasionCheckbox');
         expect(occasionCBInput).toHaveAttribute('name', 'isOccasionChecked');
         userEvent.click(occasionCBInput);
         await waitFor (() => {
@@ -226,7 +226,7 @@ describe("BookingPages", () => {
 
         const tableCBInput = screen.getByLabelText("I want to choose my table:");
         expect(tableCBInput).toHaveAttribute('type', 'checkbox');
-        expect(tableCBInput).toHaveAttribute('id', 'table_checkbox');
+        expect(tableCBInput).toHaveAttribute('id', 'tableCheckbox');
         expect(tableCBInput).toHaveAttribute('name', 'isTableChecked');
         expect(tableCBInput).toHaveAttribute('disabled');
 
@@ -246,14 +246,14 @@ describe("BookingPages", () => {
 
         const firstNameInput = screen.getByLabelText("First Name:");
         expect(firstNameInput).toHaveAttribute('type', 'text');
-        expect(firstNameInput).toHaveAttribute('id', 'first_name');
-        expect(firstNameInput).toHaveAttribute('name', 'first_name');
+        expect(firstNameInput).toHaveAttribute('id', 'firstName');
+        expect(firstNameInput).toHaveAttribute('name', 'firstName');
         expect(firstNameInput).toHaveAttribute('required');
 
         const lastNameInput = screen.getByLabelText("Last Name:");
         expect(lastNameInput).toHaveAttribute('type', 'text');
-        expect(lastNameInput).toHaveAttribute('id', 'last_name');
-        expect(lastNameInput).toHaveAttribute('name', 'last_name');
+        expect(lastNameInput).toHaveAttribute('id', 'lastName');
+        expect(lastNameInput).toHaveAttribute('name', 'lastName');
         expect(lastNameInput).toHaveAttribute('required');
 
         const phoneInput = screen.getByLabelText("Phone Number:");
@@ -278,7 +278,7 @@ describe("BookingPages", () => {
         expect(commentInput).not.toHaveAttribute('required');
         expect(commentInput).toHaveAttribute('maxLength', '250');
 
-        const submitButton = screen.getByTestId("contact_submit");
+        const submitButton = screen.getByTestId("contactSubmit");
         expect(submitButton).toHaveAttribute('type', 'submit');
         expect(submitButton).toHaveAttribute('id', 'blackButton');
         expect(submitButton).toHaveAttribute('value', 'Confirm Reservation');
@@ -304,10 +304,10 @@ describe("BookingPages", () => {
                 />
             </BrowserRouter>);
     
-        const sb_button = screen.getByTestId('submit');
+        const submitBtn = screen.getByTestId('submit');
 
         /* Let's make a wrong selection to provoke an invalid value, thus invoking the blur addEventListener */
-        const selectGuests = screen.getByTestId('select-guests');
+        const selectGuests = screen.getByTestId('selectGuests');
         const guestOptions = screen.getAllByRole('option', { within: selectGuests });
         const invalidGuest = guestOptions[0].textContent;
 
@@ -331,12 +331,12 @@ describe("BookingPages", () => {
         let selectTime;
 
         await waitFor (() => {
-            selectTime = screen.getByTestId('select-time');
+            selectTime = screen.getByTestId('selectTime');
             expect(selectTime).toBeInTheDocument();
         })
 
         /* Let's check that the submit button is still disabled since not all of the required values have been chosen */
-        expect(sb_button).toHaveAttribute('disabled');
+        expect(submitBtn).toHaveAttribute('disabled');
 
         const options = screen.getAllByRole('option', { within: selectTime });
 
@@ -345,14 +345,14 @@ describe("BookingPages", () => {
         await userEvent.selectOptions(selectTime, time);
 
         /* Let's confirm that with all the required values A) the submit button isn't disabled and B) the blur has been removed */
-        expect(sb_button).not.toHaveAttribute('disabled=""');
+        expect(submitBtn).not.toHaveAttribute('disabled=""');
         
         await waitFor (() => {
             expect(mockRemoveEventListener).toBeCalled();
         });
 
         /* Lastly the submit works with all necessary values chosen */
-        fireEvent.click(sb_button);
+        fireEvent.click(submitBtn);
     });
 
     test('Check the AddContactsForm for validation behavior when incorrect inputs are chosen', async () => {
@@ -362,7 +362,7 @@ describe("BookingPages", () => {
                 <AddContactsForm/>
             </BrowserRouter>);
 
-        const submitButton = screen.getByTestId("contact_submit");
+        const submitButton = screen.getByTestId("contactSubmit");
 
         userEvent.click(submitButton);
 
@@ -376,32 +376,32 @@ describe("BookingPages", () => {
         });
 
         /* Let's check that all of the error messages of the required inputs are triggered */
-        const fn_error = screen.getByTestId("fn_error");
-        const ln_error = screen.getByTestId("ln_error");
-        const p_error = screen.getByTestId("p_error");
-        const e_error = screen.getByTestId("e_error");
-        expect(fn_error).toHaveTextContent("First name is required");
-        expect(ln_error).toHaveTextContent("Last name is required");
-        expect(p_error).toHaveTextContent("Phone number is required");
-        expect(e_error).toHaveTextContent("Email address is required");
+        const fnError = screen.getByTestId("fnError");
+        const lnError = screen.getByTestId("lnError");
+        const pError = screen.getByTestId("pError");
+        const eError = screen.getByTestId("eError");
+        expect(fnError).toHaveTextContent("First name is required");
+        expect(lnError).toHaveTextContent("Last name is required");
+        expect(pError).toHaveTextContent("Phone number is required");
+        expect(eError).toHaveTextContent("Email address is required");
 
         /* Let's trigger all the error messages of the phone number input */
         const phoneInput = screen.getByLabelText("Phone Number:");
 
         userEvent.type(phoneInput, "999");
         await waitFor (() => {
-            expect(p_error).toHaveTextContent("Invalid phone number: too short");
+            expect(pError).toHaveTextContent("Invalid phone number: too short");
         });
 
         userEvent.type(phoneInput, "1234567890123456789");
         await waitFor (() => {
-            expect(p_error).toHaveTextContent("Invalid phone number: too long");
+            expect(pError).toHaveTextContent("Invalid phone number: too long");
         });
 
         userEvent.clear(phoneInput);
         userEvent.type(phoneInput, "040++99000");
         await waitFor (() => {
-            expect(p_error).toHaveTextContent("Invalid phone number, please check");
+            expect(pError).toHaveTextContent("Invalid phone number, please check");
         });
 
         /* Let's trigger all the error messages of the email address input */
@@ -409,12 +409,12 @@ describe("BookingPages", () => {
 
         userEvent.type(emailInput, "aaa");
         await waitFor (() => {
-            expect(e_error).toHaveTextContent("Invalid email address, please check");
+            expect(eError).toHaveTextContent("Invalid email address, please check");
         });
 
-        userEvent.type(emailInput, "sarah_newman@jfjfk,fi");
+        userEvent.type(emailInput, "sarah_newman@email,com");
         await waitFor (() => {
-            expect(e_error).toHaveTextContent("Invalid email address, please check");
+            expect(eError).toHaveTextContent("Invalid email address, please check");
         });
     });
 
@@ -425,7 +425,7 @@ describe("BookingPages", () => {
                 <AddContactsForm/>
             </BrowserRouter>);
 
-        const submitButton = screen.getByTestId("contact_submit");
+        const submitButton = screen.getByTestId("contactSubmit");
 
         const firstNameInput = screen.getByLabelText("First Name:");
         userEvent.type(firstNameInput, "Sarah");

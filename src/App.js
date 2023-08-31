@@ -6,9 +6,9 @@ import './components/layout.css';
 
 function App() {
   return (
-    <div id='app-container'>
+    <div id='appContainer'>
         <Header/>
-        <div id='content-container' data-testid='content-container'>
+        <div id='contentContainer' data-testid='contentContainer'>
           <Main/>
         </div>
         <Footer/>

@@ -13,7 +13,7 @@ import unavailable4Image from "../../images/booking_system/unavailable, 4, tb3, 
 const tableSet1 = [
     {
         id: "tb_1",
-        class_name: "tb1",
+        potClassName: "tb1",
         table: "Table 1",
         image: available8HorImage,
         size: 8,
@@ -21,7 +21,7 @@ const tableSet1 = [
     },
     {
         id: "tb_2",
-        class_name: "tb2",
+        potClassName: "tb2",
         table: "Table 2",
         image: unavailable8VerImage,
         size: 8,
@@ -29,7 +29,7 @@ const tableSet1 = [
     },
     {
         id: "tb_3",
-        class_name: "tb3",
+        potClassName: "tb3",
         table: "Table 3",
         image: unavailable4Image,
         size: 4,
@@ -37,7 +37,7 @@ const tableSet1 = [
     },
     {
         id: "tb_4",
-        class_name: "tb4",
+        potClassName: "tb4",
         table: "Table 4",
         image: available6Image,
         size: 6,
@@ -45,7 +45,7 @@ const tableSet1 = [
     },
     {
         id: "tb_5",
-        class_name: "tb5",
+        potClassName: "tb5",
         table: "Table 5",
         image: unavailable6Image,
         size: 6,
@@ -53,7 +53,7 @@ const tableSet1 = [
     },
     {
         id: "tb_6",
-        class_name: "tb6",
+        potClassName: "tb6",
         table: "Table 6",
         image: unavailable6Image,
         size: 6,
@@ -61,7 +61,7 @@ const tableSet1 = [
     },
     {
         id: "tb_7",
-        class_name: "tb7",
+        potClassName: "tb7",
         table: "Table 7",
         image: unavailable4Image,
         size:4,
@@ -69,7 +69,7 @@ const tableSet1 = [
     },
     {
         id: "tb_8",
-        class_name: "tb8",
+        potClassName: "tb8",
         table: "Table 8",
         image: unavailable4Image,
         size: 4,
@@ -77,7 +77,7 @@ const tableSet1 = [
     },
     {
         id: "tb_9",
-        class_name: "tb9",
+        potClassName: "tb9",
         table: "Table 9",
         image: available4Image,
         size: 4,
@@ -88,7 +88,7 @@ const tableSet1 = [
 const tableSet2 = [
     {
         id: "tb_1",
-        class_name: "tb1",
+        potClassName: "tb1",
         table: "Table 1",
         image: unavailable8HorImage,
         size: 8,
@@ -96,7 +96,7 @@ const tableSet2 = [
     },
     {
         id: "tb_2",
-        class_name: "tb2",
+        potClassName: "tb2",
         table: "Table 2",
         image: available8VerImage,
         size: 8,
@@ -104,7 +104,7 @@ const tableSet2 = [
     },
     {
         id: "tb_3",
-        class_name: "tb3",
+        potClassName: "tb3",
         table: "Table 3",
         image: unavailable4Image,
         size: 4,
@@ -112,7 +112,7 @@ const tableSet2 = [
     },
     {
         id: "tb_4",
-        class_name: "tb4",
+        potClassName: "tb4",
         table: "Table 4",
         image: unavailable6Image,
         size: 6,
@@ -120,7 +120,7 @@ const tableSet2 = [
     },
     {
         id: "tb_5",
-        class_name: "tb5",
+        potClassName: "tb5",
         table: "Table 5",
         image: unavailable6Image,
         size: 6,
@@ -128,7 +128,7 @@ const tableSet2 = [
     },
     {
         id: "tb_6",
-        class_name: "tb6",
+        potClassName: "tb6",
         table: "Table 6",
         image: unavailable6Image,
         size: 6,
@@ -136,7 +136,7 @@ const tableSet2 = [
     },
     {
         id: "tb_7",
-        class_name: "tb7",
+        potClassName: "tb7",
         table: "Table 7",
         image: available4Image,
         size: 4,
@@ -144,7 +144,7 @@ const tableSet2 = [
     },
     {
         id: "tb_8",
-        class_name: "tb8",
+        potClassName: "tb8",
         table: "Table 8",
         image: available4Image,
         size: 4,
@@ -152,7 +152,7 @@ const tableSet2 = [
     },
     {
         id: "tb_9",
-        class_name: "tb9",
+        potClassName: "tb9",
         table: "Table 9",
         image: available4Image,
         size: 4,
@@ -163,7 +163,7 @@ const tableSet2 = [
 const tableSet3 = [
     {
         id: "tb_1",
-        class_name: "tb1",
+        potClassName: "tb1",
         table: "Table 1",
         image: available8HorImage,
         size:8,
@@ -171,7 +171,7 @@ const tableSet3 = [
     },
     {
         id: "tb_2",
-        class_name: "tb2",
+        potClassName: "tb2",
         table: "Table 2",
         image: available8VerImage,
         size: 8,
@@ -179,7 +179,7 @@ const tableSet3 = [
     },
     {
         id: "tb_3",
-        class_name: "tb3",
+        potClassName: "tb3",
         table: "Table 3",
         image: unavailable4Image,
         size:4,
@@ -187,7 +187,7 @@ const tableSet3 = [
     },
     {
         id: "tb_4",
-        class_name: "tb4",
+        potClassName: "tb4",
         table: "Table 4",
         image: available6Image,
         size: 6,
@@ -195,7 +195,7 @@ const tableSet3 = [
     },
     {
         id: "tb_5",
-        class_name: "tb5",
+        potClassName: "tb5",
         table: "Table 5",
         image: unavailable6Image,
         size: 6,
@@ -203,7 +203,7 @@ const tableSet3 = [
     },
     {
         id: "tb_6",
-        class_name: "tb6",
+        potClassName: "tb6",
         table: "Table 6",
         image: available6Image,
         size: 6,
@@ -211,7 +211,7 @@ const tableSet3 = [
     },
     {
         id: "tb_7",
-        class_name: "tb7",
+        potClassName: "tb7",
         table: "Table 7",
         image: available4Image,
         size: 4,
@@ -219,7 +219,7 @@ const tableSet3 = [
     },
     {
         id: "tb_8",
-        class_name: "tb8",
+        potClassName: "tb8",
         table: "Table 8",
         image: available4Image,
         size: 4,
@@ -227,7 +227,7 @@ const tableSet3 = [
     },
     {
         id: "tb_9",
-        class_name: "tb9",
+        potClassName: "tb9",
         table: "Table 9",
         image: available4Image,
         size: 4,
@@ -258,7 +258,7 @@ const TableSystem = ({ tableSetIndex, onTableSelect, selectedGuests }) => {
     }, [tableSetIndex]);
 
     return (
-        <div id="table_reservation_image" aria-label="Image of available tables">
+        <div id="tableReservationImg" aria-label="Image of available tables">
             <div className="dsc">
                 <div id="greenBox"></div>
                 <div>Available</div>
@@ -273,7 +273,7 @@ const TableSystem = ({ tableSetIndex, onTableSelect, selectedGuests }) => {
                     alt={""}
                     className={`image 
                         ${selectedImage === index ? "selected" : ""} 
-                        ${tble.class_name} 
+                        ${tble.potClassName} 
                         ${tble.size < selectedGuests ? "disabled" : ""}`}
                         key={tble.id}
                         onClick={tble.size < selectedGuests || !tble.available ? undefined : () => handleImageClick(index, tble.table)}

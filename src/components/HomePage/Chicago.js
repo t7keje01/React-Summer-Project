@@ -1,8 +1,8 @@
 const Chigaco = () => {
     return (
         <article className="homeGrid" id="introSection" aria-label="An introduction to the restaurant and its founders.">
-            <div className="intro_content">
-            <div className="intro_background"></div>
+            <div className="introContent">
+            <div className="introBackground"></div>
             <div className="intro">
                 <h1>Little Lemon</h1>
                 <h2>Chigaco</h2>

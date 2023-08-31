@@ -39,21 +39,20 @@ const Header = () => {
 
   return (
     <header className="homeGrid">
-      <nav className="nav_grid">
-        <div className="logo-container">
+      <nav className="navGrid">
+        <div className="logoContainer">
           <Link to="/">
             <img src={logo} alt="Little Lemon logo" className="logo" />
           </Link>
         </div>
-        {/* Navigation Links */}
-        <div className="nav-links">
+        <div className="navLinks">
           <ul className="navType">
-            <li><Link to="/" style={{ color: textColor === 1 ? '#F4CE14' : 'black' }}>Home</Link></li>
-            <li><Link to="/about" style={{ color: textColor === 2 ? '#F4CE14' : 'black' }}>About</Link></li>
-            <li><Link to="/menu" style={{ color: textColor === 3 ? '#F4CE14' : 'black' }}>Menu</Link></li>
-            <li><Link to="/reservations" style={{ color: textColor === 4 ? '#F4CE14' : 'black' }}>Reservations</Link></li>
-            <li><Link to="/order" style={{ color: textColor === 5 ? '#F4CE14' : 'black' }}>Order Online</Link></li>
-            <li><Link to="/login" style={{ color: textColor === 6 ? '#F4CE14' : 'black' }}>Login</Link></li>
+            <li><Link to="/" className={textColor === 1 ? 'activeLink' : '' }>Home</Link></li>
+            <li><Link to="/about" className={textColor === 2 ? 'activeLink' : '' }>About</Link></li>
+            <li><Link to="/menu" className={textColor === 3 ? 'activeLink' : '' }>Menu</Link></li>
+            <li><Link to="/reservations" className={textColor === 4 ? 'activeLink' : '' }>Reservations</Link></li>
+            <li><Link to="/order" className={textColor === 5 ? 'activeLink' : '' }>Order Online</Link></li>
+            <li><Link to="/login" className={textColor === 6 ? 'activeLink' : '' }>Login</Link></li>
           </ul>
         </div>
       </nav>

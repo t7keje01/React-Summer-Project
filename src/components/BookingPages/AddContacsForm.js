@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { formBlurChecker } from "./formBlurChecker";
 import * as yup from "yup";
@@ -6,7 +6,6 @@ import { useFormik } from "formik";
 
 const AddContactsForm = (props) => {
 
-    /* Props */
     const {
         submitForm
     } = props;
@@ -62,75 +61,75 @@ const AddContactsForm = (props) => {
     return (
         <article className="tableGrid" id="addContactsContainer">
 
-                <h2 className="title_form">Contact Details:</h2>
-                <section className="cont_form" aria-label="Contact information">
-                    <form className="contact_grid">
-                        <div className="cont_names">
-                            <div className="contact_layout">
-                            <label htmlFor="first_name">First Name:</label>
+                <h2 className="titleForm">Contact Details:</h2>
+                <section className="contactsForm" aria-label="Contact information">
+                    <form className="contactGrid">
+                        <div className="contactNames">
+                            <div className="contactLayout">
+                            <label htmlFor="firstName">First Name:</label>
                                 <input 
                                     type="text" 
-                                    id="first_name" 
-                                    className="form_validation"
-                                    name="first_name" 
+                                    id="firstName" 
+                                    className="formValidation"
+                                    name="firstName" 
                                     value={formik.values.firstName}
                                     onChange={(e) => setInputValue("firstName", e.target.value)}
-                                    aria-label="Input for the first name"
+                                    aria-label="Add first name"
                                     required>
                                 </input>
-                                <span className="error_message" data-testid="fn_error">{formik.errors.firstName}</span>
+                                <span className="errorMessages" data-testid="fnError">{formik.errors.firstName}</span>
                             </div>
 
-                            <div className="contact_layout">
-                                <label htmlFor="last_name">Last Name:</label>
+                            <div className="contactLayout">
+                                <label htmlFor="lastName">Last Name:</label>
                                 <input 
                                     type="text" 
-                                    id="last_name" 
-                                    className="form_validation"
-                                    name="last_name" 
+                                    id="lastName" 
+                                    className="formValidation"
+                                    name="lastName" 
                                     value={formik.values.lastName}
                                     onChange={(e) => setInputValue("lastName", e.target.value)}
-                                    aria-label="Input for the last name"
+                                    aria-label="Add last name"
                                     required>
                                 </input>
-                                <span className="error_message" data-testid="ln_error">{formik.errors.lastName}</span>
+                                <span className="errorMessages" data-testid="lnError">{formik.errors.lastName}</span>
                             </div>
                         </div>
 
-                        <div className="contact_layout">
+                        <div className="contactLayout">
                             <label htmlFor="phone">Phone Number:</label>
                             <input 
                                 type="tel" 
                                 id="phone" 
-                                className="form_validation"
+                                className="formValidation"
                                 name="phone" 
                                 value={formik.values.phone}
                                 onChange={(e) => setInputValue("phone", e.target.value)}
-                                aria-label="Input for the phone number"
+                                aria-label="Add phone number"
                                 required
                                 minLength={4}
                                 maxLength={16}>
                             </input>
-                            <span className="error_message" data-testid="p_error">{formik.errors.phone}</span>
+                            <span className="errorMessages" data-testid="pError">{formik.errors.phone}</span>
                         </div>
 
-                        <div className="contact_layout">
+                        <div className="contactLayout">
                             <label htmlFor="email">Email Address:</label>
                             <input 
                                 type="email" 
                                 id="email" 
-                                className="form_validation"
+                                className="formValidation"
                                 name="email" 
                                 value={formik.values.email}
                                 onChange={(e) => setInputValue("email", e.target.value)}
-                                aria-label="Input for the email address"
+                                aria-label="Add email address"
                                 required
                                 minLength={4}>
                             </input>
-                            <span className="error_message" data-testid="e_error">{formik.errors.email}</span>
+                            <span className="errorMessages" data-testid="eError">{formik.errors.email}</span>
                         </div>
 
-                        <div className="contact_layout">
+                        <div className="contactLayout">
                             <label htmlFor="comment">Comment:</label>
                             <textarea
                                 rows={4} 
@@ -139,10 +138,10 @@ const AddContactsForm = (props) => {
                                 name="comment" 
                                 value={formik.values.comment}
                                 onChange={(e) => setInputValue("comment", e.target.value)}
-                                aria-label="Input for an optional comment. Should be filled if an occasion was chosen"
+                                aria-label="Add optional comment. If occasion chosen, please fill"
                                 maxLength={250}>
                             </textarea>
-                            <span className="error_message">{formik.errors.comment}</span>
+                            <span className="errorMessages">{formik.errors.comment}</span>
                         </div>
                     </form>
                 </section>
@@ -150,12 +149,13 @@ const AddContactsForm = (props) => {
                 type="submit" 
                 value={`Confirm Reservation`} 
                 id="blackButton" 
-                className="cont_next" 
+                className="contactsNextBtn" 
                 onClick={formik.handleSubmit}
                 disabled={!formik.isValid}
-                data-testid="contact_submit"
+                data-testid="contactSubmit"
+                aria-label="Finish reservation"
             ></input>
-            <Link to="/" id="greyButton" className="cont_canc">Cancel Reservation</Link>
+            <Link to="/" id="greyButton" className="contactsCancelBtn">Cancel Reservation</Link>
         </article>
     );
 };

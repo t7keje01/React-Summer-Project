@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const main_food = require("../../images/restaurantfood.jpg");
+const mainFoodPic = require("../../images/restaurantfood.jpg");
 
 const CalltoAction = () => {
     const navigate = useNavigate();
@@ -11,14 +11,14 @@ const CalltoAction = () => {
 
     return (
         <div className="homeGrid" id="heroSection">
-            <div className="title_desc">
+            <div className="titleDesc">
                 <h1>Little Lemon</h1>
                 <h2>Chigaco</h2>
                 <p>We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.</p>
                 <button id="blackButton" onClick={handleClick}>Reserve a Table</button>
             </div>
-            <div className="title_img">
-                <img src={main_food} alt="Restaurant food" className="home_img"/>
+            <div className="titleImg">
+                <img src={mainFoodPic} alt="Restaurant food" className="homeImg"/>
             </div>
         </div>
     );

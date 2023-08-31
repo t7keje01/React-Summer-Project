@@ -5,6 +5,6 @@ import { BrowserRouter } from 'react-router-dom';
 test('renders learn react link', () => {
   render(
   <BrowserRouter><App /></BrowserRouter>);
-  const divElement = screen.getByTestId( 'content-container' );
+  const divElement = screen.getByTestId( 'contentContainer' );
   expect(divElement).toBeInTheDocument();
 });

@@ -30,15 +30,15 @@ const Specials = () => {
 
     return (
         <article className='homeGrid'>
-            <div className='sp_title'>
+            <div className='specialTitle'>
                 <h2>This Weeks Specials!</h2>
             </div>
-            <div className='sp_button'>
-                <button id="blackButton" aria-label="Will direct to the online menu.">Online Menu</button>
+            <div className='specialButton'>
+                <button id="blackButton" aria-label="To online menu.">Online Menu</button>
             </div>
-            <div className='sp_card'>
+            <div className='specialCard'>
             {specialsFoods.map((sp) => (
-                <section key={sp.id} aria-label="Displays a special food that is available.">
+                <section key={sp.id} aria-label="Available speciality food">
                     <img src={sp.getImageSrc()} alt=''/>
                     <div>
                         <h3>{sp.title}</h3>

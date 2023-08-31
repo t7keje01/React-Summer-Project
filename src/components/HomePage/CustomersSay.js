@@ -4,7 +4,7 @@ const CustomersSay = () => {
     const reviews = [
         {
             id:"rv1",
-            grid: "rvw_card1",
+            grid: "reviewCard1",
             rating: [FaStar, FaStar, FaStar, FaStar, FaStar],
             userName: "Jessica, 27",
             review: "I absolutely love this place! The food is fantastic!",
@@ -12,7 +12,7 @@ const CustomersSay = () => {
         },
         {
             id:"rv2",
-            grid: "rvw_card2",
+            grid: "reviewCard2",
             rating: [FaStar, FaStar, FaStar, FaStar, FaStarHalfAlt],
             userName: "Chris, 38",
             review: "My number 1 restaurant. I suggest trying the Lemon Dessert!",
@@ -20,7 +20,7 @@ const CustomersSay = () => {
         },
         {
             id:"rv3",
-            grid: "rvw_card3",
+            grid: "reviewCard3",
             rating: [FaStar, FaStar, FaStar, FaStar, FaRegStar],
             userName: "Sarah, 19",
             review: "A very cozy restaurant with excellent food.",
@@ -28,7 +28,7 @@ const CustomersSay = () => {
         },
         {
             id:"rv4",
-            grid: "rvw_card4",
+            grid: "reviewCard4",
             rating: [FaStar, FaStar, FaStar, FaStarHalfAlt, FaRegStar],
             userName: "Michael, 55",
             review: "The food was good, but I wish I could have booked a table beforehand.",
@@ -38,11 +38,11 @@ const CustomersSay = () => {
 
     return (
         <article id="testimonials" className='homeGrid'>
-            <div className='rvw_title'>
+            <div className='reviewTitle'>
                 <h2>Testimonials</h2>
             </div>
             {reviews.map((rvw) => (
-                <section className={rvw.grid} key={rvw.id} aria-label="Show a review from a user that has visited the restaurant.">
+                <section className={rvw.grid} key={rvw.id} aria-label="Reviews from visitors">
                     <>{rvw.rating.map((StarIcon, starIndex) => ( <StarIcon key={starIndex} />))}</>
                     <div>
                         <img src={rvw.getImageSrc()} alt=''/>
