@@ -152,6 +152,7 @@ const AddContactsForm = (props) => {
                 className="contactsNextBtn" 
                 onClick={formik.handleSubmit}
                 disabled={!formik.isValid}
+                aria-disabled={!formik.isValid}
                 data-testid="contactSubmit"
                 aria-label="Finish reservation"
             ></input>

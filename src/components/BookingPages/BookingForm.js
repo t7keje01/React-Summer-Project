@@ -366,6 +366,7 @@ const BookingForm = (props) => {
                 id="blackButton" 
                 className="tableNextBtn" 
                 disabled={!canSubmit} 
+                aria-disabled={!canSubmit} 
                 onClick={handleSubmit}
                 data-testid="submit"
             ></input>
