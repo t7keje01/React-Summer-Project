@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+# React-based Summer Project: The Arcade Website!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## What is the project: 
+This React-based website was created after completing the Meta Front-End Developer -certificate, thus reflecting upon the learning experience. It was designed for an arcade; thus, its primary target would be those who enjoy playing games.
 
-## Available Scripts
+## Which technologies and tools were used in the project: 
+The website was created with the help of React. Other tools used were Bootstraps and various CSS techniques. Since this was one of my first websites, it mostly focused on trying out various, different options.
 
-In the project directory, you can run:
+## Who did what parts of the project: 
+This project was done solo.
 
-### `npm start`
+## Application architecture, database schema, APIs, maybe ABIs, UI/UX plan, protocols:  
+This was a Front-End project. No major database was used except for an JSON bin and regarding API’s, fetch and post methods were used. UI/UX was supposed to be more comprehensive, but unfortunately had to be cut down due to lack of time.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Instructions how to deploy and use the project code: 
+The code is mostly done, with some minor fixes needed. To use the code, one needs to change the available dates that’s being used via API. Currently the most recent available date is 19.9.2023 so the code works until that day. If trying to use the code beyond that, you should create and replace the used external data.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Link to the server / service where the project is/was running: 
+http://localhost:3000/ was used while creating the website.
 
-### `npm test`
+## Related presentation material(s): 
+Some sample images from the website linked below.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![image](https://github.com/t7keje01/React-Summer-Project/assets/57111797/64e40ec6-b010-465d-aee2-76004219bd6b)
+![image](https://github.com/t7keje01/React-Summer-Project/assets/57111797/8577fef2-425b-4204-b6d6-94c02073c6d9)
+![image](https://github.com/t7keje01/React-Summer-Project/assets/57111797/8133733c-4794-42ca-9952-77ed0d289347)
+![image](https://github.com/t7keje01/React-Summer-Project/assets/57111797/0b30c108-8360-4717-938e-d1c4b1f50858)
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
