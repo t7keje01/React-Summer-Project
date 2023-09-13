@@ -6,7 +6,7 @@ const CalltoAction = () => {
     const navigate = useNavigate();
   
     const handleClick  = () => {
-        navigate("/reservations", { replace: true });
+        navigate("/reservation", { replace: true });
     };
 
     return (

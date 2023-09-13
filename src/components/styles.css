@@ -298,8 +298,23 @@ footer li {
 }
 
 #copyright {
-    background-color: transparent;
     color: white;
+    background: linear-gradient(-45deg, #000000, #32174D, #ce623b, #32174D, #000000);
+	background-size: 400% 100%;
+    background-repeat: no-repeat;
+	animation: gradient 25s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
 footer h5, footer strong {

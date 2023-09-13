@@ -41,6 +41,7 @@
   "footer footer footer"
   "footnote footnote footnote";
   height: 100%;
+  width: 100%;
 }
 
 #contentContainer {
@@ -550,9 +551,6 @@ footer a {
       " contactsNextBtn contactsNextBtn contactsCancelBtn contactsCancelBtn " 
   }
 
-  #appContainer {
-    width: 100%;
-  }
   .navbar {
     gap: 0;
   }
