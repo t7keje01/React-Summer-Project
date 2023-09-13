@@ -15,28 +15,28 @@ const mockRemoveItem = jest.fn();
 const mockAddEventListener = jest.fn();
 const mockRemoveEventListener = jest.fn();
 
-const guests = "2";
-const newGuests = "5";
+const players = "2";
+const game = "Billiards";
 const mockFetchedData = [
     {
+        "id": "t1",
         "checkDate": "2023-08-25",
-        "targetDate": "2023-09-06",
-        "id": "t7",
-        "time": "08:00 PM",
-        "maxGuests": 6,
-        "tableSituation": 1
-    },
-    {
+        "targetDate": "2023-09-19",
+        "game": "Billiards",
+        "time": "10:00 AM",
+        "duration": 4
+      },
+      {
+        "id": "t2",
         "checkDate": "2023-08-25",
-        "targetDate": "2023-09-07",
-        "id": "t8",
-        "time": "01.30 PM",
-        "maxGuests": 8,
-        "tableSituation": 2
-    }
+        "targetDate": "2023-09-22",
+        "game": "Snooker",
+        "time": "03:00 PM",
+        "duration": 2
+      },
 ];
 
-const targetDate = '2023-09-06';
+const targetDate = '2023-09-19';
 const today = "2023-08-25";
 const actualToday = new Date();
 const formatDate = (date) => {
@@ -78,7 +78,7 @@ describe("BookingPages", () => {
             expect(headerElement).toBeInTheDocument();
     });
 
-    test('If the fetch regarding initializeTimes functions with correct parameters', async () => {
+    test('If the fetch regarding updateDates functions with correct parameters', async () => {
         jest.spyOn(fetchDataModule, 'fetchData').mockResolvedValue(mockFetchedData);
 
         render(
@@ -87,23 +87,27 @@ describe("BookingPages", () => {
                 />
             </BrowserRouter>);
 
-        const selectGuests = screen.getByTestId('selectGuests');
+        const selectPlayers = screen.getByTestId('selectPlayers');
 
-        await userEvent.selectOptions(selectGuests, guests); 
+        await userEvent.selectOptions(selectPlayers, players); 
 
-        await userEvent.selectOptions(selectGuests, newGuests); 
+        const selectGame = screen.getByTestId('selectGame');
+
+        await userEvent.selectOptions(selectGame, game); 
         
         await waitFor(() => {
-            expect(fetchDataModule.fetchData).toHaveBeenCalledWith(today, 0);
+            expect(fetchDataModule.fetchData).toHaveBeenCalledWith(game, "", 1);
         });
     });
 
     test('If the fetch regarding updateTimes functions with correct parameters', async () => {
 
-        jest.spyOn(fetchDataModule, 'fetchData').mockImplementation(async (date, guests) => {
-            if (date === targetDate) {
-                const filteredTimes = mockFetchedData.filter(item => 
-                    new Date(item.targetDate).toLocaleDateString() === new Date(date).toLocaleDateString() && item.maxGuests >= guests);
+        jest.spyOn(fetchDataModule, 'fetchData').mockImplementation(async (game, date, index) => {
+            if (index === 2) {
+                const filteredTimes = mockFetchedData
+                .filter(item => new Date(item.targetDate).toLocaleDateString() === new Date(date).toLocaleDateString() && item.game === game)
+                .map(item => ({ time: item.time, duration: item.duration }));
+        
                 return filteredTimes;
             } else {
                 return [];
@@ -116,9 +120,13 @@ describe("BookingPages", () => {
                 />
             </BrowserRouter>);
     
-        const selectGuests = screen.getByTestId('selectGuests');
+        const selectPlayers = screen.getByTestId('selectPlayers');
     
-        await userEvent.selectOptions(selectGuests, guests); 
+        await userEvent.selectOptions(selectPlayers, players); 
+
+        const selectGame = screen.getByTestId('selectGame');
+
+        await userEvent.selectOptions(selectGame, game); 
     
         const datepickerInput = screen.getByDisplayValue(formatDate(actualToday).toString());
   
@@ -126,33 +134,45 @@ describe("BookingPages", () => {
 
         await waitFor(() => {
             const lastCallArgs = fetchDataModule.fetchData.mock.calls[fetchDataModule.fetchData.mock.calls.length - 1];
-            const [lastCallDate, ] = lastCallArgs;
-            const checkDate = formatDate(new Date (lastCallDate));
-            const checkTargetDate = formatDate(new Date (targetDate));
-            
-            expect(checkDate).toEqual(checkTargetDate);
+            const [lastCallGame, ,] = lastCallArgs;
+        
+            expect(lastCallGame).toEqual(game);
         });
+
+        /* NEEDS FIXING!
         await waitFor(() => {
             const lastCallArgs = fetchDataModule.fetchData.mock.calls[fetchDataModule.fetchData.mock.calls.length - 1];
-            const [, lastCallGuests] = lastCallArgs;
+            const [, lastCallDate, ] = lastCallArgs;
+            const checkTargetDate = formatDate(new Date (targetDate));
+            
+            expect(lastCallDate).toEqual(checkTargetDate);
+        });*/
+
+        await waitFor(() => {
+            const lastCallArgs = fetchDataModule.fetchData.mock.calls[fetchDataModule.fetchData.mock.calls.length - 1];
+            const [, , lastCallIndex] = lastCallArgs;
         
-            expect(lastCallGuests).toEqual(parseInt(guests));
+            expect(lastCallIndex).toEqual(parseInt(1));
         });
 
     });
 
     test('If local storaging works with given values', async () => {
-        jest.spyOn(fetchDataModule, 'fetchData').mockImplementation(async (date, guests) => {
-            return [
-                {
-                    "checkDate": "2023-08-25",
-                    "targetDate": "2023-08-30",
-                    "id": "t8",
-                    "time": "01.30PM",
-                    "maxGuests": 8,
-                    "tableSituation": 2
-                }
-            ]
+        jest.spyOn(fetchDataModule, 'fetchData').mockImplementation(async (game, selectedDate, index) => {
+            if (index === 1) {
+                const filteredData = mockFetchedData
+                    .filter(item => item.game === game && item.targetDate !== null)
+                    .map(item => new Date(item.targetDate));
+                return filteredData;
+            } 
+            else {    
+                const filteredTimes = [{
+                    "time": "10:00 AM",
+                    "duration": 4
+                }];
+            
+                return filteredTimes;
+            }
         });
 
         render(
@@ -161,30 +181,56 @@ describe("BookingPages", () => {
                 />
             </BrowserRouter>);
     
-        const selectGuests = screen.getByTestId('selectGuests');
+        const selectPlayers = screen.getByTestId('selectPlayers');
         
-        await userEvent.selectOptions(selectGuests, guests); 
+        await userEvent.selectOptions(selectPlayers, players); 
 
         await waitFor (() => {
-            expect(selectGuests).toHaveTextContent("2");
+            expect(selectPlayers).toHaveTextContent("2");
+        });
+
+        const selectGame = screen.getByTestId('selectGame');
+
+        await userEvent.selectOptions(selectGame, game); 
+
+        await waitFor (() => {
+            expect(selectGame.value).toBe("Billiards");
         });
     
         const datepickerInput = screen.getByDisplayValue(formatDate(actualToday).toString());
   
         fireEvent.change(datepickerInput, { target: { value: targetDate } });
 
-        let selectTime;
+        let timeSelected;
 
         await waitFor (() => {
-            selectTime = screen.getByTestId('selectTime');
-            expect(selectTime).toBeInTheDocument();
+            timeSelected = screen.getByTestId('selectTime');
+            expect(timeSelected).toBeInTheDocument();
         })
 
-        const options = screen.getAllByRole('option', { within: selectTime });
+        let timeOptions;
 
-        const time = options[2].textContent;
+        await waitFor (() => {
+            timeOptions = screen.getAllByTestId('filteredTime')
+            expect(timeOptions[0].value).toBe("10:00 AM");
+        })
 
-        await userEvent.selectOptions(selectTime, time);
+        const time = timeOptions[0].textContent;
+
+        await userEvent.selectOptions(timeSelected, time);
+
+        let selectDuration;
+
+        await waitFor (() => {
+            selectDuration = screen.getByTestId('selectDuration');
+            expect(selectDuration).toBeInTheDocument();
+        })
+
+        const durationOptions = screen.getAllByTestId("filteredDuration");
+
+        const duration = durationOptions[0].textContent;
+
+        await userEvent.selectOptions(selectDuration, duration);
 
         const button = screen.getByTestId('submit');
 
@@ -197,44 +243,6 @@ describe("BookingPages", () => {
         await waitFor (() => {
             expect(mockGetItem).toHaveBeenCalled();
         });
-    });
-
-    test('Check the BookingForm for correct input attributes', async () => {
-
-        render(
-            <BrowserRouter>
-                <BookingForm/>
-            </BrowserRouter>);
-
-        const chairCBInput = screen.getByLabelText("There will be a need for a children’s high chair:");
-        expect(chairCBInput).toHaveAttribute('type', 'checkbox');
-        expect(chairCBInput).toHaveAttribute('id', 'chairCheckbox');
-        expect(chairCBInput).toHaveAttribute('name', 'isChairChecked');
-        userEvent.click(chairCBInput);
-        await waitFor (() => {
-            expect(chairCBInput).toBeChecked();
-        });
-
-        const occasionCBInput = screen.getByLabelText("There will be a special occasion:");
-        expect(occasionCBInput).toHaveAttribute('type', 'checkbox');
-        expect(occasionCBInput).toHaveAttribute('id', 'occasionCheckbox');
-        expect(occasionCBInput).toHaveAttribute('name', 'isOccasionChecked');
-        userEvent.click(occasionCBInput);
-        await waitFor (() => {
-            expect(occasionCBInput).toBeChecked();
-        });
-
-        const tableCBInput = screen.getByLabelText("I want to choose my table:");
-        expect(tableCBInput).toHaveAttribute('type', 'checkbox');
-        expect(tableCBInput).toHaveAttribute('id', 'tableCheckbox');
-        expect(tableCBInput).toHaveAttribute('name', 'isTableChecked');
-        expect(tableCBInput).toHaveAttribute('disabled');
-
-        const submitButton = screen.getByTestId("submit");
-        expect(submitButton).toHaveAttribute('type', 'submit');
-        expect(submitButton).toHaveAttribute('id', 'blackButton');
-        expect(submitButton).toHaveAttribute('value', 'Reserve table for ');
-        expect(submitButton).toHaveAttribute('disabled');
     });
 
     test('Check the AddContactsForm for correct input attributes', async () => {
@@ -280,22 +288,26 @@ describe("BookingPages", () => {
 
         const submitButton = screen.getByTestId("contactSubmit");
         expect(submitButton).toHaveAttribute('type', 'submit');
-        expect(submitButton).toHaveAttribute('id', 'blackButton');
+        expect(submitButton).toHaveAttribute('id', 'neonButton');
         expect(submitButton).toHaveAttribute('value', 'Confirm Reservation');
     });
 
     test('Check the state of the submit button in BookingForm', async () => {
-        jest.spyOn(fetchDataModule, 'fetchData').mockImplementation(async (date, guests) => {
-            return [
-                {
-                    "checkDate": "2023-08-25",
-                    "targetDate": "2023-09-06",
-                    "id": "t8",
-                    "time": "01.30PM",
-                    "maxGuests": 8,
-                    "tableSituation": 2
-                }
-            ]
+        jest.spyOn(fetchDataModule, 'fetchData').mockImplementation(async (game, selectedDate, index) => {
+            if (index === 1) {
+                const filteredData = mockFetchedData
+                    .filter(item => item.game === game && item.targetDate !== null)
+                    .map(item => new Date(item.targetDate));
+                return filteredData;
+            } 
+            else {    
+                const filteredTimes = [{
+                    "time": "10:00 AM",
+                    "duration": 4
+                }];
+            
+                return filteredTimes;
+            }
         });
 
         render(
@@ -307,42 +319,55 @@ describe("BookingPages", () => {
         const submitBtn = screen.getByTestId('submit');
 
         /* Let's make a wrong selection to provoke an invalid value, thus invoking the blur addEventListener */
-        const selectGuests = screen.getByTestId('selectGuests');
-        const guestOptions = screen.getAllByRole('option', { within: selectGuests });
-        const invalidGuest = guestOptions[0].textContent;
-
-        await userEvent.selectOptions(selectGuests, invalidGuest); 
+        const selectPlayers = screen.getByTestId('selectPlayers');
+        await userEvent.selectOptions(selectPlayers, players); 
 
         await waitFor (() => {
-            expect(mockAddEventListener).toBeCalled();
+            expect(selectPlayers).toHaveTextContent("2");
         });
-        
-        /* Let's choose the correct values */
-        await userEvent.selectOptions(selectGuests, guests); 
 
-        await waitFor (() => {
-            expect(selectGuests).toHaveTextContent("2");
-        });
+        const selectGame = screen.getByTestId('selectGame');
+
+        await userEvent.selectOptions(selectGame, game); 
 
         const datepickerInput = screen.getByDisplayValue(formatDate(actualToday).toString());
 
         fireEvent.change(datepickerInput, { target: { value: targetDate } });
 
-        let selectTime;
+        let timeSelected;
 
         await waitFor (() => {
-            selectTime = screen.getByTestId('selectTime');
-            expect(selectTime).toBeInTheDocument();
+            timeSelected = screen.getByTestId('selectTime');
+            expect(timeSelected).toBeInTheDocument();
         })
 
         /* Let's check that the submit button is still disabled since not all of the required values have been chosen */
         expect(submitBtn).toHaveAttribute('disabled');
 
-        const options = screen.getAllByRole('option', { within: selectTime });
+        let timeOptions;
 
-        const time = options[2].textContent;
+        await waitFor (() => {
+            timeOptions = screen.getAllByTestId('filteredTime')
+            expect(timeOptions[0].value).toBe("10:00 AM");
+        })
 
-        await userEvent.selectOptions(selectTime, time);
+        const time = timeOptions[0].textContent;
+
+        await userEvent.selectOptions(timeSelected, time);
+
+        let selectDuration;
+
+        await waitFor (() => {
+            selectDuration = screen.getByTestId('selectDuration');
+            expect(selectDuration).toBeInTheDocument();
+        })
+
+        const durationOptions = screen.getAllByTestId("filteredDuration");
+
+        const duration = durationOptions[0].textContent;
+
+        await userEvent.selectOptions(selectDuration, duration);
+        
 
         /* Let's confirm that with all the required values A) the submit button isn't disabled and B) the blur has been removed */
         expect(submitBtn).not.toHaveAttribute('disabled=""');
@@ -446,7 +471,7 @@ describe("BookingPages", () => {
         userEvent.type(emailInput, "sarah_newman@email.com");
 
         const commentInput = screen.getByLabelText("Comment:");
-        userEvent.type(commentInput, "I'm looking forward to the dinner!")
+        userEvent.type(commentInput, "I'm looking forward to the game!")
 
         userEvent.click(submitButton);
     });

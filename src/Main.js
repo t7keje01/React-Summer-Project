@@ -9,7 +9,12 @@ const Main = () => {
     return (
         <Routes> 
           <Route path="/" element={<HomePage />}></Route>
-          <Route path="/reservations" element={<BookingPage />}></Route>
+          <Route path="/about" element={<HomePage />}></Route>
+          <Route path="/activity" element={<HomePage />}></Route>
+          <Route path="/leaderboard" element={<HomePage />}></Route>
+          <Route path="/tournament" element={<HomePage />}></Route>
+          <Route path="/pricing" element={<HomePage />}></Route>
+          <Route path="/reservation" element={<BookingPage />}></Route>
         </Routes>
     );
   };

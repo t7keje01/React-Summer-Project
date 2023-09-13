@@ -1,15 +1,20 @@
 import CalltoAction from "./CallToAction";
-import Specials from "./Specials";
-import CustomersSay from "./CustomersSay";
-import Chigaco from "./Chicago";
+import AboutCompany from "./AboutCompany";
+import Activities from "./Activities";
+import Leaderboard from "./Leaderboard";
+import Tournaments from "./Tournaments";
+import Pricing from "./Pricing";
 
 const HomePage = () => {
+    
     return (
         <>
             <CalltoAction/>
-            <Specials/>
-            <CustomersSay/>
-            <Chigaco/>
+            <AboutCompany/>
+            <Activities/>
+            <Leaderboard/>
+            <Tournaments/>
+            <Pricing/>
         </>
     );
 };

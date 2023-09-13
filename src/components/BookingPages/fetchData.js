@@ -1,17 +1,19 @@
 
-export const fetchData = async (date, guests) => {
-    const today = '2023-08-25';
-    const response =  await fetch("https://api.jsonbin.io/v3/b/64e2990e9d312622a39436ad");
+export const fetchData = async (game, selectedDate, index) => {
+    const response = await fetch("https://api.jsonbin.io/v3/b/64fde979e4033326cbd51569");
     const json = await response.json();
 
-    if ( date === today ) {
-        const filteredTimes = json.record.filter(item => 
-            new Date(item.checkDate).toLocaleDateString() === new Date(date).toLocaleDateString() && item.maxGuests >= guests);
+    if (index === 1) {
+        const filteredData = json.record
+            .filter(item => item.game === game && item.targetDate !== null)
+            .map(item => new Date(item.targetDate));
+        return filteredData;
+    } 
+    else if (index === 2) {    
+        const filteredTimes = json.record
+            .filter(item => new Date(item.targetDate).toLocaleDateString() === new Date(selectedDate).toLocaleDateString() && item.game === game)
+            .map(item => ({ time: item.time, duration: item.duration }));
+    
         return filteredTimes;
-    }
-    else {
-        const filteredTimes = json.record.filter(item => 
-            new Date(item.targetDate).toLocaleDateString() === new Date(date).toLocaleDateString() && item.maxGuests >= guests);
-        return filteredTimes;
-    }
+    };
 };

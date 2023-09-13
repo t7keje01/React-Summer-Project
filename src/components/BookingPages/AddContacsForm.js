@@ -138,7 +138,7 @@ const AddContactsForm = (props) => {
                                 name="comment" 
                                 value={formik.values.comment}
                                 onChange={(e) => setInputValue("comment", e.target.value)}
-                                aria-label="Add optional comment. If occasion chosen, please fill"
+                                aria-label="Add optional comment."
                                 maxLength={250}>
                             </textarea>
                             <span className="errorMessages">{formik.errors.comment}</span>
@@ -148,15 +148,15 @@ const AddContactsForm = (props) => {
             <input 
                 type="submit" 
                 value={`Confirm Reservation`} 
-                id="blackButton" 
-                className="contactsNextBtn" 
+                id="neonButton" 
+                className="neonText contactsNextBtn" 
                 onClick={formik.handleSubmit}
                 disabled={!formik.isValid}
                 aria-disabled={!formik.isValid}
                 data-testid="contactSubmit"
                 aria-label="Finish reservation"
             ></input>
-            <Link to="/" id="greyButton" className="contactsCancelBtn">Cancel Reservation</Link>
+            <Link to="/" id="neonButtonVariant" className="contactsCancelBtn neonTextVariant">Cancel Reservation</Link>
         </article>
     );
 };

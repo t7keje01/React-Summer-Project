@@ -24,35 +24,28 @@ const reducer = (state, action) => {
 const BookingPage = () => {
 
     const [step, setStep] = useState(1);
+    const [availableDates, setAvailableDates] = useState();
     const [editRequested, setEditRequested] = useState(false);
     const [availableTimes, dispatch] = useReducer(reducer, []);
 
-    useEffect(() => {
-        const fetchDataAndSetTimes = async () => {
-            try {
-                const timeLineUp = await fetchData(today, 0);
-                dispatch({ type: "INITIALIZE_TIMES", payload: timeLineUp });
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        }
-        fetchDataAndSetTimes();
-    }, []);
-      
+    /* Functions */
+    const updateDates = async (selectedGame) => {
+        const dates = await fetchData(selectedGame, "", 1);
+        setAvailableDates(dates);
+    };
 
-    /* Functions regarding the reducer */
-    const updateTimes = async (selectedDate, selectedGuests) => {
-        const updatedData = await fetchData(selectedDate, selectedGuests);
+    const updateTimes = async (selectedGame, selectedDate) => {
+        const updatedData = await fetchData(selectedGame, selectedDate, 2);
         dispatch({ type: "UPDATE_TIMES", payload: updatedData });
     };
 
     const initializeTimes = async (today) => {
-        const initializedData  = await fetchData(today, 0);
+        const initializedData  = await fetchData(today, "", 0);
         dispatch({ type: "INITIALIZE_TIMES", payload: initializedData });
     };
 
     const setStepWithAction = (newStep) => {
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
         setStep(newStep);
     }
 
@@ -67,12 +60,11 @@ const BookingPage = () => {
             const apiKey = "$2b$10$Ljhgzqti8Dc8Lhsz.q9YtOyirnzzzjki4lRP8wnqJs.FdyV/GgZCW"; 
 
             const sendData = {
-                "numberOfDiners": localStorage.getItem("guests"),
-                "numberOfChairs": localStorage.getItem("chairs"),
+                "numberOfPlayers": localStorage.getItem("players"),
+                "specialGame": localStorage.getItem("game"),
                 "reservationDate": localStorage.getItem("date"),
                 "reservationTime": localStorage.getItem("time"),
-                "specialOccasion": localStorage.getItem("occasion"),
-                "selectedTable": localStorage.getItem("table"),
+                "reservationDuration": localStorage.getItem("duration"),
                 "firstName": localStorage.getItem("lastName"),
                 "lastName": localStorage.getItem("lastName"),
                 "phoneNumber": localStorage.getItem("phone"),
@@ -107,7 +99,9 @@ const BookingPage = () => {
                 <>
                     <BegingBookingTitle/>
                     <BookingForm 
+                        availableDates={availableDates}
                         availableTimes={availableTimes}
+                        updateDates={updateDates}
                         updateTimes={updateTimes}
                         initializeTimes={initializeTimes}
                         submitForm={submitForm}
@@ -126,7 +120,7 @@ const BookingPage = () => {
             ) : step === 3 ? (
                 <>
                     <ConfirmedBooking
-                        setStepWithAction={setStepWithAction}/>
+                        setStep={setStep}/>
                 </>
             ) : null }
         </>

@@ -1,8 +1,6 @@
-import VisualizeChosenTable from "./VisualizeChosenTable";
-
 const CheckBooking = (props) => {
 
-    const bookingImg = require("../../images/book_and_pen.jpg");
+    const marioGif = 'https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzRxY2Z2eXk0ZDMzcGkybmVlZWJjdjJhZjF2dm1qMjN0aHEwdnk0dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/j0PJNeOsgOejwGjvPQ/giphy.gif';
 
     /* Props */
     const {
@@ -21,13 +19,11 @@ const CheckBooking = (props) => {
                 <h2 className="titleForm">Reservation Details:</h2>
                 <section className="tableForm">
                     <article className="checkGrid">
-                        <div className="checkTitle">Number of Diners:</div>
-                        <div>{localStorage.getItem("guests")}</div>
+                        <div className="checkTitle">Number of Players:</div>
+                        <div>{localStorage.getItem("players")}</div>
 
-                        {localStorage.getItem("chairs") !== "" && <>
-                        <div className="checkTitle">Number of Children’s Chairs:</div>
-                        <div>{localStorage.getItem("chairs")}</div>
-                        </>}
+                        <div className="checkTitle">Chosen Game:</div>
+                        <div>{localStorage.getItem("game")}</div>
 
                         <div className="checkTitle">Chosen Date:</div>
                         <div>{localStorage.getItem("date")}</div>
@@ -35,29 +31,16 @@ const CheckBooking = (props) => {
                         <div className="checkTitle">Chosen Time:</div>
                         <div>{localStorage.getItem("time")}</div>
 
-                        {localStorage.getItem("occasion") !== "" && <>
-                        <div className="checkTitle">Chosen Occasion:</div>
-                        <div>{localStorage.getItem("occasion")}</div>
-                        </>}
-
-                        {localStorage.getItem("table") !== "" && <>
-                        <div className="checkTitle">Chosen Table:</div>
-                        <div>{localStorage.getItem("table")}</div>
-                        </>}
-
+                        <div className="checkTitle">Chosen Duration:</div>
+                        <div>{localStorage.getItem("duration")}</div>
                     </article>
                 </section>
-                {localStorage.getItem("table") !== "" ? (
-                    <section className="tableImg" aria-label="Picture of chosen table">
-                        <VisualizeChosenTable chosenTable={localStorage.getItem("table")}/> 
-                    </section> ) : (
-                    <section className="tableImg">
-                        <div className="placeHolder">
-                            <img src={bookingImg} className="bookImg" alt="Book and pen."/>
-                        </div>
-                    </section>
-                    )}
-            <button id="blackButton" className="tableNextBtn" onClick={handleEdit}>Edit Information</button>
+                <section className="pixelImg">
+                    <img src={marioGif} alt="Gif" className="gif"></img>
+                    <img src={marioGif} alt="Gif" className="gif"></img>
+                    <img src={marioGif} alt="Gif" className="gif"></img>
+                </section>
+            <button id="neonButton" className="formButtons neonText editButton" onClick={handleEdit}>Edit Information</button>
         </article>
     );
 };

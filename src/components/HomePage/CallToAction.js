@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const mainFoodPic = require("../../images/restaurantfood.jpg");
+const mainPic = require("../../images/arcade_layout.jpg");
 
 const CalltoAction = () => {
     const navigate = useNavigate();
@@ -10,17 +10,17 @@ const CalltoAction = () => {
     };
 
     return (
-        <div className="homeGrid" id="heroSection">
-            <div className="titleDesc">
-                <h1>Little Lemon</h1>
-                <h2>Chigaco</h2>
-                <p>We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.</p>
-                <button id="blackButton" onClick={handleClick}>Reserve a Table</button>
+        <main className="homeGrid" id="homeSection">
+            <div className="mainImg">
+                <img src={mainPic} alt="Game lounge" className="homeImg"/>
             </div>
-            <div className="titleImg">
-                <img src={mainFoodPic} alt="Restaurant food" className="homeImg"/>
-            </div>
-        </div>
+            <article className="mainDesc">
+                <h1>The Game Garden</h1>
+                <h2>"The most fun place to be here in Oulu!"</h2>
+                <p>Whether you are into billiards, snooker, arcade games... We offer a variety of fun games to play and enjoy!</p>
+                <button id="neonButton" className="neonText" onClick={handleClick}>Make a Reservation</button>
+            </article>
+        </main>
     );
 };
 

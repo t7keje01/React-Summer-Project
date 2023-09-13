@@ -1,24 +1,47 @@
 @import url('https://fonts.googleapis.com/css?family=Karla');
-@import url('https://fonts.googleapis.com/css2?family=Markazi+Text');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 /* FONTS & IMAGES:
 - Colors, Fonts, Sizing, Positioning, Animations */
 
+/* Background */
+#contentContainer {
+	background: linear-gradient(-45deg, #000000, #32174D, #ce623b, #32174D, #000000);
+	background-size: 400% 100%;
+    background-repeat: no-repeat;
+	animation: gradient 25s ease infinite;
+	min-height: 100vh;
+    min-width: 100vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
 /* Heading basic styling */
 h1 {
-    font-family: "Markazi text";
-    color:#F4CE14;
-    font-weight: 500;
-    font-size: 64px;
+    font-family: "Orbitron";
+    color:#ce623b !important;
+    font-weight: 700 !important;
+    font-size: 42px !important;
     margin-bottom: 0;
     margin-top: 0;
 }
 
 h2 {
-    font-family: "Markazi text";
+    font-family: "Orbitron";
+    color: #00FFEF !important;
     font-weight: 400;
-    font-size: 40px;
-    margin-bottom: 0;
+    font-size: 28px !important;
     margin-top: 0;
 }
 
@@ -37,9 +60,16 @@ h4, label, #showTable, .checkTitle {
 p {
     padding-top: 2vh;
     line-height: 1.5;
+    color: white;
 }
 
-input, p, select, div, option, textarea {
+p, div{
+    font-family: "Karla";
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+}
+input, select, option, textarea {
     font-family: "Karla";
     font-size: 16px;
     font-weight: 400;
@@ -53,11 +83,11 @@ input, select, textarea {
 }
 
 input:focus, select:focus, textarea:focus {
-    box-shadow: 0 0 20px 10px #F4CE14;
+    box-shadow: 0 0 20px 10px #00FFEF;
 }
 
 .formValidation.invalid {
-  border: 3px solid red;
+    box-shadow: 0 0 20px 10px red;
 }
 
 .errorMessages {
@@ -68,105 +98,213 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* Link styling */
-a {
-    text-decoration: none;
-}
-
-header a, header a:visited {
-    color: black;
-}
-
-footer a, footer a:visited {
+.me-auto a, .me-auto a:visited {
     color: white;
 }
 
 header a:hover, footer a:hover { 
-    color:#F4CE14;
+    color:#ce623b !important;
 }
 
 .activeLink {
-    color:#F4CE14 !important;
+    color:#ce623b !important;
 }
 
 
 /* Button styling */
-button, .tableCancelBtn, .tableNextBtn, .contactsNextBtn, .contactsCancelBtn {
-    display: grid;
+
+#subscribeButton:hover {
+    color: #ce623b;
+}
+
+.neonText {
+    font-size: 18px;
+    font-family: "Sacramento", sans-serif;
+    font-weight: 400;
+    color: #fff;
+    text-shadow:
+      0 0 7px #fff,
+      0 0 10px #fff,
+      0 0 21px #fff,
+      0 0 42px #ce623b,
+      0 0 82px #ce623b,
+      0 0 92px #ce623b,
+      0 0 102px #ce623b,
+      0 0 151px #ce623b;
+}
+
+.neonTextVariant {
+    font-size: 18px;
+    font-family: "Sacramento", sans-serif;
+    font-weight: 400;
+    color: #fff;
+    text-shadow:
+      0 0 7px #fff,
+      0 0 10px #fff,
+      0 0 21px #fff,
+      0 0 42px #643098,
+      0 0 82px #643098,
+      0 0 92px #643098,
+      0 0 102px #643098,
+      0 0 151px #643098;
+}
+  
+#neonButton {
+    height: 50px;
+    width: 200px;
+    background-color: #010a01;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
     text-align: center;
-    align-content: center;
-    justify-items: center;
-    width: 250px;
-    height: 40px;
-    box-sizing: border-box;
-    border-radius: 8px;
-    font-family: "Karla";
-    font-size: 16px;
-    font-weight: 500;
-    border: black 2px solid;
+    text-decoration: none !important;
+    animation: pulsateIdle 1.5s infinite alternate;  
+    margin-top: 4vh;
+    border: 0.2rem solid #fff;
+    border-radius: 0.5rem;
+    padding: 0.4em;
+    box-shadow: 0 0 .2rem #fff,
+              0 0 .2rem #fff,
+              0 0 2rem #ce623b,
+              0 0 0.8rem #ce623b,
+              0 0 2.8rem #ce623b,
+              inset 0 0 1.3rem #ce623b; 
+}
+
+#neonButtonVariant {
+    width: 200px;
+    background-color: #010a01;
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center; 
+    text-align: center;
+    animation: pulsateIdle 1.5s infinite alternate;  
+    margin-top: 4vh;
+    border: 0.2rem solid #fff;
+    border-radius: 0.5rem;
+    padding: 0.4em;
+    box-shadow: 0 0 .2rem #fff,
+        0 0 .2rem #fff,
+        0 0 2rem #643098,
+        0 0 0.8rem #643098,
+        0 0 2.8rem #643098,
+        inset 0 0 1.3rem #643098; 
+}
+
+#neonButton:hover, #neonButtonVariant:hover, #neonSign {
+    box-shadow: 0 0 .2rem #fff,
+              0 0 .2rem #fff,
+              0 0 2rem #00FFEF,
+              0 0 0.8rem #00FFEF,
+              0 0 2.8rem #00FFEF,
+              inset 0 0 1.3rem #00FFEF; 
+}
+
+.neonText:hover, .neonTextVariant:hover {
+    font-size: 18px;
+    font-family: "Sacramento", sans-serif;
+    font-weight: 400;
+    color: #fff;
+    text-shadow:
+      0 0 7px #fff,
+      0 0 10px #fff,
+      0 0 21px #fff,
+      0 0 42px #00FFEF,
+      0 0 82px #00FFEF,
+      0 0 92px #00FFEF,
+      0 0 102px #00FFEF,
+      0 0 151px #00FFEF;
+}
+  
+@keyframes pulsateIdle {
+    100% {
+        text-shadow:
+        0 0 4px #fff,
+        0 0 11px #fff,
+        0 0 19px #fff,
+        0 0 40px #ce623b,
+        0 0 80px #ce623b,
+        0 0 90px #ce623b,
+        0 0 100px #ce623b,
+        0 0 150px #ce623b;
+    }
+    
+    0% {
+        text-shadow:
+        0 0 2px #fff,
+        0 0 4px #fff,
+        0 0 6px #fff,
+        0 0 10px #ce623b,
+        0 0 45px #ce623b,
+        0 0 55px #ce623b,
+        0 0 70px #ce623b,
+        0 0 80px #ce623b;
+  }
+}
+
+@keyframes pulsateHover {
+    100% {
+        text-shadow:
+        0 0 4px #fff,
+        0 0 11px #fff,
+        0 0 19px #fff,
+        0 0 40px #00FFEF,
+        0 0 80px #00FFEF,
+        0 0 90px #00FFEF,
+        0 0 100px #00FFEF,
+        0 0 150px #00FFEF;
+    }
+    
+    0% {
+        text-shadow:
+        0 0 2px #fff,
+        0 0 4px #fff,
+        0 0 6px #fff,
+        0 0 10px #00FFEF,
+        0 0 45px #00FFEF,
+        0 0 55px #00FFEF,
+        0 0 70px #00FFEF,
+        0 0 80px #00FFEF;
+  }
 }
 
 .tableNextBtn:disabled, .contactsNextBtn:disabled {
     opacity: 20%;
 }
 
-#blackButton {
-    background-color: black;
-    color: white;
-}
-
-#greyButton {
-    background-color: #EDEFEE;
-    color: black;
-}
-
-#blackButton:not(:disabled):hover, #greyButton:not(:disabled):hover {
-    border: black 2px solid;
-    background-color: #F4CE14;
-    color: black;
-}
-
-
 /* Header styling */
-header, nav {
-    background-color: white;
+.navGrid, header {
+    background-color: black;
 }
 
-.navType {
-    font-family: "Karla";
-    font-size: 18px;
-    font-weight: 700;
-    color: black;
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 30 30%27%3e%3cpath stroke=%27rgba%2833, 37, 41, 0.75%29%27 stroke-linecap=%27round%27 stroke-miterlimit=%2710%27 stroke-width=%272%27 d=%27M4 7h22M4 15h22M4 23h22%27/%3e%3c/svg%3e") !important;
 }
-
 
 /* Footer styling */
-#footTitle {
-    font-family: "Karla";
-    font-size: 16px;
-    font-weight: 600;
-    color: white;
-    margin: 3vh 0 0 0;
-}
-
 footer li {
     font-family: "Karla";
     font-size: 16px;
     font-weight: 400;
 }
 
-.logo {
-    max-width: 80%;
-    min-width: 80%;
-}
-
 .footerLogo {
-    width: 80%;
+    max-width: 100%;
 }
 
-footer {
-    background-color: #495E57;
+:root {
+    --bs-body-bg: transparent !important;
 }
 
+#copyright {
+    background-color: transparent;
+    color: white;
+}
+
+footer h5, footer strong {
+    color: #ce623b;
+}
 
 /*---------------------------------------------------------------------------*/
 
@@ -174,125 +312,247 @@ footer {
 /* HOMEPAGE STYLING */
 
 /* Hero Section styling */
-.titleDesc h2, p {
-    color:white;
+.mainDesc {
+    background-color: black;
 }
 
-.titleDesc button {
-    margin-top: 5vh;
+/* About */
+.openingTimeTable div {
+    color: white;
+    font-family: "Orbitron";
 }
 
-.titleDesc p {
-    font-family: "Karla";
-    font-size: 18px;
-    font-weight: 500;
-}
-
-#heroSection {
-    background-color: #495E57;
-}
-
-.homeImg {
-    max-width: 70%;
-    border-radius: 16px;
-}
-
-
-/* Specials */
-.specialCard img {
+.pacman{
     width:100%;
-    height: 170px;
-    object-fit:cover;
-    border-radius: 16px 16px 0 0;
+    background: radial-gradient(#FFF 10%, transparent 13%) 0 0 repeat-x;
+    background-size:40px 40px;
+    animation: movedots 2s linear infinite;
+    height:80px;
+    position:relative;
+    
+    &:before, &:after{
+        content:'';
+        display:block;
+        width:0;
+        height:0;
+        position:absolute;
+        top:0;left:0;
+        border:40px solid #00FFEF;
+        border-right-color:transparent;
+        border-radius:40px;
+    }
+    &:before{
+        animation: pac1 .25s infinite linear alternate;
+    }
+    &:after{
+        animation: pac2 .25s infinite linear alternate;
+    }
+}
+  
+@keyframes pac1 {
+    from{
+      transform:rotate(0);
+    }
+    to{
+      transform:rotate(45deg);
+    }
+}
+  
+@keyframes pac2 {
+    from{
+      transform:rotate(0);
+    }
+    to{
+      transform:rotate(-45deg);
+    }
+}
+@keyframes movedots {
+    from{
+      background-position:0 20px;
+    }
+    to{
+      background-position:-120px 20px;
+    }
 }
 
-.specialCard p, #testimonials p {
-    color: black;
+/* Activities */
+#activitySection {
+    background-color: black !important;
 }
 
-.specialCard section {
-    background-color: #EDEFEE;
-    border-radius: 16px 16px 0 0;
-    border: 1px solid black;
+.gallery > p:last-of-type {
+    padding-bottom: 20px;
 }
 
-.specialCard h3,
-.specialCard p,
-.specialCard h4 {
-    padding: 0vh 2vh 0vh 2vh;
+.activityLabel {
+    text-align: center;
+    background-color: #32174D;
+    padding: 5px;
 }
 
-.specialCard h4 {
-    margin-top: auto;
+.activityOption1 {
+    background-image: url('../images/billiards.jpg');
+
 }
 
-
-/* Testimonials */
-#testimonials img {
-    border: 1px solid black;
-    width: 100%;
+.activityOption2 {
+    background-image: url('../images/slot_machine.jpg');
 }
 
-#testimonials section {
-    background-color: #FBDABB;
-    border: 1px solid black;
+.activityOption3 {
+    background-image: url('../images/air_hockey.jpg');
 }
 
-#testimonials h2 {
+.activityOption4 {
+    background-image: url('../images/pinball.jpg');
+}
+
+.activityOption5 {
+    background-image: url('../images/skeeball.jpg');
+}
+
+.activityOption6 {
+    background-image: url('../images/arcade.jpg');
+}
+
+/* Leaderboard */
+.carousel-control-prev-icon::after, .carousel-control-next-icon::after {
+    content: none !important;
+}
+
+#carouselSection {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center left;
+    border: '2px white solid';
+}
+
+#leaderboardBlock, #leaderboardBlock > * {
+    border: 2px white solid;
+    color: white !important;
+    padding: 10px;
+}
+
+#leaderboardBlock h3, #leaderboardBlock div {
+    font-family: 'VT323', monospace !important;
+}
+
+/* Tournaments */
+#tournamentSection {
+    background-color: black;
+}
+
+#tournamentSection h2, .card-title {
     text-align: center;
 }
 
-
-/* Introductions animation setup */
-#introSection {
-    position: relative;
+#tournamentSection h3 {
+    color: #ce623b;
+    font-size: 28px;
+    text-align: center;
 }
 
-.introBackground {
-    z-index: -1;
+#blinkingText {
+    font-family: 'VT323', monospace !important;
+    overflow: hidden;
+    border-right: 12px solid transparent;
+    white-space: nowrap;
+    display: inline-block;
+    max-width: fit-content;
+    letter-spacing: .15em; 
+    animation: 
+      typingEffect 3.5s steps(40, end),
+      blinkingTextCursor 1.5s step-end infinite;
 }
 
-.introBackground::before {
-    content: "";
-    background-image: url('../images/Mario\ and\ Adrian\ A.jpg');
-    background-size: cover;
-    background-position: top;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    left: 0px;
-    bottom: 0px;
+@keyframes typingEffect {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+
+@keyframes blinkingTextCursor {
+    from, to { border-color: transparent }
+    50% { border-color: rgb(255, 255, 255); }
 }
 
-.intro {
-    position: relative;
-    z-index: 1;
+.tournamentCards {
+    background-color: #000000;
 }
 
-@keyframes changeBackground {
-    0%, 100% {
-        opacity: 0.3;
-        background-image: url('../images/Mario\ and\ Adrian\ A.jpg');
-    }
-    50% {
-        opacity: 0.3;
-        background-image: url('../images/Mario\ and\ Adrian\ b.jpg');
-        background-position: bottom;
-    }
+.tournamentCards label {
+    color: #ce623b;
 }
 
-.introBackground::before {
-    animation: changeBackground 25s infinite; 
-}
-
-
-/* Introductions styling */
-#introSection p {
+#expandingButton {
+    font-family: "Orbitron";
     color: black;
+    background-color: #00FFEF;
 }
 
-#introSection h1 {
-    color: #495E57;
+#tournamentInfoText {
+    color: white;
+    font-style: italic;
+    font-weight: 400;
+}
+
+.card-title {
+    color: #00FFEF !important;
+}
+
+#accordionItem:hover {
+    background-color: #32174D;
+}
+
+.accordion-item button {
+    color: #ce623b !important;
+    font-family: "Karla";
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* Pricing */
+
+#pricingSection h3 {
+    color:#00FFEF;
+}
+
+#pricingSection li {
+    color: white;
+}
+
+#pricingSection .pricingDetails {
+    padding: 15px;
+}
+
+#pricingSection .moreInfoText {
+    text-decoration: underline;
+}
+
+#pricingSection .nav-underline .nav-link.active,
+#pricingSection .nav-underline .show>.nav-link {
+    background-color: white !important;
+}
+
+#pricingSection .nav {
+    --bs-nav-link-color: #00FFEF !important;
+    --bs-nav-link-hover-color: #00FFEF !important;
+}
+
+#pricingSection .nav-item:hover {
+    background-color: black !important;
+}
+
+#pricingSection .tab-content {
+    background-color: black !important;
+    border: #00FFEF 1px solid;
+    color: white !important;
+    padding: 5vh;
+}
+
+#pricingSection .tab-content p {
+    font-family: 'VT323', monospace;
+    font-size: 20px;
 }
 
 /*---------------------------------------------------------------------------*/
@@ -303,55 +563,27 @@ footer {
 .reservedTableImg {
     max-width: 100%;
 }
-#startBookingTitle, #finishBooking {
-    background-color: #495E57;
+
+.altTitleDesc {
+    background-color: black;
 }
 
+
 .contactLink {
-    color: #F4CE14;
+    color:#00FFEF;
     text-decoration: underline;
 }
 
 
 /* Form */
-#tableReservationImg {
-    border: 1px solid black;
-    border-radius: 8px;
+.react-datepicker__day--selected {
+    background:#32174D !important;
 }
 
-#tableReservationImg > img:not(.kitchen, #tb_1) {
-    max-width: 80%;
-    max-height: auto;
-}
+.react-datepicker {
+background-color: black !important;
+border-color: #00FFEF !important;
 
-.kitchen {
-    max-width: 100%;
-}
-
-#tb_1 {
-    max-height: 50%;
-    max-width: auto;
-}
-
-.dsc {
-    display: flex;
-    align-items: center;
-    gap: 2vh;
-    padding-bottom: 4vh;
-}
-
-#greenBox {
-    height: 10px;
-    width: 10px;
-    border: 1px solid black;
-    background-color: #CFFFDA;
-}
-  
-#redBox {
-    height: 10px;
-    width: 10px;
-    border: 1px solid black;
-    background-color: #FBDABB;
 }
 
 .selected {
@@ -373,16 +605,50 @@ input[type="checkbox"] {
     box-sizing: border-box;
 }
 
-#tbs_1, #tbs_2, #tbs_3, #tbs_4, #tbs_5, #tbs_6, #tbs_7, #tbs_8, #tbs_9 {
-    filter: grayscale(100%);
-    opacity: 0.5;
-}
-
-.bookImg {
-    max-width: 100%;
-    max-height: 100%;
-}
-
 #addContactsContainer {
-    background-image: url("../images/lemons_background.png");
+    background-color: black;
+    padding: 10vh;
+    margin-bottom: 10vh !important;
+}
+
+.lastButtons {
+    width: 30% !important;
+}
+
+
+/*---------------------------------------------------------------------------*/
+
+
+/* SMALL SCREEN */
+
+/* Smaller screens: Actions to improve visuals */
+@media screen and (max-width: 740px) {
+
+    body {
+        background-size: 1000% 100%;
+        animation: gradient 20s ease infinite;
+    }
+
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 60% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    #pricingSection .nav-item:hover {
+        height: 100%;
+        background-color: transparent !important;
+    }
+
+    #pricingSection button, #pricingSection #active, #pricingSection .nav-item {
+        height: 60px;
+
+    }
+
 }
